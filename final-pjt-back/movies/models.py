@@ -12,7 +12,7 @@ class Movie(models.Model):
     release_date = models.TextField()
     runtime = models.IntegerField()
     overview = models.TextField()
-    popularity = models.IntegerField()
+    vote_average = models.FloatField()
     poster_path = models.TextField()
     ## 장르가 dictionary 형태로 들어옴
     genre_id = models.IntegerField() #
