@@ -7,6 +7,7 @@ import MyMovieView from '@/views/MyMovieView'
 import SearchMovieView from '@/views/SearchMovieView'
 import TicketingView from '@/views/TicketingView'
 import MovieDetailView from '@/views/MovieDetailView'
+import SignUpView from '@/views/SignUpView'
 
 
 
@@ -48,6 +49,12 @@ const routes = [
     name: 'TicketingView',
     component: TicketingView
   },
+  {
+    path: '/sign-up',
+    name: 'SignUpView',
+    component: SignUpView
+
+  }
 ]
 
 const router = new VueRouter({
