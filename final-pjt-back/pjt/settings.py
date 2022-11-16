@@ -78,7 +78,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:8080',
 ]
 
-# CORS_ALLOW_ALL_ORIGINS = True # 전체 허용
+CORS_ALLOW_ALL_ORIGINS = True # 전체 허용
 
 ROOT_URLCONF = 'pjt.urls'
 

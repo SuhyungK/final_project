@@ -15,7 +15,16 @@ export default {
   components: {
     NavbarPage,
     ShortPage,
+  },
+  
+  mounted() {
+    const tmp = this.$store.getters.isLogin
+    if (!tmp) {
+      alert('로그인이 필요한 서비스 입니다!')
+      // this.$router.push({name:'LoginView'})
+    }
   }
+
 }
 
 </script>
