@@ -6,6 +6,7 @@
     <button @click="searchMovie">영화검색</button>
     <button @click="logOut">로그아웃</button>
     <button @click="test">test</button>
+    <button @click="test1">test1 : 유저가 좋아요한 목록</button>
     
   </div>
 </template>
@@ -32,6 +33,9 @@ export default {
     },
     test() {
       this.$router.push({name: 'TmpView'})
+    },
+    test1() {
+      this.$store.dispatch('myLikeMovies')
     }
   }
 }

@@ -41,9 +41,6 @@ export default {
       this.$store.dispatch('reviewC', payload)
     },
   },
-  created() {
-    this.$store.dispatch('getUser')
-  }
 
 }
 </script>

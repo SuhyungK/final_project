@@ -1,6 +1,10 @@
 <template>
   <div>
     <h5 @click='createReview'>{{ movie.title }}, {{movie.id}}</h5>
+    <button v-if="!alradyLiked" @click="likeMovie">임시 좋아요 버튼</button>
+    <button v-if="alradyLiked" @click="likeMovie">임시 좋아요 취소 버튼</button>
+    {{alradyLiked}}
+    {{liked}}
   </div>
 </template>
 
@@ -13,6 +17,17 @@ export default {
   methods: {
     createReview() {
       this.$router.push({name: 'TmpReviewC', params:{movieId: this.movie.id}})
+    },
+    likeMovie() {
+      this.$store.dispatch('likeMovie', this.movie.id)
+    }
+  },
+  computed: {
+    liked() {
+      return this.$store.state.myLikeMovies
+    },
+    alradyLiked() {
+      return this.liked.includes(this.movie.id)
     }
   }
 }

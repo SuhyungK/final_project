@@ -32,7 +32,6 @@ class Movie(models.Model):
     # backgroundPost = models.TextField() # 제이
     # #  가격????
 
-    # like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movie')
     
     movie_id = models.IntegerField()
     title = models.CharField(max_length=20)
@@ -48,6 +47,7 @@ class Movie(models.Model):
     vote_average = models.FloatField()
     is_now_playing = models.BooleanField(default=False, null=True, blank=True)
 
+    like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movie')
 
 # 리뷰
 class Review(models.Model):

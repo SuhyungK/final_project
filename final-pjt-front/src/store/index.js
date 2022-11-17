@@ -15,7 +15,8 @@ export default new Vuex.Store({
   state: {
     token: null,
     userInfo: null,
-    tmpMovies : []
+    tmpMovies : [],
+    myLikeMovies : []
   },
   getters: {
     isLogin(state) {
@@ -78,6 +79,10 @@ export default new Vuex.Store({
       })
         .then((res) => {
           context.commit('SAVE_TOKEN', res.data.key)
+          context.dispatch('getUser')
+          // 로그인이 정상 작동하면 내가 좋아요한 영화 목록 불러오기
+          // const userPk = context.state.userInfo.userPk
+          context.dispatch('myLikeMovies')
           router.push({ name: 'IndexView'})
         })
         .catch((err) => {
@@ -159,11 +164,50 @@ export default new Vuex.Store({
         }
       })
         .then((res) =>{
-          console.log(res)
+          console.log('유저 정보 소환!!!')
           context.commit('USER_SAVE', res.data)
         })
         .catch((err) => {
           console.log(err)
+        })
+    },
+
+    // 영화 좋아요
+    likeMovie(context, movie_pk) {
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/movies/like/${movie_pk}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((res) =>{
+          console.log('좋아요 성공!')
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+          console.log('좋아요 실패ㅜ')
+        })
+    },
+
+    myLikeMovies(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/movies/like-list/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((res) =>{
+          console.log('좋아요 목럭 불러오기 성공!')
+          console.log(res)
+          context.state.myLikeMovies = res.data.liked
+          console.log(context.state.myLikeMovies)
+        })
+        .catch((err) => {
+          console.log(err)
+          console.log('좋아요 목럭 불러오기 실패!')
         })
     }
 
