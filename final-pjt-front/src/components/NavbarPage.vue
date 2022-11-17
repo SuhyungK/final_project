@@ -5,6 +5,8 @@
     <button @click="toMyMovie">관심 영화</button>
     <button @click="searchMovie">영화검색</button>
     <button @click="logOut">로그아웃</button>
+    <button @click="test">test</button>
+    
   </div>
 </template>
 
@@ -27,6 +29,9 @@ export default {
       this.$store.dispatch('logOut')
       console.log('로그아웃 누름!')
       this.$router.push({name: 'LoginView'})
+    },
+    test() {
+      this.$router.push({name: 'TmpView'})
     }
   }
 }

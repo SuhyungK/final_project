@@ -9,7 +9,8 @@ import TicketingView from '@/views/TicketingView'
 import MovieDetailView from '@/views/MovieDetailView'
 import SignUpView from '@/views/SignUpView'
 
-
+import TmpView from '@/views/TmpView'
+import TmpReviewC from '@/views/TmpReviewC'
 
 Vue.use(VueRouter)
 
@@ -53,6 +54,16 @@ const routes = [
     path: '/sign-up',
     name: 'SignUpView',
     component: SignUpView
+  },
+  {
+    path: '/tmp',
+    name: 'TmpView',
+    component: TmpView
+  },
+  {
+    path: '/tmp/c',
+    name: 'TmpReviewC',
+    component: TmpReviewC
 
   }
 ]

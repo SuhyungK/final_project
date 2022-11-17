@@ -3,7 +3,7 @@
     "model": "movies.movie",
     "id": 1,
     "fields": {
-        "movid_id": 505642,
+        "movie_id": 505642,
         "title": "Black Panther: Wakanda Forever",
         "original_title": "Black Panther: Wakanda Forever",
         "overview": "Queen Ramonda, Shuri, M’Baku, Okoye and the Dora Milaje fight to protect their nation from intervening world powers in the wake of King T’Challa’s death. As the Wakandans strive to embrace their next chapter, the heroes must band together with the help of War Dog Nakia and Everett Ross and forge a new path for the kingdom of Wakanda.",
@@ -21,7 +21,7 @@
     "model": "movies.movie",
     "id": 2,
     "fields": {
-        "movid_id": 436270,
+        "movie_id": 436270,
         "title": "Black Adam",
         "original_title": "Black Adam",
         "overview": "Nearly 5,000 years after he was bestowed with the almighty powers of the Egyptian gods—and imprisoned just as quickly—Black Adam is freed from his earthly tomb, ready to unleash his unique form of justice on the modern world.",
@@ -39,7 +39,7 @@
     "model": "movies.movie",
     "id": 3,
     "fields": {
-        "movid_id": 663712,
+        "movie_id": 663712,
         "title": "Terrifier 2",
         "original_title": "Terrifier 2",
         "overview": "After being resurrected by a sinister entity, Art the Clown returns to Miles County where he must hunt down and destroy a teenage girl and her younger brother on Halloween night.  As the body count rises, the siblings fight to stay alive while uncovering the true nature of Art's evil intent.",
@@ -57,7 +57,7 @@
     "model": "movies.movie",
     "id": 4,
     "fields": {
-        "movid_id": 882598,
+        "movie_id": 882598,
         "title": "Smile",
         "original_title": "Smile",
         "overview": "After witnessing a bizarre, traumatic incident involving a patient, Dr. Rose Cotter starts experiencing frightening occurrences that she can't explain. As an overwhelming terror begins taking over her life, Rose must confront her troubling past in order to survive and escape her horrifying new reality.",
@@ -75,7 +75,7 @@
     "model": "movies.movie",
     "id": 5,
     "fields": {
-        "movid_id": 49046,
+        "movie_id": 49046,
         "title": "All Quiet on the Western Front",
         "original_title": "Im Westen nichts Neues",
         "overview": "Paul Baumer and his friends Albert and Muller, egged on by romantic dreams of heroism, voluntarily enlist in the German army. Full of excitement and patriotic fervour, the boys enthusiastically march into a war they believe in. But once on the Western Front, they discover the soul-destroying horror of World War I.",
@@ -93,7 +93,7 @@
     "model": "movies.movie",
     "id": 6,
     "fields": {
-        "movid_id": 979924,
+        "movie_id": 979924,
         "title": "On the Line",
         "original_title": "On the Line",
         "overview": "A provocative and edgy radio host must play a dangerous game of cat and mouse with a mysterious caller who's kidnapped his family and is threatening to blow up the whole station.",
@@ -111,7 +111,7 @@
     "model": "movies.movie",
     "id": 7,
     "fields": {
-        "movid_id": 676701,
+        "movie_id": 676701,
         "title": "Tad the Lost Explorer and the Emerald Tablet",
         "original_title": "Tadeo Jones 3: La Tabla Esmeralda",
         "overview": "Tad would love for his archeologist colleagues to accept him as one of their own, but he always messes everything up. Tad accidentally destroys a sarcophagus and unleashes an ancient spell endangering the lives of his friends: Mummy, Jeff and Belzoni. With everyone against him and only helped by Sara, he sets off on an adventure that will take him from Mexico to Chicago and from Paris to Egypt, in order to put an end to the curse of the Mummy.",
@@ -129,7 +129,7 @@
     "model": "movies.movie",
     "id": 8,
     "fields": {
-        "movid_id": 760161,
+        "movie_id": 760161,
         "title": "Orphan: First Kill",
         "original_title": "Orphan: First Kill",
         "overview": "After escaping from an Estonian psychiatric facility, Leena Klammer travels to America by impersonating Esther, the missing daughter of a wealthy family. But when her mask starts to slip, she is put against a mother who will protect her family from the murderous “child” at any cost.",
@@ -147,7 +147,7 @@
     "model": "movies.movie",
     "id": 9,
     "fields": {
-        "movid_id": 985939,
+        "movie_id": 985939,
         "title": "Fall",
         "original_title": "Fall",
         "overview": "For best friends Becky and Hunter, life is all about conquering fears and pushing limits. But after they climb 2,000 feet to the top of a remote, abandoned radio tower, they find themselves stranded with no way down. Now Becky and Hunter’s expert climbing skills will be put to the ultimate test as they desperately fight to survive the elements, a lack of supplies, and vertigo-inducing heights",
@@ -165,7 +165,7 @@
     "model": "movies.movie",
     "id": 10,
     "fields": {
-        "movid_id": 717728,
+        "movie_id": 717728,
         "title": "Jeepers Creepers: Reborn",
         "original_title": "Jeepers Creepers: Reborn",
         "overview": "Forced to travel with her boyfriend to a horror festival, Laine begins to experience disturbing visions associated with the urban legend of The Creeper. As the festival arrives and the blood-soaked entertainment builds to a frenzy, she becomes the center of it while something unearthly has been summoned.",
@@ -183,7 +183,7 @@
     "model": "movies.movie",
     "id": 11,
     "fields": {
-        "movid_id": 361743,
+        "movie_id": 361743,
         "title": "Top Gun: Maverick",
         "original_title": "Top Gun: Maverick",
         "overview": "After more than thirty years of service as one of the Navy’s top aviators, and dodging the advancement in rank that would ground him, Pete “Maverick” Mitchell finds himself training a detachment of TOP GUN graduates for a specialized mission the likes of which no living pilot has ever seen.",
@@ -201,7 +201,7 @@
     "model": "movies.movie",
     "id": 12,
     "fields": {
-        "movid_id": 862965,
+        "movie_id": 862965,
         "title": "Emily the Criminal",
         "original_title": "Emily the Criminal",
         "overview": "Emily, who is saddled with student debt and locked out of the job market due to a minor criminal record, gets involved in a credit card scam that pulls her into the criminal underworld of Los Angeles, ultimately leading to deadly consequences.",
@@ -219,7 +219,7 @@
     "model": "movies.movie",
     "id": 13,
     "fields": {
-        "movid_id": 830788,
+        "movie_id": 830788,
         "title": "The Invitation",
         "original_title": "The Invitation",
         "overview": "After the death of her mother, Evie is approached by an unknown cousin who invites her to a lavish wedding in the English countryside. Soon, she realizes a gothic conspiracy is afoot and must fight for survival as she uncovers twisted secrets in her family’s history.",
@@ -237,7 +237,7 @@
     "model": "movies.movie",
     "id": 14,
     "fields": {
-        "movid_id": 833097,
+        "movie_id": 833097,
         "title": "Falling for Christmas",
         "original_title": "Falling for Christmas",
         "overview": "A newly engaged and spoiled hotel heiress finds herself in the care of a handsome, blue-collar lodge owner and his precocious daughter after getting total amnesia in a skiing accident.",
@@ -255,7 +255,7 @@
     "model": "movies.movie",
     "id": 15,
     "fields": {
-        "movid_id": 807356,
+        "movie_id": 807356,
         "title": "Watcher",
         "original_title": "Watcher",
         "overview": "As a serial killer stalks the city, Julia — a young actress who just moved to town with her husband — notices a mysterious stranger watching her from across the street.",
@@ -273,7 +273,7 @@
     "model": "movies.movie",
     "id": 16,
     "fields": {
-        "movid_id": 634649,
+        "movie_id": 634649,
         "title": "Spider-Man: No Way Home",
         "original_title": "Spider-Man: No Way Home",
         "overview": "Peter Parker is unmasked and no longer able to separate his normal life from the high-stakes of being a super-hero. When he asks for help from Doctor Strange the stakes become even more dangerous, forcing him to discover what it truly means to be Spider-Man.",
@@ -291,7 +291,7 @@
     "model": "movies.movie",
     "id": 17,
     "fields": {
-        "movid_id": 900667,
+        "movie_id": 900667,
         "title": "One Piece Film Red",
         "original_title": "ONE PIECE FILM RED",
         "overview": "Uta — the most beloved singer in the world. Her voice, which she sings with while concealing her true identity, has been described as “otherworldly.” She will appear in public for the first time at a live concert. As the venue fills with all kinds of Uta fans — excited pirates, the Navy watching closely, and the Straw Hats led by Luffy who simply came to enjoy her sonorous performance — the voice that the whole world has been waiting for is about to resound.",
@@ -309,7 +309,7 @@
     "model": "movies.movie",
     "id": 18,
     "fields": {
-        "movid_id": 848058,
+        "movie_id": 848058,
         "title": "Piggy",
         "original_title": "Cerdita",
         "overview": "A bullied overweight teenager sees a glimpse of hope when her tormentors are brutally abducted by a mesmerizing stranger.",
@@ -327,7 +327,7 @@
     "model": "movies.movie",
     "id": 19,
     "fields": {
-        "movid_id": 610150,
+        "movie_id": 610150,
         "title": "Dragon Ball Super: Super Hero",
         "original_title": "ドラゴンボール超 スーパーヒーロー",
         "overview": "The Red Ribbon Army, an evil organization that was once destroyed by Goku in the past, has been reformed by a group of people who have created new and mightier Androids, Gamma 1 and Gamma 2, and seek vengeance against Goku and his family.",
@@ -345,7 +345,7 @@
     "model": "movies.movie",
     "id": 20,
     "fields": {
-        "movid_id": 551271,
+        "movie_id": 551271,
         "title": "Medieval",
         "original_title": "Medieval",
         "overview": "The story of 14th century Czech icon and warlord Jan Zizka who defeated armies of the Teutonic Order and the Holy Roman Empire.",
@@ -363,7 +363,7 @@
     "model": "movies.movie",
     "id": 21,
     "fields": {
-        "movid_id": 848791,
+        "movie_id": 848791,
         "title": "The Stranger",
         "original_title": "The Stranger",
         "overview": "Two strangers strike up a conversation on a long journey. One is a suspect in an unsolved missing person’s case and the other an undercover operative on his trail. Their uneasy friendship becomes the core of this tightly wrought thriller, which is based on the true story of one of the largest investigations and undercover operations in Australia.",
@@ -381,7 +381,7 @@
     "model": "movies.movie",
     "id": 22,
     "fields": {
-        "movid_id": 616820,
+        "movie_id": 616820,
         "title": "Halloween Ends",
         "original_title": "Halloween Ends",
         "overview": "Four years after the events of Halloween in 2018, Laurie has decided to liberate herself from fear and rage and embrace life. But when a young man is accused of killing a boy he was babysitting, it ignites a cascade of violence and terror that will force Laurie to finally confront the evil she can’t control, once and for all.",
@@ -399,7 +399,7 @@
     "model": "movies.movie",
     "id": 23,
     "fields": {
-        "movid_id": 619730,
+        "movie_id": 619730,
         "title": "Don't Worry Darling",
         "original_title": "Don't Worry Darling",
         "overview": "Alice and Jack are lucky to be living in the idealized community of Victory, the experimental company town housing the men who work for the top-secret Victory Project and their families. But when cracks in their idyllic life begin to appear, exposing flashes of something much more sinister lurking beneath the attractive façade, Alice can’t help questioning exactly what they’re doing in Victory, and why.",
@@ -417,7 +417,7 @@
     "model": "movies.movie",
     "id": 24,
     "fields": {
-        "movid_id": 820067,
+        "movie_id": 820067,
         "title": "The Quintessential Quintuplets Movie",
         "original_title": "映画 五等分の花嫁",
         "overview": "When five lovely young girls who hate studying hire part-time tutor Futaro, he guides not only their education but also their hearts. Time spent has brought them all closer, with feelings growing within the girls and Futaro. As they finish their third year of high school and their last school festival approaches, they set their sights on what’s next. Is there a future with one of them and Futaro?",
@@ -435,7 +435,7 @@
     "model": "movies.movie",
     "id": 25,
     "fields": {
-        "movid_id": 955644,
+        "movie_id": 955644,
         "title": "Mia and Me: The Hero of Centopia",
         "original_title": "Mia and Me: The Hero of Centopia",
         "overview": "Mia discovers her magic stone is part of an ancient prophecy and embarks on a thrilling journey to the farthest islands of Centopia to face a great evil, and shape her own destiny.",
@@ -453,7 +453,7 @@
     "model": "movies.movie",
     "id": 26,
     "fields": {
-        "movid_id": 579974,
+        "movie_id": 579974,
         "title": "RRR",
         "original_title": "రౌద్రం రణం రుధిరం",
         "overview": "A fictional history of two legendary revolutionaries' journey away from home before they began fighting for their country in the 1920s.",
@@ -471,7 +471,7 @@
     "model": "movies.movie",
     "id": 27,
     "fields": {
-        "movid_id": 366672,
+        "movie_id": 366672,
         "title": "Paws of Fury: The Legend of Hank",
         "original_title": "Paws of Fury: The Legend of Hank",
         "overview": "A hard-on-his-luck hound finds himself in a town full of cats in need of a hero to defend them from a ruthless villain's wicked plot to wipe their village off the map. With help from a reluctant mentor, our underdog must assume the role of town samurai and team up with the villagers to save the day.",
@@ -489,7 +489,7 @@
     "model": "movies.movie",
     "id": 28,
     "fields": {
-        "movid_id": 812488,
+        "movie_id": 812488,
         "title": "Don't Come Back Alive",
         "original_title": "Mete miedo",
         "overview": "Camila is a young member of an elite police unit. During an operation in a dangerous area, she turns up in the middle of a ritual, in which their members burnt themselves to death. She suffers severe burns all over her body and goes into a coma. In her long recovery, her friend Fatima, a criminal prosecutor, and her partner and ex-boyfriend Ángel will help her. But Camila acts strange, she is distant, emotionless. The albino, a female figure who is attached to her soul since the ritual episode, is here to play a game with the three of them.",
@@ -507,7 +507,7 @@
     "model": "movies.movie",
     "id": 29,
     "fields": {
-        "movid_id": 759507,
+        "movie_id": 759507,
         "title": "Blackout",
         "original_title": "Blackout",
         "overview": "A man wakes in a hospital with no memory, and quickly finds himself on the run in a locked down hospital with the Cartel on his tail.",
@@ -525,7 +525,7 @@
     "model": "movies.movie",
     "id": 30,
     "fields": {
-        "movid_id": 595586,
+        "movie_id": 595586,
         "title": "Causeway",
         "original_title": "Causeway",
         "overview": "A US soldier suffers a traumatic brain injury while fighting in Afghanistan and struggles to adjust to life back home in New Orleans. When she meets local mechanic James, the pair begin to forge an unexpected bond.",
@@ -543,7 +543,7 @@
     "model": "movies.movie",
     "id": 31,
     "fields": {
-        "movid_id": 511817,
+        "movie_id": 511817,
         "title": "Wendell & Wild",
         "original_title": "Wendell & Wild",
         "overview": "Two demon brothers enlist the aid of Kat Elliot — a tough teen with a load of guilt — to summon them to the Land of the Living. But what Kat demands in return leads to a brilliantly bizarre and comedic adventure like no other.",
@@ -561,7 +561,7 @@
     "model": "movies.movie",
     "id": 32,
     "fields": {
-        "movid_id": 744114,
+        "movie_id": 744114,
         "title": "My Policeman",
         "original_title": "My Policeman",
         "overview": "In the late 1990s, the arrival of elderly invalid Patrick into Marion and Tom’s home triggers the exploration of seismic events from 40 years previous: the passionate relationship between Tom and Patrick at a time when homosexuality was illegal.",
@@ -579,7 +579,7 @@
     "model": "movies.movie",
     "id": 33,
     "fields": {
-        "movid_id": 629542,
+        "movie_id": 629542,
         "title": "The Bad Guys",
         "original_title": "The Bad Guys",
         "overview": "When the Bad Guys, a crew of criminal animals, are finally caught after years of heists and being the world’s most-wanted villains, Mr. Wolf brokers a deal to save them all from prison.",
@@ -597,7 +597,7 @@
     "model": "movies.movie",
     "id": 34,
     "fields": {
-        "movid_id": 969160,
+        "movie_id": 969160,
         "title": "Deinfluencer",
         "original_title": "Deinfluencer",
         "overview": "An influential cheerleader finds herself held captive by a masked psychopath with a God complex. She must complete a series of sadistic social media challenges to save her life and the lives of her fellow captives. However, the masked kidnapper has a secret agenda for his most recent victim.",
@@ -615,7 +615,7 @@
     "model": "movies.movie",
     "id": 35,
     "fields": {
-        "movid_id": 913290,
+        "movie_id": 913290,
         "title": "Barbarian",
         "original_title": "Barbarian",
         "overview": "In town for a job interview, a young woman arrives at her Airbnb late at night only to find that it has been mistakenly double-booked and a strange man is already staying there. Against her better judgement, she decides to stay the night anyway, but soon discovers that there is much more to be afraid of in the house than the other guest.",
@@ -633,7 +633,7 @@
     "model": "movies.movie",
     "id": 36,
     "fields": {
-        "movid_id": 799379,
+        "movie_id": 799379,
         "title": "Project Wolf Hunting",
         "original_title": "늑대사냥",
         "overview": "During transport from the Philippines to South Korea, a group of dangerous criminals unites to stage a coordinated escape attempt. As the jailbreak escalates into a bloody, all-out riot, the fugitives and their allies from the outside exact a brutal terror campaign against the special agents onboard the ship.",
@@ -651,7 +651,7 @@
     "model": "movies.movie",
     "id": 37,
     "fields": {
-        "movid_id": 883083,
+        "movie_id": 883083,
         "title": "You Won't Be Alone",
         "original_title": "You Won't Be Alone",
         "overview": "In an isolated mountain village in 19th century Macedonia, a young feral witch accidentally kills a peasant. She assumes the peasant's shape to see what life is like in her skin, igniting a deep seated curiosity to experience life inside the bodies of others.",
@@ -669,7 +669,7 @@
     "model": "movies.movie",
     "id": 38,
     "fields": {
-        "movid_id": 526896,
+        "movie_id": 526896,
         "title": "Morbius",
         "original_title": "Morbius",
         "overview": "Dangerously ill with a rare blood disorder, and determined to save others suffering his same fate, Dr. Michael Morbius attempts a desperate gamble. What at first appears to be a radical success soon reveals itself to be a remedy potentially worse than the disease.",
@@ -687,7 +687,7 @@
     "model": "movies.movie",
     "id": 39,
     "fields": {
-        "movid_id": 1039627,
+        "movie_id": 1039627,
         "title": "L.O.L. Surprise! Winter Fashion Show",
         "original_title": "L.O.L. Surprise! Winter Fashion Show",
         "overview": "The collection with which Neonlicious was to make her debut mysteriously disappears. Now you have to use all your creativity and improvise new designs for the big parade!",
@@ -705,7 +705,7 @@
     "model": "movies.movie",
     "id": 40,
     "fields": {
-        "movid_id": 1022256,
+        "movie_id": 1022256,
         "title": "Selena Gomez: My Mind & Me",
         "original_title": "Selena Gomez: My Mind & Me",
         "overview": "After years in the limelight, Selena Gomez achieves unimaginable stardom. But just as she reaches a new peak, an unexpected turn pulls her into darkness. This uniquely raw and intimate documentary spans her six-year journey into a new light.",
@@ -723,7 +723,7 @@
     "model": "movies.movie",
     "id": 41,
     "fields": {
-        "movid_id": 800939,
+        "movie_id": 800939,
         "title": "Ticket to Paradise",
         "original_title": "Ticket to Paradise",
         "overview": "A divorced couple teams up and travels to Bali to stop their daughter from making the same mistake they think they made 25 years ago.",
@@ -741,7 +741,7 @@
     "model": "movies.movie",
     "id": 42,
     "fields": {
-        "movid_id": 664469,
+        "movie_id": 664469,
         "title": "Amsterdam",
         "original_title": "Amsterdam",
         "overview": "In the 1930s, three friends—a doctor, a nurse, and an attorney—witness a murder, become suspects themselves and uncover one of the most outrageous plots in North American history.",
@@ -759,7 +759,7 @@
     "model": "movies.movie",
     "id": 43,
     "fields": {
-        "movid_id": 782054,
+        "movie_id": 782054,
         "title": "Doraemon: Nobita's Little Star Wars 2021",
         "original_title": "映画ドラえもん のび太の宇宙小戦争 2021",
         "overview": "One day during summer vacation, a palm-sized alien named Papi appears from a small rocket that Nobita picks up. He is the president of Pirika, a small planet in outer space, and has come to Earth to escape the rebels. Doraemon and his friends are puzzled by Papi’s small size, but as they play together using the secret tool “Small Light”, they gradually become friends. However, a whale-shaped space battleship comes to earth and attacks Doraemon, Nobita and the others in order to capture Papi. Feeling responsible for getting everyone involved, Papi tries to stand up to the rebels. Doraemon and his friends leave for the planet Pirika to protect their dear friend and his home.",
@@ -777,7 +777,7 @@
     "model": "movies.movie",
     "id": 44,
     "fields": {
-        "movid_id": 864959,
+        "movie_id": 864959,
         "title": "The Curse of Bridge Hollow",
         "original_title": "The Curse of Bridge Hollow",
         "overview": "A Halloween-hating dad reluctantly teams up with his teenage daughter when an evil spirit wreaks havoc by making their town's decorations come to life.",
@@ -795,7 +795,7 @@
     "model": "movies.movie",
     "id": 45,
     "fields": {
-        "movid_id": 829799,
+        "movie_id": 829799,
         "title": "Paradise City",
         "original_title": "Paradise City",
         "overview": "Renegade bounty hunter Ryan Swan must carve his way through the Hawaiian crime world to wreak vengeance on the kingpin who murdered his father.",
@@ -813,7 +813,7 @@
     "model": "movies.movie",
     "id": 46,
     "fields": {
-        "movid_id": 722800,
+        "movie_id": 722800,
         "title": "The Drover's Wife: The Legend of Molly Johnson",
         "original_title": "The Drover's Wife: The Legend of Molly Johnson",
         "overview": "In 1893, heavily pregnant Molly Johnson and her children struggle in isolation to survive the harsh Australian landscape after her husband left to go droving sheep in the high country. One day, she finds a shackled Aboriginal fugitive named Yakada wounded on her property. As an unlikely bond begins to form between them he reveals secrets about her true identity. Realizing Molly’s husband is actually missing, new town lawman Nate Clintoff starts being suspicious and sends his constable to investigate.",
@@ -831,7 +831,7 @@
     "model": "movies.movie",
     "id": 47,
     "fields": {
-        "movid_id": 760104,
+        "movie_id": 760104,
         "title": "X",
         "original_title": "X",
         "overview": "In 1979, a group of young filmmakers set out to make an adult film in rural Texas, but when their reclusive, elderly hosts catch them in the act, the cast find themselves fighting for their lives. Hilarity ensues.",
@@ -849,7 +849,7 @@
     "model": "movies.movie",
     "id": 48,
     "fields": {
-        "movid_id": 812025,
+        "movie_id": 812025,
         "title": "The Silent Twins",
         "original_title": "The Silent Twins",
         "overview": "Feeling isolated from that unwelcoming community, June and Jennifer Gibbons turn inward and reject communication with everyone but each other, retreating into their own fantasy world of artistic inspiration and adolescent desires.",
@@ -867,7 +867,7 @@
     "model": "movies.movie",
     "id": 49,
     "fields": {
-        "movid_id": 541134,
+        "movie_id": 541134,
         "title": "The Good Nurse",
         "original_title": "The Good Nurse",
         "overview": "Suspicious that her colleague is responsible for a series of mysterious patient deaths, a nurse risks her own life to uncover the truth in this gripping thriller based on true events.",
@@ -885,7 +885,7 @@
     "model": "movies.movie",
     "id": 50,
     "fields": {
-        "movid_id": 843633,
+        "movie_id": 843633,
         "title": "White Elephant",
         "original_title": "White Elephant",
         "overview": "An ex-marine enforcer must battle his conscience and code of honor when he is forced to do things for the mob.",
@@ -903,7 +903,7 @@
     "model": "movies.movie",
     "id": 51,
     "fields": {
-        "movid_id": 999205,
+        "movie_id": 999205,
         "title": "Stowaway",
         "original_title": "Stowaway",
         "overview": "A tenacious party girl fights to survive after three thieves commandeer her luxury yacht. Unable to escape and trapped on the yacht at high seas, the prey becomes the hunter as she turns the tables on the intruders and takes matters into her own hands.",
@@ -921,7 +921,7 @@
     "model": "movies.movie",
     "id": 52,
     "fields": {
-        "movid_id": 597922,
+        "movie_id": 597922,
         "title": "The Greatest Beer Run Ever",
         "original_title": "The Greatest Beer Run Ever",
         "overview": "Chickie wants to support his friends fighting in Vietnam, so he does something wild—personally bring them American beer. What starts as a well-meaning journey quickly changes Chickie’s life and perspective. Based on a true story.",
@@ -939,7 +939,7 @@
     "model": "movies.movie",
     "id": 53,
     "fields": {
-        "movid_id": 961427,
+        "movie_id": 961427,
         "title": "Spirit Halloween: The Movie",
         "original_title": "Spirit Halloween: The Movie",
         "overview": "A group of middle schoolers discover a Spirit Halloween store is haunted and must survive the night.",
@@ -957,7 +957,7 @@
     "model": "movies.movie",
     "id": 54,
     "fields": {
-        "movid_id": 724495,
+        "movie_id": 724495,
         "title": "The Woman King",
         "original_title": "The Woman King",
         "overview": "The story of the Agojie, the all-female unit of warriors who protected the African Kingdom of Dahomey in the 1800s with skills and a fierceness unlike anything the world has ever seen, and General Nanisca as she trains the next generation of recruits and readies them for battle against an enemy determined to destroy their way of life.",
@@ -975,7 +975,7 @@
     "model": "movies.movie",
     "id": 55,
     "fields": {
-        "movid_id": 848123,
+        "movie_id": 848123,
         "title": "Black Site",
         "original_title": "Black Site",
         "overview": "A group of officers based in a labyrinthine top-secret prison must fight for their lives against Hatchet, a brilliant and infamous high-value detainee. When he escapes, his mysterious and deadly agenda has far reaching and dire consequences.",
@@ -993,7 +993,7 @@
     "model": "movies.movie",
     "id": 56,
     "fields": {
-        "movid_id": 860623,
+        "movie_id": 860623,
         "title": "Last Man Down",
         "original_title": "Last Man Down",
         "overview": "After civilization succumbs to a deadly pandemic and his wife is murdered, a special forces soldier abandons his duty and becomes a hermit in the Nordic wilderness. Years later, a wounded woman appears on his doorstep. She's escaped from a lab and her pursuers believe her blood is the key to a worldwide cure. He's hesitant to get involved, but all doubts are cast aside when he discovers her pursuer is none other than Commander Stone, the man that murdered his wife some years ago.",
@@ -1011,7 +1011,7 @@
     "model": "movies.movie",
     "id": 57,
     "fields": {
-        "movid_id": 931925,
+        "movie_id": 931925,
         "title": "El gerente",
         "original_title": "El gerente",
         "overview": "Álvaro is a marketing manager, divorced with a son who he can barely talk to, living a mediocre life and doing a mediocre job, until his bosses tell him he needs to improve his marketing campaigns for the next 2018's World Cup. He'll soon launch a plan with Argentina's National Football Team and the upcoming qualifiers that may become a lot more risky that he planned.",
@@ -1029,7 +1029,7 @@
     "model": "movies.movie",
     "id": 58,
     "fields": {
-        "movid_id": 1012801,
+        "movie_id": 1012801,
         "title": "Barbie: Mermaid Power",
         "original_title": "Barbie: Mermaid Power",
         "overview": "Join Barbie “Brooklyn” Roberts, Barbie “Malibu” Roberts, and her sisters Skipper, Stacie, and Chelsea on an underwater adventure as they transform into mermaids to help save the world of Pacifica! In Barbie Mermaid Power™, Barbie and Barbie are summoned by Isla (from Dolphin Magic) to compete to be the underwater Power Keeper in a series of challenges designed to find their inner powers. Through these competitions, they discover whether they are mermaids of Earth, Air, Water, or Fire, all while making new animal and mermaid friends. In this fish-tale of friendship, adventure, and bravery, Barbie, Barbie, and family experience first-hand what it’s like to balance the worlds above and below the sea and learn a lesson in finding their inner powers along the way.",
@@ -1047,7 +1047,7 @@
     "model": "movies.movie",
     "id": 59,
     "fields": {
-        "movid_id": 893370,
+        "movie_id": 893370,
         "title": "Virus:32",
         "original_title": "Virus :32",
         "overview": "A virus is unleashed and a chilling massacre runs through the streets of Montevideo.",
@@ -1065,7 +1065,7 @@
     "model": "movies.movie",
     "id": 60,
     "fields": {
-        "movid_id": 830784,
+        "movie_id": 830784,
         "title": "Lyle, Lyle, Crocodile",
         "original_title": "Lyle, Lyle, Crocodile",
         "overview": "When the Primm family moves to New York City, their young son Josh struggles to adapt to his new school and new friends. All of that changes when he discovers Lyle — a singing crocodile who loves baths, caviar and great music — living in the attic of his new home. But when Lyle’s existence is threatened by evil neighbor Mr. Grumps, the Primms must band together to show the world that family can come from the most unexpected places.",

@@ -14,6 +14,8 @@ export default new Vuex.Store({
   ],
   state: {
     token: null,
+    userInfo: null,
+    tmpMovies : []
   },
   getters: {
     isLogin(state) {
@@ -27,6 +29,17 @@ export default new Vuex.Store({
     },
     CLEAR_TOKEN(state) {
       state.token = null
+      state.userInfo = null
+    },
+    TMP_CALL_MOVIE(state, movies) {
+      state.tmpMovies = movies
+    },
+    USER_SAVE(state, user) {
+      const tmp = {
+        userPk: user.pk,
+        userName: user.name
+      }
+      state.userInfo = tmp      
     }
   },
   actions: {
@@ -43,7 +56,7 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          console.log(res)
+          
           context.commit('SAVE_TOKEN', res.data.key)
         })
         .catch((err) => {
@@ -74,9 +87,84 @@ export default new Vuex.Store({
 
     logOut(context) {
       console.log('로그아웃 버튼 누름')
+
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/accounts/logout/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((res) => {
+          console(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+
+
       context.commit('CLEAR_TOKEN')
       // 로컬 저장소 삭제
       window.localStorage.clear()
+    },
+
+    tmpCallMovie(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/movies/tmp_list/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((res) => {
+          context.commit('TMP_CALL_MOVIE', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+    
+    //임시
+    reviewC(context, payload) {
+      const movieId = payload.movieId
+      const content = payload.content
+      const rating = payload.rating
+
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/movies/tmp_reviewC/${movieId}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          movie: movieId,
+          content,
+          rating
+        }
+      })
+        .then((res) => {
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+
+    getUser(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/accounts/user/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((res) =>{
+          console.log(res)
+          context.commit('USER_SAVE', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
 
 

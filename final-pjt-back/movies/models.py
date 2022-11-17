@@ -34,7 +34,7 @@ class Movie(models.Model):
 
     # like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_movie')
     
-    movid_id = models.IntegerField()
+    movie_id = models.IntegerField()
     title = models.CharField(max_length=20)
     original_title = models.CharField(max_length=20)
     overview = models.TextField()
@@ -57,6 +57,7 @@ class Review(models.Model):
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])  # 별점
     isSpoiler = models.BooleanField(default=False)
 
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_review')
 
