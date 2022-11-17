@@ -16,7 +16,8 @@ export default new Vuex.Store({
     token: null,
     userInfo: null,
     tmpMovies : [],
-    myLikeMovies : []
+    myLikeMovies : [], // 영화 pk 값
+    myLikeMoviesDetail: [], // 영화 전체 정보
   },
   getters: {
     isLogin(state) {
@@ -41,6 +42,9 @@ export default new Vuex.Store({
         userName: user.name
       }
       state.userInfo = tmp      
+    },
+    MY_LIKE_MOVIE_DETAIL(state, movieList) {
+      state.myLikeMoviesDetail = movieList
     }
   },
   actions: {
@@ -155,6 +159,7 @@ export default new Vuex.Store({
         })
     },
 
+    // 유저 pk 등 로그인한 유저 정보 필요할때 사용
     getUser(context) {
       axios({
         method: 'get',
@@ -184,6 +189,7 @@ export default new Vuex.Store({
         .then((res) =>{
           console.log('좋아요 성공!')
           console.log(res)
+          context.dispatch('myLikeMovies') // 내가 좋아요한 목록 갱신
         })
         .catch((err) => {
           console.log(err)
@@ -191,6 +197,7 @@ export default new Vuex.Store({
         })
     },
 
+    // 유저가 좋아요한 영화 목록 뽑기
     myLikeMovies(context) {
       axios({
         method: 'get',
@@ -201,13 +208,58 @@ export default new Vuex.Store({
       })
         .then((res) =>{
           console.log('좋아요 목럭 불러오기 성공!')
-          console.log(res)
           context.state.myLikeMovies = res.data.liked
-          console.log(context.state.myLikeMovies)
+          // console.log(context.state.myLikeMovies)
         })
         .catch((err) => {
           console.log(err)
           console.log('좋아요 목럭 불러오기 실패!')
+        })
+    },
+
+    // 영화 추천 받기
+    algorithm(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/movies/algorithm/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+      .then((res) =>{
+        console.log('영화 추천 받기 성공!')
+        console.log(res)
+
+      })
+      .catch((err) => {
+        console.log(err)
+        console.log('영화 추천 받기 실패!')
+      })
+    },
+
+    // 좋아요한 영화 리스트 만들기 (영화 전체 정보)
+    myLikeMoviesDetail(context) {
+      const movieList = context.state.myLikeMovies
+      console.log('!!!!', movieList)
+
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/movies/like-list-Detail/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          movieList
+        }
+      })
+        .then((res) =>{
+          console.log('좋아요 영화 리스트(디테일) 만들기 성공!')
+          context.commit('MY_LIKE_MOVIE_DETAIL', res.data)
+
+        })
+        .catch((err) => {
+          console.log(err)
+          console.log('좋아요 영화 리스트(디테일) 만들기 실패!')
         })
     }
 

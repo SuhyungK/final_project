@@ -7,6 +7,8 @@
     <button @click="logOut">로그아웃</button>
     <button @click="test">test</button>
     <button @click="test1">test1 : 유저가 좋아요한 목록</button>
+    <button @click="test2">test2 : 영화추천 알고리즘</button>
+    <button @click="test3">test3 : 유저가 좋아요한 영화목록 - 디테일</button>
     
   </div>
 </template>
@@ -19,7 +21,10 @@ export default {
       this.$router.push({ name: 'ProfileView' })
     },
     toMyMovie () {
-      this.$router.push({ name: 'MyMovieView'})
+      this.$store.dispatch('myLikeMoviesDetail')
+      .then(() => {
+        this.$router.push({ name: 'MyMovieView'}) // 내가 좋아요한 영화 목록(디테일) 만들고 이동
+      })
     },
     searchMovie() {
       this.$router.push({ name: 'SearchMovieView' })
@@ -36,6 +41,12 @@ export default {
     },
     test1() {
       this.$store.dispatch('myLikeMovies')
+    },
+    test2() {
+      this.$store.dispatch('algorithm')
+    },
+    test3() {
+      this.$store.dispatch('myLikeMoviesDetail')
     }
   }
 }

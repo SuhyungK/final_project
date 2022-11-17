@@ -23,6 +23,9 @@ export default {
       alert('로그인이 필요한 서비스 입니다!')
       // this.$router.push({name:'LoginView'})
     }
+  },
+  created() {
+    this.$store.dispatch('myLikeMovies') // 인덱스 페이지 오면 유저가 좋아요한 영화 pk 수집
   }
 
 }

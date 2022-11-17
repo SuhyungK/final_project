@@ -13,6 +13,15 @@ from .serializers import MovieSerializer, TmpMovieListSerializer, TmpReviewSeria
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
 
+from collections import defaultdict
+import json
+
+#######################알고리즘 용 함수##########################
+def releaseDate(data):
+    v = int(data[:4]) + int(data[5:7]) + int(data[8:10])
+    return v
+################################################################
+
 # Create your views here.
 @api_view(['GET'])
 def index(request):
@@ -60,6 +69,7 @@ def likeMovie(request, movie_pk):
     }
     return JsonResponse(context)
 
+
 @api_view(['GET'])
 def likeList(request):
     movies = get_list_or_404(Movie)
@@ -67,11 +77,65 @@ def likeList(request):
     liked = []
     for movie in me.like_movie.all():
         liked.append(movie.pk)
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
-    print(liked)
     context = {
         'liked': liked,
     }
 
     return JsonResponse(context)
+
+
+
+@api_view(['GET'])
+def algorithm(request):
+    movies = get_list_or_404(Movie)
+    me = request.user
+    prefer = defaultdict(int)
+    already_like = []
+    for movie in me.like_movie.all():
+        already_like.append(movie.pk)
+        res = json.loads(movie.genres) # 문자열 제이슨을 제이슨으로
+        for genre in res['result']:
+            prefer[genre['genre']] += 1 # 내가 본 장르를 prefer에 추가
+    
+    movie_list = []
+    for movie in movies:
+        if movie.pk in already_like: # 본영화는 패스
+            continue
+    
+        score = movie.vote_average * 0.3 # 평점 가중치 0.3
+        res = json.loads(movie.genres)
+        for genre in res['result']:
+            score += prefer[genre['genre']] * 0.4 # 내가 본 장르 가중치 0.4
+        
+        data = movie.release_date
+        score += releaseDate(data) * 0.2 # 최신 영화 가중치 0.2
+
+        movie_list.append([score, movie.pk])
+    
+    movie_list.sort(reverse=True)
+
+    my_movie = []
+    for s, i in  movie_list[:10]:
+        my_movie.append(i)
+
+    context = {
+        'myMovie': my_movie
+    }
+
+    return JsonResponse(context)
+
+
+@api_view(['POST'])
+def likeListDetail(request):
+
+    likedList = []
+    for moviePk in request.data['movieList']:
+        movie = Movie.objects.get(pk=moviePk)
+        likedList.append(movie)
+    
+    likedList = TmpMovieListSerializer(likedList, many=True)
+    return Response(likedList.data, status=status.HTTP_201_CREATED)
+
+
+
 
