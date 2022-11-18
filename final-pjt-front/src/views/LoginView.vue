@@ -1,11 +1,11 @@
 <template>
   <div id="container" class="d-flex justify-content-center align-items-center">
-    <iframe :src="src" title="YouTube video player" frameborder="0" autoplay="1" allow="autoplay">
+    <!-- <iframe :src="src" title="YouTube video player" frameborder="0" autoplay="1" allow="autoplay; encrypted-media">
 
-    </iframe>
+    </iframe> -->
     <div id="login-container" class="d-inline-block text-white d-flex flex-column">
       <div class="d-flex justify-content-start">
-        <p class="h2 mb-4 mt-2 fw-bolder" style="color:red;">LOGIN</p>
+        <p class="h2 mb-5 mt-2 fw-bolder" style="color:red;">LOGIN</p>
       </div>
       <form @submit.prevent="logIn">
         <div id="form-input" class="form-floating mb-4">
@@ -44,16 +44,18 @@ export default {
     }
   },
   computed: {
-    src() {
-      const srcUrl = 'https://www.youtube.com/embed/pjMt1MIk2EA?start=5&autoplay=1&controls=0&mute=1&origin=http://localhost:8080/'
-      return srcUrl
-    },
+    // src() {
+    //   const srcUrl = 'https://www.youtube.com/embed/pjMt1MIk2EA?'
+    //   const srcProperty = 'controls=0&mute=1&disablekb=1&rel=0&autoplay=1&loop=1&start=15&playlist=pjMt1MIk2EA'
+    //   const srcOrigin = '&origin=http://localhost:8080/'
+    //   return srcUrl + srcProperty + srcOrigin
+    // },
   },
   methods: {
     logIn () {
       const username = this.username
       const password = this.password
-
+      console.log('로그인 확인')
       const payload = {
         username, password
       }
@@ -75,8 +77,8 @@ export default {
   /* border: 0.5rem solid red; */
   width: 100vw;
   height: 100vh;
-  /* background-image: url('https://image.tmdb.org/t/p/original/yYrvN5WFeGYjJnRzhY0QXuo4Isw.jpg');
-  background-size: cover; */
+  background-image: url('https://image.tmdb.org/t/p/original/yYrvN5WFeGYjJnRzhY0QXuo4Isw.jpg');
+  background-size: cover;
   /* background: rgb(0, 0, 0) */
   overflow: hidden;
 }
@@ -85,7 +87,8 @@ export default {
   width: 100%;
   height: 100%;
   opacity: 0.9;
-  transform: scale(2)
+  transform: scale(2);
+  pointer-events: none;
 }
 
 #login-container {
@@ -108,11 +111,15 @@ export default {
 
 input[type=submit] {
   /* background-color: #00ABB3; */
-  background-color: red;
+  background-color: gray;
   border: none;
   /* border-radius: 0.5rem; */
   width: 300px;
   height: 50px;
 }
 
+input[type=submit]:hover {
+  background-color: red;
+
+}
 </style>
