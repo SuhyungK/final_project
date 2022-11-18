@@ -1,0 +1,92 @@
+[
+{
+    "model": "badges.badgelist",
+    "pk": 1,
+    "fields": {
+        "name": "영화덕후",
+        "before_get": "영화 시청시간 10시간을 달성하면 얻을 수 있어요",
+        "after_get": "영화 시청시간 10시간을 달성했어요",
+        "total_cnt": 0
+    }
+},
+{
+    "model": "badges.badgelist",
+    "pk": 2,
+    "fields": {
+        "name": "영화 찐 덕후",
+        "before_get": "영화 시청시간 30시간을 달성하면 얻을 수 있어요",
+        "after_get": "영화 시청시간 30시간을 달성했어요",
+        "total_cnt": 0
+    }
+},
+{
+    "model": "badges.badgelist",
+    "pk": 3,
+    "fields": {
+        "name": "진짜가 나타났다!",
+        "before_get": "영화 시청시간 50시간을 달성하면 얻을 수 있어요",
+        "after_get": "영화 시청시간 50시간을 달성했어요",
+        "total_cnt": 0
+    }
+},
+{
+    "model": "badges.badgelist",
+    "pk": 4,
+    "fields": {
+        "name": "방구석 평론가",
+        "before_get": "리뷰 5개를 작성하면 얻을 수 있어요",
+        "after_get": "리뷰 5개를 작성했어요",
+        "total_cnt": 0
+    }
+},
+{
+    "model": "badges.badgelist",
+    "pk": 5,
+    "fields": {
+        "name": "우리동네 평론가",
+        "before_get": "리뷰 10개를 작성하면 얻을 수 있어요",
+        "after_get": "리뷰 10개를 작성했어요",
+        "total_cnt": 0
+    }
+},
+{
+    "model": "badges.badgelist",
+    "pk": 6,
+    "fields": {
+        "name": "ㄹㅇ평론가",
+        "before_get": "리뷰 15개를 작성하면 얻을 수 있어요",
+        "after_get": "리뷰 15개를 작성했어요",
+        "total_cnt": 0
+    }
+},
+{
+    "model": "badges.badgelist",
+    "pk": 7,
+    "fields": {
+        "name": "동네스타",
+        "before_get": "리뷰 좋아요 10개를 받으면 얻을 수 있어요",
+        "after_get": "리뷰 좋아요 10개를 받았어요",
+        "total_cnt": 0
+    }
+},
+{
+    "model": "badges.badgelist",
+    "pk": 8,
+    "fields": {
+        "name": "월드 스타",
+        "before_get": "리뷰 좋아요 30개를 받으면 얻을 수 있어요",
+        "after_get": "리뷰 좋아요 30개를 받았어요",
+        "total_cnt": 0
+    }
+},
+{
+    "model": "badges.badgelist",
+    "pk": 9,
+    "fields": {
+        "name": "DO YOU KNOW",
+        "before_get": "리뷰 좋아요 50개를 받으면 얻을 수 있어요",
+        "after_get": "리뷰 좋아요 50개를 받았어요",
+        "total_cnt": 0
+    }
+}
+]

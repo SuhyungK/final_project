@@ -17,15 +17,17 @@ export default {
     ShortPage,
   },
   
-  mounted() {
+  created() {
     const tmp = this.$store.getters.isLogin
     if (!tmp) {
       alert('로그인이 필요한 서비스 입니다!')
       // this.$router.push({name:'LoginView'})
     }
+    this.$store.dispatch('myLikeMovies')
   },
-  created() {
-    this.$store.dispatch('myLikeMovies') // 인덱스 페이지 오면 유저가 좋아요한 영화 pk 수집
+  mounted() {
+    this.$store.dispatch('defaultBadges') // 뱃지 표본 불러오기
+    this.$store.dispatch('myBadges') // 내 뱃지들 불러오기
   }
 
 }

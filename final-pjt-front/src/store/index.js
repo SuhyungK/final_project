@@ -14,15 +14,22 @@ export default new Vuex.Store({
   ],
   state: {
     token: null,
-    userInfo: null,
+    userInfo: null, // {userPk, useName}
     tmpMovies : [],
     myLikeMovies : [], // 영화 pk 값
     myLikeMoviesDetail: [], // 영화 전체 정보
+    myBadges: [],  // 내 뱃지들
+    defaultBadges: [], // 뱃지 표본
+    myReview: [], // 사용자가 쓴 리뷰 
   },
   getters: {
     isLogin(state) {
       return state.token ? true : false
       // 토큰이 null 값이면 false, 아니면 true 사용자가 로그인했지 확인을 위해 사용
+    },
+    countReview(state) {
+      return state.myReview.length
+      // 사용자가 작성한 리뷰 개수 = 뱃지 획득여부에 사용
     }
   },
   mutations: {
@@ -32,6 +39,8 @@ export default new Vuex.Store({
     CLEAR_TOKEN(state) {
       state.token = null
       state.userInfo = null
+      state.myBadges =  []
+      state.myReview = []
     },
     TMP_CALL_MOVIE(state, movies) {
       state.tmpMovies = movies
@@ -45,6 +54,15 @@ export default new Vuex.Store({
     },
     MY_LIKE_MOVIE_DETAIL(state, movieList) {
       state.myLikeMoviesDetail = movieList
+    },
+    MY_BADGES(state, badges) {
+      state.myBadges = badges
+    },
+    DEFAULT_BADGES(state, badges) {
+      state.defaultBadges = badges
+    },
+    MY_REVIEWS(state, reviews) {
+      state.myReview = reviews
     }
   },
   actions: {
@@ -61,12 +79,13 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
-          
           context.commit('SAVE_TOKEN', res.data.key)
+          context.dispatch('initialBadge')
         })
         .catch((err) => {
           console.log(err)
           // 회원가입 정보 유효성 통과 못하면 다시 회원가입 페이지로
+          console.log('33333333333333333333333333333333')
           router.push({ name: 'SignUpView'})
         })
     },
@@ -82,6 +101,7 @@ export default new Vuex.Store({
         }
       })
         .then((res) => {
+          console.log('로그인 성공!')
           context.commit('SAVE_TOKEN', res.data.key)
           context.dispatch('getUser')
           // 로그인이 정상 작동하면 내가 좋아요한 영화 목록 불러오기
@@ -90,33 +110,34 @@ export default new Vuex.Store({
           router.push({ name: 'IndexView'})
         })
         .catch((err) => {
+          console.log('로그인 실패!')
           console.log(err)
         })
     },
 
     logOut(context) {
-      console.log('로그아웃 버튼 누름')
-
       axios({
-        method: 'get',
+        method: 'post',
         url: `${DJANGO_API_URL}/accounts/logout/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         }
       })
         .then((res) => {
-          console(res)
+          console.log('로그아웃 성공!')
+          console.log(res)
         })
         .catch((err) => {
+          console.log('로그아웃 실패!!')
           console.log(err)
         })
-
 
       context.commit('CLEAR_TOKEN')
       // 로컬 저장소 삭제
       window.localStorage.clear()
     },
 
+    // 전체 영화 데이터 소환
     tmpCallMovie(context) {
       axios({
         method: 'get',
@@ -169,10 +190,12 @@ export default new Vuex.Store({
         }
       })
         .then((res) =>{
-          console.log('유저 정보 소환!!!')
+          console.log('유저 정보 소환!!!', res.data)
           context.commit('USER_SAVE', res.data)
+          return context.state.userInfo.userPk
         })
         .catch((err) => {
+          console.log('유저 정보 소환실패!!!')
           console.log(err)
         })
     },
@@ -240,7 +263,6 @@ export default new Vuex.Store({
     // 좋아요한 영화 리스트 만들기 (영화 전체 정보)
     myLikeMoviesDetail(context) {
       const movieList = context.state.myLikeMovies
-      console.log('!!!!', movieList)
 
       axios({
         method: 'post',
@@ -261,9 +283,110 @@ export default new Vuex.Store({
           console.log(err)
           console.log('좋아요 영화 리스트(디테일) 만들기 실패!')
         })
+    },
+
+    // 회원가입후 초기 뱃지 생성(미획득 상태)
+    initialBadge(context) {
+      // context.dispatch('getUser')
+      const userPk = context.dispatch('getUser')
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/badges/initailBadge/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          userPk
+        }
+      })
+        .then((res) => {
+          console.log('초기 뱃지 목록 생성!')
+          console.log(res)
+        })
+        .catch((err) => {
+          console.log('초기 뱃지 목록 생성 실패!!')
+          console.log(err)
+        })
+    },
+
+    // 지금 내 뱃지들 불러오기
+    myBadges(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/badges/mybages/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((res) => {
+          console.log('내 뱃지들 불러오기 성공!')
+          context.commit('MY_BADGES', res.data)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
+    },
+
+    // 배지 표본들 불러오기
+    defaultBadges(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/badges/defaultbadges/`,
+      })
+        .then((res) => {
+          console.log('배지 표본들 불러오기 성공')
+          context.commit('DEFAULT_BADGES', res.data)
+        })
+        .catch((err) => {
+          console.log('배지 표본들 불러오기 실패')
+          console.log(err)
+        })
+      },
+    
+    // 사용자가 작성한 리뷰 조회
+    myReview(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/movies/my-review/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((res) => {
+          console.log('내가 작성한 리뷰 조회 성공!')
+          context.commit('MY_REVIEWS', res.data) 
+        })
+        .catch((err) => {
+          console.log('내가 작성한 리뷰 조회 실패!')
+          console.log(err)
+        })
+    },
+    
+    // 뱃지 얻을 수 있는거 얻기
+    badgeUpdate(context) {
+      context.dispatch('myReview')
+
+      .then(() => {
+        axios({
+          method: 'post',
+          url: `${DJANGO_API_URL}/badges/badgeUpdate/`,
+          headers: {
+            Authorization: `Token ${context.state.token}`
+          },
+          data: {
+            reviewCount : context.getters.countReview
+          }
+        })
+          .then((res) => {
+            console.log(res, '뱃지 업데이트 성공!')
+          })
+          .catch((err) => {
+            console.log(err, '뱃지 업데이트 실패!')
+          })
+
+      })
+
     }
-
-
   },
   modules: {
   }

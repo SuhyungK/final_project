@@ -9,6 +9,10 @@
     <button @click="test1">test1 : 유저가 좋아요한 목록</button>
     <button @click="test2">test2 : 영화추천 알고리즘</button>
     <button @click="test3">test3 : 유저가 좋아요한 영화목록 - 디테일</button>
+    <button @click="test4">test4 : badgeList 데이터 생성하러 가기</button>
+    <button @click="test5">test5 : badgeList 생성</button>
+    <button @click="test6">test6 : 내뱃지들 생성</button>
+    <button @click="test7">test7 : 사용자가 쓴 리뷰 조회</button>
     
   </div>
 </template>
@@ -31,9 +35,7 @@ export default {
     },
     logOut () {
       // 로그아웃 기능
-      console.log('로그아웃 누름!')
       this.$store.dispatch('logOut')
-      console.log('로그아웃 누름!')
       this.$router.push({name: 'LoginView'})
     },
     test() {
@@ -47,6 +49,18 @@ export default {
     },
     test3() {
       this.$store.dispatch('myLikeMoviesDetail')
+    },
+    test4() {
+      this.$router.push({name: 'TmpBadgeDataCreate'})
+    },
+    test5() {
+      this.$store.dispatch('initialBadge')
+    },
+    test6() {
+      this.$store.dispatch('myBadges')
+    },
+    test7() {
+      this.$store.dispatch('myReview')
     }
   }
 }

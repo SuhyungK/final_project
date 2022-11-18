@@ -9,6 +9,7 @@ urlpatterns = [
     path('like-list/', views.likeList),
     path('like-list-Detail/', views.likeListDetail),
     path('algorithm/', views.algorithm),
+    path('my-review/', views.reviewcount), # 사용자가 쓴 리뷰 
 
     
 

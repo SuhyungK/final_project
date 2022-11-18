@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.contrib.auth import get_user, get_user_model
 from django.http import JsonResponse
 
-from .models import Movie
+from .models import Movie, Review
 
 from rest_framework.response import Response 
 from rest_framework.decorators import api_view 
@@ -137,5 +137,15 @@ def likeListDetail(request):
     return Response(likedList.data, status=status.HTTP_201_CREATED)
 
 
+# 사용자가 쓴 리뷰
+@api_view(['GET'])
+def reviewcount(request):
+    user = request.user
+    reviews = Review.objects.filter(user=user)
+    serializer = TmpReviewSerializer(reviews, many=True)
+    # context = {
+    #     'count': v
+    # }
+    # return JsonResponse(context)
 
-
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
