@@ -72,14 +72,14 @@ class Comment(models.Model):
     # 대댓글
 
 
-class Ticketing(models.Model):
-    date = models.TextField()
-    region = models.TextField()
-    number_of_people = models.IntegerField()
-    seat = models.TextField()
+# class Ticketing(models.Model):
+#     date = models.TextField()
+#     region = models.TextField()
+#     number_of_people = models.IntegerField()
+#     seat = models.TextField()
 
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+#     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+#     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
 
 
 

@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'accounts',
     'movies',
     'badges',
+    'ticketings',
 
     'rest_framework',
 

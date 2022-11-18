@@ -11,26 +11,25 @@ class Migration(migrations.Migration):
 
     dependencies = [
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
+        ('movies', '0001_initial'),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='BadgeList',
+            name='Theater',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.TextField()),
-                ('before_get', models.TextField()),
-                ('after_get', models.TextField()),
-                ('total_cnt', models.IntegerField()),
+                ('isreserved', models.TextField()),
             ],
         ),
         migrations.CreateModel(
-            name='Badge',
+            name='Ticketing',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('isGet', models.BooleanField(default=False)),
-                ('badgelist', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='badges.badgelist')),
+                ('time', models.IntegerField()),
+                ('date', models.IntegerField()),
+                ('movie', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='movies.movie')),
+                ('theater', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='ticketings.theater')),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to=settings.AUTH_USER_MODEL)),
             ],
         ),
