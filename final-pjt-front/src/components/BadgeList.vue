@@ -33,7 +33,7 @@ export default {
     },
     defaultBadges() {
       return this.$store.state.defaultBadges
-    }
+    },
   }
 }
 </script>

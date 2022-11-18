@@ -28,6 +28,7 @@ export default new Vuex.Store({
       // 토큰이 null 값이면 false, 아니면 true 사용자가 로그인했지 확인을 위해 사용
     },
     countReview(state) {
+      // console.log(state.myReview)
       return state.myReview.length
       // 사용자가 작성한 리뷰 개수 = 뱃지 획득여부에 사용
     }
@@ -174,6 +175,7 @@ export default new Vuex.Store({
       })
         .then((res) => {
           console.log(res)
+          context.dispatch('myReview') // 리뷰 작성된후 조회 ( + 뱃지 업데이트)
         })
         .catch((err) => {
           console.log(err)
@@ -356,6 +358,12 @@ export default new Vuex.Store({
           console.log('내가 작성한 리뷰 조회 성공!')
           context.commit('MY_REVIEWS', res.data) 
         })
+        .then(() => {
+          context.dispatch('badgeUpdate') // 리뷰조회하고 뱃지 얻을 수 있는지 확인
+        })
+        .then(() => {
+          context.dispatch('myBadges') // 내 뱃지 업데이트
+        })
         .catch((err) => {
           console.log('내가 작성한 리뷰 조회 실패!')
           console.log(err)
@@ -364,28 +372,23 @@ export default new Vuex.Store({
     
     // 뱃지 얻을 수 있는거 얻기
     badgeUpdate(context) {
-      context.dispatch('myReview')
 
-      .then(() => {
-        axios({
-          method: 'post',
-          url: `${DJANGO_API_URL}/badges/badgeUpdate/`,
-          headers: {
-            Authorization: `Token ${context.state.token}`
-          },
-          data: {
-            reviewCount : context.getters.countReview
-          }
-        })
-          .then((res) => {
-            console.log(res, '뱃지 업데이트 성공!')
-          })
-          .catch((err) => {
-            console.log(err, '뱃지 업데이트 실패!')
-          })
-
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/badges/badgeUpdate/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          reviewCount : context.getters.countReview
+        }
       })
-
+        .then((res) => {
+          console.log(res, '뱃지 업데이트 성공!')
+        })
+        .catch((err) => {
+          console.log(err, '뱃지 업데이트 실패!')
+        })
     }
   },
   modules: {

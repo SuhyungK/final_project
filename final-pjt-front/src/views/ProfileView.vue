@@ -46,7 +46,10 @@ export default {
     }
   },
   mounted() {
-    this.$store.dispatch('badgeUpdate') // 뱃지 정보 업데이트
+
+  },
+  beforeCreate() {
+    this.$store.dispatch('myReview') // 리뷰 불러오기
   }
 
 
