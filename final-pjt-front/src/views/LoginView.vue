@@ -5,10 +5,10 @@
     </iframe> -->
     <div id="login-container" class="d-inline-block text-white d-flex flex-column">
       <div class="d-flex justify-content-start">
-        <p class="h2 mb-5 mt-2 fw-bolder" style="color:red;">LOGIN</p>
+        <p class="mb-5 mt-2" style="color:red;" id="login-place">LOGIN</p>
       </div>
       <form @submit.prevent="logIn">
-        <div id="form-input" class="form-floating mb-4">
+        <div class="form-floating mb-3">
           <!-- <label for="username">username : </label> -->
           <input type="text" id="username" class="form-control" v-model="username" placeholder="username">
           <label for="username">Enter the username</label>
@@ -23,12 +23,12 @@
         <input type="submit" id="button-submit" class="btn-floating mb-1 text-white" value="로그인">
         <hr>
         <div class="d-flex justify-content-end">
-          <router-link :to="{ name : 'SignUpView' }" class="text-decoration-none"><p class="fs-6 fw-bolder text-white">회원가입</p></router-link>
+          <p class="fs-6 fw-bolder text-white" @click='toSignUp' style="cursor:pointer;">회원가입</p>
         </div>
       </form>
 
       <button class="button" @click="toIndex">로그인(Index)</button>
-      <button @click='toSignUp'>회원가입</button>
+      <!-- <button @click='toSignUp'>회원가입</button> -->
 
     </div>
   </div>
@@ -77,7 +77,7 @@ export default {
   /* border: 0.5rem solid red; */
   width: 100vw;
   height: 100vh;
-  background-image: url('https://image.tmdb.org/t/p/original/yYrvN5WFeGYjJnRzhY0QXuo4Isw.jpg');
+  background-image: url('https://image.tmdb.org/t/p/original/mqsPyyeDCBAghXyjbw4TfEYwljw.jpg');
   background-size: cover;
   /* background: rgb(0, 0, 0) */
   overflow: hidden;
@@ -98,8 +98,13 @@ export default {
   /* border-radius: 0.625rem; */
   padding: 1.5rem 1.8rem;
   font-size: 1rem;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.75);
   /* backdrop-filter: blur(10px); */
+}
+
+#login-place {
+  font-size: 24px;
+  font-weight: 900;
 }
 
 #login-container input[type=text], input[type=password] {
@@ -107,19 +112,29 @@ export default {
   /* border-radius: 0.5rem; */
   background: rgba(0, 0, 0, 0.75);
   /* border-bottom: 0.5rem solid red; */
+  color: white;
 }
 
 input[type=submit] {
   /* background-color: #00ABB3; */
   background-color: gray;
+
+  /* 로그인 버튼 그라데이션 효과 */
+  /* background-image: linear-gradient(to right, #16222A 0%, #3A6073  51%, #16222A  100%); */
+  
   border: none;
   /* border-radius: 0.5rem; */
-  width: 300px;
-  height: 50px;
+  padding: 15px 140px;
+  transition: 0.3s;
+  background-size: 200% auto;
 }
 
 input[type=submit]:hover {
   background-color: red;
 
+  /* 로그인 버튼 그라데이션 효과(hover) */
+  background-position: left right; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
 }
 </style>
