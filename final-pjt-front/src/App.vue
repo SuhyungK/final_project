@@ -20,9 +20,14 @@ export default {
 
 
 
-
 <style>
-
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap');
+</style>
+<style>
+* {
+  font-family: 'Noto Sans', sans-serif;
+  box-sizing: border-box;
+}
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
