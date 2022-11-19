@@ -5,10 +5,13 @@
     <!-- 쇼츠 영상 재생 / 상위 -->
     <ShortPage/>
 
+    <!-- 상영 중인 영화 -->
+    <NowPlayingMovie/>
+
     <!-- 최다 리뷰 + 아니면 다른 사이트 리뷰 +  오늘 탑 영화?암튼 / 하위 -->
     <div class="row my-4">
       <TopReviewMovie class="col-8"/>
-      <TrendingMovie class="col-4"/>
+      <UpcomingMovie class="col-4"/>
     </div>
   </div>
 </template>
@@ -17,7 +20,8 @@
 // import NavbarPage from '@/components/NavbarPage.vue'
 import ShortPage from '@/components/ShortPage.vue'
 import TopReviewMovie from '@/components/TopReviewMovie.vue'
-import TrendingMovie from '@/components/TrendingMovie.vue'
+import UpcomingMovie from '@/components/UpcomingMovie.vue'
+import NowPlayingMovie from '@/components/NowPlayingMovie.vue'
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default {
@@ -25,8 +29,9 @@ export default {
   components: {
     // NavbarPage,
     ShortPage,
+    NowPlayingMovie,
     TopReviewMovie,
-    TrendingMovie,
+    UpcomingMovie,
   },
   data() {
     return {

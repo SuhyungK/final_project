@@ -10,12 +10,27 @@
     <!-- Nav 검색창 -->
     <div id="nav-bar-search" :style="{display: isNone, left: searchBarLeft }">
       <div class="input-group">
-        <i class="bi bi-search input-group-text" id="search-bar" @click="searchMovie"></i>
-        <input type="text" class="form-control" placeholder="영화검색" @keyup.enter="searchMovie" aria-label="search" aria-describedby="search-bar">
+        <i class="bi bi-search input-group-text" id="search-bar" @click="searchMoviePage"></i>
+        <input type="text" class="form-control" placeholder="영화검색" 
+          @focus="isSearchBarShow=!isSearchBarShow" 
+          @input="searchMovie" 
+          @keyup.enter="searchMoviePage"
+          aria-label="search" aria-describedby="search-bar">
       </div>
-
       <!-- <button class="button-nav-list" @click="searchMovie">영화검색</button> -->
+
+      <div class="list-group position-absolute" v-if="isSearchBarShow" :style="{width: '100%'}">
+        <!-- <a href="#" class="list-group-item list-group-item-action">1234</a> -->
+        <a class="list-group-item list-group-item-action"
+          v-for="sMovie in searchMovieList" 
+          :key="sMovie.movie_id" 
+          :href="`/moviedetail/` + sMovie.movie_id">
+            {{ sMovie.title }}
+          </a>
+      </div>
     </div>
+    
+    
 
     <!-- Nav 프로필-관심영화-로그아웃 -->
     <div id="nav-bar-end" :style="{'visibility': isHidden, 'display': isNone }">
@@ -23,7 +38,6 @@
       <router-link :to="{name: 'MyMovieView' }" class="button-nav-list me-4" @click="toMyMovie">MOVIELIST</router-link>
       <p class="button-nav-list" @click="logOut">SIGN OUT</p>
     </div>
-
 
     <!-- Nav toggler < 990px : Nav 오른쪽 없애기 / < 750px : Nav 검색창 없애기-->
     <div :style="{'display' : isBtnNone }" >
@@ -35,11 +49,13 @@
     <button class="button-nav-list" @click="test1">test1 : 유저가 좋아요한 목록</button>
     <button class="button-nav-list" @click="test2">test2 : 영화추천 알고리즘</button>
     <button class="button-nav-list" @click="test3">test3 : 유저가 좋아요한 영화목록 - 디테일</button> -->
+    
   </nav>
 </template>
 
 <script>
 import "bootstrap-icons/font/bootstrap-icons.css";
+import axios from 'axios'
 
 export default {
   name: 'NavbarPage',
@@ -47,6 +63,8 @@ export default {
     return {
       windowWidth: 0,
       windowHeight: 0,
+      isSearchBarShow: false,
+      searchMovieList: [],
     }
   },
   computed: {
@@ -93,11 +111,11 @@ export default {
         this.$router.push({ name: 'MyMovieView'}) // 내가 좋아요한 영화 목록(디테일) 만들고 이동
       })
     },
-    searchMovie() {
-      if (document.location.pathname != '/search') {
-        this.$router.push({ name: 'SearchMovieView' })
-      }
-    },
+    // searchMovie(e) {
+    //   if (document.location.pathname != '/search') {
+    //     this.$router.push({ name: 'SearchMovieView' })
+    //   }
+    
     logOut () {
       // 로그아웃 기능
       console.log('로그아웃 누름!')
@@ -121,6 +139,25 @@ export default {
       this.windowWidth = window.innerWidth;
       this.windowHeight = window.innerHeight;
       // console.log(this.isNone)
+    },
+    searchMovie(e) {
+      if (e.target.value) {
+        const DJANGO_API_URL = 'http://127.0.0.1:8000'
+        axios({
+          method: 'get',
+          url: `${DJANGO_API_URL}/movies/search/`,
+          params: {
+            search_word: e.target.value
+          }
+        })
+          .then((res) => {
+            console.log(res.data)
+            this.searchMovieList = res.data
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+        }
     }
   },
   created() {
@@ -167,4 +204,4 @@ export default {
 
 #nav-bar-end, #nav-bar-logo {
 }
-</style>>
+</style>

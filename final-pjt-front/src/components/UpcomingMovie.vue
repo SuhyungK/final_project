@@ -1,7 +1,7 @@
 <template>
   <div>
     <p class="header-title">
-      Today Trending Movie
+      Upcoming Movie
     </p>
     <div 
       id="trending-movie-list"
@@ -21,7 +21,7 @@
 import axios from 'axios'
 
 export default {
-	name: 'TrendingMovie',
+	name: 'UpcomingMovie',
   data() {
     return {
       trendingMovieList: []
@@ -30,7 +30,7 @@ export default {
 	created() {
 		axios({
 			method: 'get',
-			url: 'https://api.themoviedb.org/3/trending/movie/day?api_key=26f430349f35e05f01c48db888f30795',
+			url: 'https://api.themoviedb.org/3/movie/upcoming?api_key=26f430349f35e05f01c48db888f30795&language=en-US&page=1',
 		})
       .then((res) => {
         this.trendingMovieList = res.data.results

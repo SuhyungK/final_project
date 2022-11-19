@@ -98,14 +98,14 @@ export default new Vuex.Store({
       console.log('로그아웃 버튼 누름')
 
       axios({
-        method: 'get',
+        method: 'post',
         url: `${DJANGO_API_URL}/accounts/logout/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         }
       })
         .then((res) => {
-          console(res)
+          console.log(res)
         })
         .catch((err) => {
           console.log(err)
