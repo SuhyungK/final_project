@@ -2,7 +2,7 @@
   <div>
 
     <!-- 추천영화 carousel -->
-    <div class="d-flex flex-column my-5 header-title">
+    <div class="d-flex flex-column header-title">
       
       <!-- carousel title -->
       <p id="carousel-title">

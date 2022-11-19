@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    <div class="sticky-top bg-light my-0">
-      <NavbarView v-if="isNavShow" class="container my-0 py-2"/>
+    <div v-if="this.$store.getters.isLogin" class="sticky-top bg-light my-0">
+      
+      <NavbarView class="container my-0 py-2"/>
     </div>
     <router-view/>
   </div>
@@ -17,16 +18,28 @@ export default {
   },
   data() {
     return {
-      isNavShow: true
+      isNavShow: null,
     }
   },
-  created() {
-    // this.$router.push({ name: 'LoginView' })
-    const thisPathname = document.location.pathname
-    if (thisPathname === '/Login' || thisPathname === '/sign-up') {
-      this.isNavShow = false
-    }
-  },
+  // beforeRouteUpdate(to, from, next) {
+  //   const thisPathname = document.location.pathname
+  //   if (thisPathname === '/Login' || thisPathname === '/sign-up') {
+  //     this.isNavShow = false
+  //     next()
+  //   } else {
+  //     this.isNavShow = true
+  //     next()
+  //   }
+  // },
+  // created() {
+  //   // this.$router.push({ name: 'LoginView' })
+  //   const thisPathname = document.location.pathname
+  //   if (thisPathname === '/Login' || thisPathname === '/sign-up') {
+  //     this.isNavShow = false
+  //   } else {
+  //     this.isNavShow = true
+  //   }
+  // },
 }
 </script>
 

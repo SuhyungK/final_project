@@ -27,7 +27,7 @@ const routes = [
     component: LoginView,
     beforeEnter(to, from, next) {
       if (store.getters.isLogin) {
-        next('/index')
+        next({name: 'IndexView'})
       } else {
         next()
       }
