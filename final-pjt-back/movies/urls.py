@@ -9,7 +9,7 @@ urlpatterns = [
     path('like-list/', views.likeList),
     path('like-list-Detail/', views.likeListDetail),
     path('algorithm/', views.algorithm),
+    path('search/', views.searchMovie),
 
-    
 
 ]

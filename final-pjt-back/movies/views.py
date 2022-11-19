@@ -15,6 +15,7 @@ from rest_framework.decorators import permission_classes
 
 from collections import defaultdict
 import json
+from django.db.models import Q
 
 #######################알고리즘 용 함수##########################
 def releaseDate(data):
@@ -137,5 +138,10 @@ def likeListDetail(request):
     return Response(likedList.data, status=status.HTTP_201_CREATED)
 
 
-
+@api_view(['GET'])
+def searchMovie(request):
+    search_word = request.GET.get('search_word')
+    movies = Movie.objects.filter(Q(title__contains=search_word) | Q(original_title=search_word))
+    serializer = MovieSerializer(movies, many=True)
+    return Response(serializer.data)
 
