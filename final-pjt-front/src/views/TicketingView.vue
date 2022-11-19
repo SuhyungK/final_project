@@ -1,8 +1,8 @@
 <template>
   <div>
-    <h1>예매 페이지</h1>
+    <h1>예매 페이지 TicketingView</h1>
     <TicketingPoster/>
-    <SelectorDate/>
+    <SelectorDate :movieId='movie.id'/>
     <SelectorSeat/>
   </div>
 </template>
@@ -18,6 +18,11 @@ export default {
     TicketingPoster,
     SelectorDate,
     SelectorSeat,
+  },
+  data() {
+    return {
+      movie: this.$route.params.movie,
+    }
   }
 
 }

@@ -17,7 +17,7 @@ export default {
   },
   methods: {
     ticketing() {
-      this.$router.push({name:'TicketingView'})
+      this.$router.push({name:'TicketingView', params: {movie: this.movie}})
     },
     toMovieDetail() {
       console.log('MyMovies.vue 에서 toMovieDetail 함수 실행')

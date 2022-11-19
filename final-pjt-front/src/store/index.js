@@ -22,7 +22,7 @@ export default new Vuex.Store({
     defaultBadges: [], // 뱃지 표본
     myReview: [], // 사용자가 쓴 리뷰
     movieReviews: [], // 특정 영화에 대한 리뷰들
-    myLikeReview: [], // 내가 좋아요한 리뷰 pk 값
+    myLikeReview: [], // 내가 좋아요한 리뷰 pk 값 
   },
   getters: {
     isLogin(state) {
