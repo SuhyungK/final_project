@@ -1,23 +1,34 @@
 <template>
   <div id="app">
-    
+    <div class="sticky-top bg-light my-0">
+      <NavbarView v-if="isNavShow" class="container my-0 py-2"/>
+    </div>
     <router-view/>
   </div>
 </template>
 
 <script>
+import NavbarView from '@/views/NavbarView'
 
 export default {
   name: 'App',
   components: {
+    NavbarView
+  },
+  data() {
+    return {
+      isNavShow: true
+    }
   },
   created() {
-    this.$router.push({ name: 'LoginView' })
-  }
+    // this.$router.push({ name: 'LoginView' })
+    const thisPathname = document.location.pathname
+    if (thisPathname === '/Login' || thisPathname === '/sign-up') {
+      this.isNavShow = false
+    }
+  },
 }
 </script>
-
-
 
 
 <style>
@@ -28,7 +39,7 @@ export default {
 * {
   font-family: 'Noto Sans', sans-serif;
   font-family: 'Noto Sans KR', sans-serif;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
 }
 
 #app {
@@ -39,16 +50,9 @@ export default {
   color: #2c3e50;
 }
 
-nav {
-  padding: 30px;
-}
-
-nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-nav a.router-link-exact-active {
-  color: #42b983;
+.header-title {
+  font-weight: 900;
+  font-size: 20px;
+  /* letter-spacing: .08rem; */
 }
 </style>

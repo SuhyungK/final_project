@@ -1,5 +1,6 @@
 <template>
-  <nav class="navbar my-3">
+  <!-- Navbar -->
+  <nav class="navbar d-flex justify-content-between my-3">
     <!-- Nav 로고 -->
     <div id="nav-bar-logo">
       LOGO
@@ -18,13 +19,13 @@
 
     <!-- Nav 프로필-관심영화-로그아웃 -->
     <div id="nav-bar-end" :style="{'visibility': isHidden, 'display': isNone }">
-      <button class="button-nav-list me-3" @click="toProfile">PROFILE</button>
-      <button class="button-nav-list me-3" @click="toMyMovie">MOVIELIST</button>
-      <button class="button-nav-list" @click="logOut">SIGN OUT</button>
+      <router-link :to="{name: 'ProfileView' }" class="button-nav-list me-4" @click="toProfile">PROFILE</router-link>
+      <router-link :to="{name: 'MyMovieView' }" class="button-nav-list me-4" @click="toMyMovie">MOVIELIST</router-link>
+      <p class="button-nav-list" @click="logOut">SIGN OUT</p>
     </div>
 
 
-    <!-- < 990px : Nav 오른쪽 없애기 / < 750px : Nav 검색창 없애기-->
+    <!-- Nav toggler < 990px : Nav 오른쪽 없애기 / < 750px : Nav 검색창 없애기-->
     <div :style="{'display' : isBtnNone }" >
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
@@ -34,8 +35,6 @@
     <button class="button-nav-list" @click="test1">test1 : 유저가 좋아요한 목록</button>
     <button class="button-nav-list" @click="test2">test2 : 영화추천 알고리즘</button>
     <button class="button-nav-list" @click="test3">test3 : 유저가 좋아요한 영화목록 - 디테일</button> -->
-    
-  
   </nav>
 </template>
 
@@ -50,6 +49,40 @@ export default {
       windowHeight: 0,
     }
   },
+  computed: {
+    isHidden() {
+      if (this.windowWidth <= 1200) {
+        return 'hidden'
+      } else {
+        return 'visible'
+      }
+    },
+    isNone() {
+      if (this.windowWidth <= 773) {
+        return 'none'
+      } else {
+        return 'block'
+      }
+    },
+    isBtnNone() {
+      if (this.windowWidth <= 1200) {
+        return 'block'
+      } else {
+        return 'none'
+      }
+    },
+    searchBarLeft() {
+      if (this.windowWidth <= 995) {
+        return '20%'
+      } else if (this.windowWidth <= 1200) {
+        return '20%'
+      } else if (this.windowWidth <= 1400) {
+        return '10%'
+      } else {
+        return '8.5%'
+      }
+    } 
+  },
   methods: {
     toProfile () {
       this.$router.push({ name: 'ProfileView' })
@@ -61,7 +94,9 @@ export default {
       })
     },
     searchMovie() {
-      this.$router.push({ name: 'SearchMovieView' })
+      if (document.location.pathname != '/search') {
+        this.$router.push({ name: 'SearchMovieView' })
+      }
     },
     logOut () {
       // 로그아웃 기능
@@ -85,46 +120,18 @@ export default {
     handleResize() {
       this.windowWidth = window.innerWidth;
       this.windowHeight = window.innerHeight;
-      console.log(this.isNone)
+      // console.log(this.isNone)
     }
   },
   created() {
+    // this.$store.dispatch('myLikeMovies') // 인덱스 페이지 오면 유저가 좋아요한 영화 pk 수집
     window.addEventListener('resize', this.handleResize);
     this.handleResize();
   },
   destroyed() {
     window.removeEventListener('resize', this.handleResize);
   },
-  computed: {
-    isHidden() {
-      if (this.windowWidth <= 995) {
-        return 'hidden'
-      } else {
-        return 'visible'
-      }
-    },
-    isNone() {
-      if (this.windowWidth <= 773) {
-        return 'none'
-      } else {
-        return 'block'
-      }
-    },
-    isBtnNone() {
-      if (this.windowWidth <= 995) {
-        return 'block'
-      } else {
-        return 'none'
-      }
-    },
-    searchBarLeft() {
-      if (this.windowWidth <= 995) {
-        return '20%'
-      } else {
-        return '12%'
-      }
-    } 
-  }
+  
 }
 </script>
 
@@ -133,6 +140,11 @@ export default {
   all: unset;
   font-weight: 900;
   font-size: 16px;
+}
+
+.button-nav-list:hover {
+  cursor: pointer;
+  color: #00ABB3;
 }
 
 #nav-bar-logo {
