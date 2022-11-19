@@ -1,19 +1,39 @@
 <template>
-  <div>
-    <h3>네브바NavbarPage.vue </h3>
-    <button @click="toProfile">프로필</button>
-    <button @click="toMyMovie">관심 영화</button>
-    <button @click="searchMovie">영화검색</button>
-    <button @click="logOut">로그아웃</button>
-    <button @click="test">test</button>
-    <button @click="test1">test1 : 유저가 좋아요한 목록</button>
-    <button @click="test2">test2 : 영화추천 알고리즘</button>
-    <button @click="test3">test3 : 유저가 좋아요한 영화목록 - 디테일</button>
-    
-  </div>
+  <nav class="navbar my-3">
+    <!-- Nav 로고 -->
+    <div id="nav-bar-logo">
+      LOGO
+      <!-- <h3 style="font-weight: 900;">LOGO</h3> -->
+    </div>
+
+    <!-- Nav 검색창 -->
+    <div>
+      <div id="nav-bar-search" class="input-group">
+        <i class="bi bi-search input-group-text" id="search-bar" @click="searchMovie"></i>
+        <input type="text" class="form-control" placeholder="영화검색" @keyup.enter="searchMovie" aria-label="search" aria-describedby="search-bar">
+      </div>
+
+      <!-- <button class="button-nav-list" @click="searchMovie">영화검색</button> -->
+    </div>
+
+    <!-- Nav 프로필-관심영화-로그아웃 -->
+    <div id="nav-bar-end">
+      <button class="button-nav-list me-3" @click="toProfile">PROFILE</button>
+      <button class="button-nav-list me-3" @click="toMyMovie">LIST</button>
+      <button class="button-nav-list" @click="logOut">SIGN OUT</button>
+      
+    </div>
+    <!-- <button class="button-nav-list" @click="test">test</button>
+    <button class="button-nav-list" @click="test1">test1 : 유저가 좋아요한 목록</button>
+    <button class="button-nav-list" @click="test2">test2 : 영화추천 알고리즘</button>
+    <button class="button-nav-list" @click="test3">test3 : 유저가 좋아요한 영화목록 - 디테일</button> -->
+      
+  </nav>
 </template>
 
 <script>
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 export default {
   name: 'NavbarPage',
   methods: {
@@ -53,5 +73,26 @@ export default {
 </script>
 
 <style>
+.button-nav-list {
+  all: unset;
+  font-weight: 900;
+  font-size: 16px;
+}
 
-</style>
+#nav-bar-search {
+  position: relative;
+  left: 25%;
+}
+
+#nav-bar-search > i{
+  cursor: pointer;
+}
+
+#nav-bar-logo {
+  font-weight: 900;
+  font-size: 16px;
+}
+
+#nav-bar-end, #nav-bar-logo {
+}
+</style>>
