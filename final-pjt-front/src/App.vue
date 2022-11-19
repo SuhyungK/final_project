@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-
+    
     <router-view/>
   </div>
 </template>
@@ -21,16 +21,16 @@ export default {
 
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;800;900&display=swap');
 </style>
 <style>
 * {
-  font-family: 'Noto Sans', sans-serif;
+  font-family: 'Noto Sans', sans-serif !important;
   box-sizing: border-box;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  /* font-family: Avenir, Helvetica, Arial, sans-serif; */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
