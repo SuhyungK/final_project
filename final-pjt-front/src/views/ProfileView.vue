@@ -27,6 +27,9 @@ export default {
     BadgeList,
     MymovieList,
     MyReview,
+  },
+  created() {
+    this.$store.dispatch('myLikeMovies') // 인덱스 페이지 오면 유저가 좋아요한 영화 pk 수집
   }
 }
 </script>
