@@ -89,6 +89,10 @@ router.beforeEach((to, from, next) => {
   // 이동할 사이트가 권한을 필요로 하는 사이트인 경우
   const authentication = ['SignUpView', 'LoginView'].includes(to.name)? false: true
 
+  console.log('authenticationState', authenticationState)
+  console.log('authentication', authentication)
+
+  console.log(from, to)
   // 비로그인 상태 && 이동하려는 이동할 사이트가 로그인 해야만 하는 사이트인 경우 
   if (!authenticationState && authentication) {
     next({name: 'LoginView'})

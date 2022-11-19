@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <div v-if="this.$store.getters.isLogin" class="sticky-top bg-light my-0">
+    <div v-if="this.$store.getters.isLogin" class="sticky-top my-0 bg-light">
       
-      <NavbarView class="container my-0 py-2"/>
+      <NavbarView class="container py-3"/>
     </div>
     <router-view/>
   </div>

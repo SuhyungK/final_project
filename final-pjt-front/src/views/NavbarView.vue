@@ -1,6 +1,6 @@
 <template>
   <!-- Navbar -->
-  <nav class="navbar d-flex justify-content-between my-3">
+  <div class="navbar d-flex justify-content-between border">
     <!-- Nav 로고 -->
     <div id="nav-bar-logo">
       LOGO
@@ -8,19 +8,16 @@
     </div>
 
     <!-- Nav 검색창 -->
-    <div id="nav-bar-search" :style="{display: isNone, left: searchBarLeft }">
+    <div id="nav-bar-search">
       <div class="input-group">
-        <i class="bi bi-search input-group-text" id="search-bar" @click="searchMoviePage"></i>
+        <i class="bi bi-search input-group-text" id="search-bar"></i>
         <input type="text" class="form-control" placeholder="영화검색" 
-          @focus="isSearchBarShow=!isSearchBarShow" 
-          @input="searchMovie" 
-          @keyup.enter="searchMoviePage"
+          @input="searchMovie"
+          @keyup.enter="moveToSearchPage"
           aria-label="search" aria-describedby="search-bar">
       </div>
       <!-- <button class="button-nav-list" @click="searchMovie">영화검색</button> -->
-
-      <div class="list-group position-absolute" v-if="isSearchBarShow" :style="{width: '100%'}">
-        <!-- <a href="#" class="list-group-item list-group-item-action">1234</a> -->
+      <div class="list-group position-absolute" :style="{width: '100%'}">
         <a class="list-group-item list-group-item-action"
           v-for="sMovie in searchMovieList" 
           :key="sMovie.movie_id" 
@@ -30,27 +27,26 @@
       </div>
     </div>
     
-    
-
     <!-- Nav 프로필-관심영화-로그아웃 -->
-    <div id="nav-bar-end" :style="{'visibility': isHidden, 'display': isNone }">
+    <div id="nav-bar-end">
       <router-link :to="{name: 'ProfileView' }" class="button-nav-list me-4" @click="toProfile">PROFILE</router-link>
       <router-link :to="{name: 'MyMovieView' }" class="button-nav-list me-4" @click="toMyMovie">MOVIELIST</router-link>
       <p class="button-nav-list" @click="logOut">SIGN OUT</p>
     </div>
 
-    <!-- Nav toggler < 990px : Nav 오른쪽 없애기 / < 750px : Nav 검색창 없애기-->
-    <div :style="{'display' : isBtnNone }" >
+    <!-- Nav toggler -->
+    <div id="navbar-toggler-div">
       <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
         <span class="navbar-toggler-icon"></span>
       </button>
     </div>
+
     <!-- <button class="button-nav-list" @click="test">test</button>
     <button class="button-nav-list" @click="test1">test1 : 유저가 좋아요한 목록</button>
     <button class="button-nav-list" @click="test2">test2 : 영화추천 알고리즘</button>
     <button class="button-nav-list" @click="test3">test3 : 유저가 좋아요한 영화목록 - 디테일</button> -->
     
-  </nav>
+  </div>
 </template>
 
 <script>
@@ -61,45 +57,10 @@ export default {
   name: 'NavbarPage',
   data() {
     return {
-      windowWidth: 0,
-      windowHeight: 0,
-      isSearchBarShow: false,
       searchMovieList: [],
     }
   },
   computed: {
-    isHidden() {
-      if (this.windowWidth <= 1200) {
-        return 'hidden'
-      } else {
-        return 'visible'
-      }
-    },
-    isNone() {
-      if (this.windowWidth <= 773) {
-        return 'none'
-      } else {
-        return 'block'
-      }
-    },
-    isBtnNone() {
-      if (this.windowWidth <= 1200) {
-        return 'block'
-      } else {
-        return 'none'
-      }
-    },
-    searchBarLeft() {
-      if (this.windowWidth <= 995) {
-        return '20%'
-      } else if (this.windowWidth <= 1200) {
-        return '20%'
-      } else if (this.windowWidth <= 1400) {
-        return '10%'
-      } else {
-        return '8.5%'
-      }
-    } 
   },
   methods: {
     toProfile () {
@@ -135,11 +96,6 @@ export default {
     test3() {
       this.$store.dispatch('myLikeMoviesDetail')
     },
-    handleResize() {
-      this.windowWidth = window.innerWidth;
-      this.windowHeight = window.innerHeight;
-      // console.log(this.isNone)
-    },
     searchMovie(e) {
       if (e.target.value) {
         const DJANGO_API_URL = 'http://127.0.0.1:8000'
@@ -151,22 +107,38 @@ export default {
           }
         })
           .then((res) => {
-            console.log(res.data)
             this.searchMovieList = res.data
+            console.log(this.searchMovieList)
           })
           .catch((err) => {
             console.log(err)
           })
         }
-    }
+    },
+    moveToSearchPage(e) {
+      if (e.target.value) {
+        const DJANGO_API_URL = 'http://127.0.0.1:8000'
+        axios({
+          method: 'get',
+          url: `${DJANGO_API_URL}/movies/search/`,
+          params: {
+            search_word: e.target.value
+          }
+        })
+          .then((res) => {
+            this.searchMovieList = res.data
+            console.log(this.searchMovieList)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+        }
+    } 
   },
   created() {
     // this.$store.dispatch('myLikeMovies') // 인덱스 페이지 오면 유저가 좋아요한 영화 pk 수집
-    window.addEventListener('resize', this.handleResize);
-    this.handleResize();
   },
   destroyed() {
-    window.removeEventListener('resize', this.handleResize);
   },
   
 }
@@ -203,5 +175,33 @@ export default {
 }
 
 #nav-bar-end, #nav-bar-logo {
+}
+
+@media (min-width: 992px) {
+  #nav-bar-end {
+    display: block;
+  }
+  #nav-bar-search {
+    display: block;
+    left: 9%;
+  }
+  #navbar-toggler-div {
+    display: none;
+  }
+  .nav-bar-search {
+    left: 20%;
+  }
+}
+
+@media (max-width: 992px) {
+  #nav-bar-end {
+    display: none;
+  }
+  #nav-bar-search {
+    display: none;
+  }
+  #navbar-toggler-div {
+    display: block;
+  }
 }
 </style>
