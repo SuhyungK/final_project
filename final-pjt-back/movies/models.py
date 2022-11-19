@@ -56,6 +56,7 @@ class Review(models.Model):
     update_at = models.DateTimeField(auto_now = True)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)])  # 별점
     isSpoiler = models.BooleanField(default=False)
+    username = models.TextField()
 
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

@@ -45,14 +45,18 @@ def tmpList(request):
 @api_view(['POST'])
 def tmpReviewCeate(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
-
     serializer = TmpReviewSerializer(data=request.data)
+    print(serializer)
     if serializer.is_valid(raise_exception=True):
-        serializer.save(movie=movie, user=request.user)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   !!!!!")
+        serializer.save(movie=movie, user=request.user, username=request.user.username)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 
+
+
+# 영화 좋아요 기능
 @api_view(['POST'])
 def likeMovie(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
@@ -70,6 +74,7 @@ def likeMovie(request, movie_pk):
     return JsonResponse(context)
 
 
+#  내가 좋아요한 영화 리스트
 @api_view(['GET'])
 def likeList(request):
     movies = get_list_or_404(Movie)
@@ -143,9 +148,52 @@ def reviewcount(request):
     user = request.user
     reviews = Review.objects.filter(user=user)
     serializer = TmpReviewSerializer(reviews, many=True)
-    # context = {
-    #     'count': v
-    # }
-    # return JsonResponse(context)
+
 
     return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+
+
+# 특정영화에 대한 리뷰 목록가져오기
+@api_view(['GET'])
+def movieReviews(request, movie_pk):
+    reviews = Review.objects.filter(movie = movie_pk).order_by('-created_at')
+    serializer = TmpReviewSerializer(reviews, many=True)
+
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+# 리뷰 좋아요
+@api_view(['Post'])
+def likeReview(request, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    user = request.user
+    if review.like_users.filter(pk=user.pk).exists():
+        review.like_users.remove(user)
+        is_liked = False
+    else:
+        review.like_users.add(user)
+        is_liked = True
+    
+    context = {
+        'is_liked': is_liked,
+    }
+    return JsonResponse(context)
+
+
+
+# 내가 좋아요한 리뷰 리스트 만들기
+@api_view(['GET'])
+def likeReviewList(request):
+    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+    me = request.user
+    liked = []
+    for review in me.like_review.all():
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        liked.append(review.pk)
+    context = {
+        'liked': liked,
+    }
+
+    return JsonResponse(context)

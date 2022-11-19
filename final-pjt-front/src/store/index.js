@@ -16,11 +16,13 @@ export default new Vuex.Store({
     token: null,
     userInfo: null, // {userPk, useName}
     tmpMovies : [],
-    myLikeMovies : [], // 영화 pk 값
+    myLikeMovies : [], // 내가 좋아요한 영화 pk 값
     myLikeMoviesDetail: [], // 영화 전체 정보
     myBadges: [],  // 내 뱃지들
     defaultBadges: [], // 뱃지 표본
-    myReview: [], // 사용자가 쓴 리뷰 
+    myReview: [], // 사용자가 쓴 리뷰
+    movieReviews: [], // 특정 영화에 대한 리뷰들
+    myLikeReview: [], // 내가 좋아요한 리뷰 pk 값
   },
   getters: {
     isLogin(state) {
@@ -64,6 +66,9 @@ export default new Vuex.Store({
     },
     MY_REVIEWS(state, reviews) {
       state.myReview = reviews
+    },
+    MOVIE_REVIEWS(state, reviews) {
+      state.movieReviews = reviews
     }
   },
   actions: {
@@ -176,6 +181,7 @@ export default new Vuex.Store({
         .then((res) => {
           console.log(res)
           context.dispatch('myReview') // 리뷰 작성된후 조회 ( + 뱃지 업데이트)
+          context.dispatch('movieReviews', movieId)
         })
         .catch((err) => {
           console.log(err)
@@ -212,13 +218,13 @@ export default new Vuex.Store({
         }
       })
         .then((res) =>{
-          console.log('좋아요 성공!')
+          console.log('영화 좋아요 성공!')
           console.log(res)
           context.dispatch('myLikeMovies') // 내가 좋아요한 목록 갱신
         })
         .catch((err) => {
           console.log(err)
-          console.log('좋아요 실패ㅜ')
+          console.log('영화 좋아요 실패ㅜ')
         })
     },
 
@@ -389,7 +395,72 @@ export default new Vuex.Store({
         .catch((err) => {
           console.log(err, '뱃지 업데이트 실패!')
         })
-    }
+    },
+
+    // 특정 영화에 대한 리뷰들 불러오기
+    movieReviews(context, movie_pk) {
+      axios({
+        methods: 'get',
+        url: `${DJANGO_API_URL}/movies/reviews/${movie_pk}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        params: {
+          movie_pk
+        }
+      })
+        .then((res) => {
+          console.log('특정 영화 리뷰들 불러오기 성공')
+          context.commit('MOVIE_REVIEWS', res.data)
+        })
+        .catch((err) => {
+          console.log('특정 영화 리뷰들 불러오기 실패')
+          console.log(err)
+        })
+    },
+
+    // 리뷰 좋아요 기능
+    likeReview(context, payload) {
+      const reviewId = payload.reviewId
+      const movieId = payload.movieId
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/movies/like-review/${reviewId}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then(() => {
+          console.log('리뷰 좋아요 성공!')
+          context.dispatch('myLikeReview')
+        })
+        .then(() => {
+          // 좋아요 실시간 반영을 위해 리뷰목록 다시 불러와야함
+          context.dispatch('movieReviews', movieId)
+        })
+        .catch((err) => {
+          console.log('리뷰 좋아요 실패!')
+          console.log(err)
+        })
+    },
+
+    // 내가 좋아요한 리뷰 리스트 갱신하기
+    myLikeReview(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/movies/like-reviews-list/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((res) =>{
+          console.log('좋아요한 리뷰 목록 불러오기 성공!')
+          context.state.myLikeReview = res.data.liked
+        })
+        .catch(() => {
+          console.log('좋아요한 리뷰 목록 불러오기 실패!')
+        })
+    },
   },
   modules: {
   }
