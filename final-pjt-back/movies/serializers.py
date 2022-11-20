@@ -20,5 +20,3 @@ class TmpReviewSerializer(serializers.ModelSerializer):
         model = Review
         fields = '__all__'
         read_only_fields = ('movie', 'user', 'like_users')
-
-
