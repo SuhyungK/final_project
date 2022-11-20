@@ -10,40 +10,32 @@
     </div>
 
     <hr>
-
-    <!-- 전체 목록 div -->
-    <div
+    
+    <!-- 개별 검색 결과 컴포넌트 -->
+    <SearchMovie
       v-for="movie in searchResults"
       :key="`searchMovie-${movie.movie_id}`"
-    >
-      <!-- 개별 영화 div -->
-      <div id="searchMovie" class="d-flex row" @click="moveToDetail(movie, $event)">
-        
-        <!-- 포스터 이미지 -->
-        <div class="col-4 p-3">
-          <img :src="`https://image.tmdb.org/t/p/w200/` + movie.poster_path" :alt="`searchMovie-${movie.title}`" class="rounded">
-        </div>
-        <div class="col-8 border">1</div>
-      </div>
-
-    <hr>
-    </div>
-
-    {{ searchResults }}
+      :movie="movie"
+    />
+    
   </div>
 </template>
 
 <script>
+import SearchMovie from '@/components/SearchMovie'
+
 export default {
   name: 'SearchMovieView',
+  components: {
+    SearchMovie,
+  },
   data() {
     return {
-      
     }
   },
   computed: {
     searchResults() {
-      return this.$route.params.sMovieList
+      return this.$store.state.searchMovieResults
     },
     searchResultsCount() {
       return this.searchResults.length

@@ -18,6 +18,7 @@ export default new Vuex.Store({
     tmpMovies : [],
     myLikeMovies : [], // 영화 pk 값
     myLikeMoviesDetail: [], // 영화 전체 정보
+    searchMovieResults: [],
   },
   getters: {
     isLogin(state) {
@@ -45,6 +46,10 @@ export default new Vuex.Store({
     },
     MY_LIKE_MOVIE_DETAIL(state, movieList) {
       state.myLikeMoviesDetail = movieList
+    },
+    SAVE_SEARCH_MOVIE(state, searchMovieList) {
+      state.searchMovieResults = searchMovieList
+
     }
   },
   actions: {
