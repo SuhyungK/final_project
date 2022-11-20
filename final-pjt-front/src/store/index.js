@@ -266,8 +266,6 @@ export default new Vuex.Store({
           console.log('좋아요 영화 리스트(디테일) 만들기 실패!')
         })
     }
-
-
   },
   modules: {
   }
