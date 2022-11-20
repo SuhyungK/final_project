@@ -14,6 +14,7 @@
         <input type="text" class="form-control" placeholder="영화검색" 
           @input="searchMovie"
           @keyup.enter="moveToSearchPage"
+
           aria-label="search" aria-describedby="search-bar">
       </div>
       <!-- <button class="button-nav-list" @click="searchMovie">영화검색</button> -->
@@ -21,7 +22,7 @@
         <router-link class="list-group-item list-group-item-action"
           v-for="sMovie in searchMovieList" 
           :key="sMovie.movie_id" 
-          :to="{name: 'MovieDetailView', query: sMovie }"
+          :to="{name: 'MovieDetailView', params: {'movieId': sMovie.movie_id, sMovie} }"
           @click.native="clearSearchList"
           >
             {{ sMovie.title }}
@@ -129,7 +130,12 @@ export default {
         })
           .then((res) => {
             this.searchMovieList = res.data
-            console.log(this.searchMovieList)
+            e.target.value = ''
+            if (this.searchMovieList.length === 1) {
+              this.$router.push({name: 'MovieDetailView', params: this.searchMovieList[0]})
+            } else {
+              this.$router.push({name: 'SearchMovieView', params: this.SearchMovieView })
+            }
           })
           .catch((err) => {
             console.log(err)
