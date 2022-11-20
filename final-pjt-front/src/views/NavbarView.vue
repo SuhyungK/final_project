@@ -13,8 +13,8 @@
         <i class="bi bi-search input-group-text" id="search-bar"></i>
         <input type="text" class="form-control" placeholder="영화검색" 
           @input="searchMovie"
-          @keyup.enter="moveToSearchPage"
-
+          @keydown.enter="moveToSearchPage"
+          
           aria-label="search" aria-describedby="search-bar">
       </div>
       <!-- <button class="button-nav-list" @click="searchMovie">영화검색</button> -->
@@ -22,7 +22,7 @@
         <router-link class="list-group-item list-group-item-action"
           v-for="sMovie in searchMovieList" 
           :key="sMovie.movie_id" 
-          :to="{name: 'MovieDetailView', params: {'movieId': sMovie.movie_id, sMovie} }"
+          :to="{name: 'MovieDetailView', params: {movieId: sMovie.movie_id, movie: sMovie} }"
           @click.native="clearSearchList"
           >
             {{ sMovie.title }}
@@ -129,9 +129,12 @@ export default {
           }
         })
           .then((res) => {
-            if (this.searchMovieList.length === 1) {
+            this.searchMovieList = res.data
+            console.log(this.searchMovieList)
+            if (this.searchMovieList.length == 1) {
               this.searchMovieList = []
-              this.$router.push({name: 'MovieDetailView', params: {'movieId': res.data[0].movie_id, sMovie: res.data[0]}})
+              this.$router.push({name: 'MovieDetailView', params: {'movieId': res.data[0].movie_id, 'movie': res.data[0]}})
+              // this.$router.push({name: 'MovieDetailView', params: {movie: res.data[0]}})
             } else {
               this.searchMovieList = []
               this.$store.commit('SAVE_SEARCH_MOVIE', res.data)
@@ -152,7 +155,6 @@ export default {
   },
   destroyed() {
   },
-  
 }
 </script>
 

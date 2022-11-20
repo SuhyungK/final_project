@@ -52,9 +52,10 @@ const routes = [
     component: SearchMovieView
   },
   {
-    path: '/moviedetail',
+    path: '/moviedetail', 
     name: 'MovieDetailView',
-    component: MovieDetailView
+    component: MovieDetailView,
+    props: true,
   },
   {
     path: '/ticketing',
@@ -96,17 +97,17 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  // 접근 권한 여부(로그인 상태면 true, 비로그인 상태면 false)
+  // 접근 가능 여부(로그인 상태면 true, 비로그인 상태면 false)
   const authenticationState = store?.state?.token? true : false
   
-  // 이동할 사이트가 권한을 필요로 하는 사이트인 경우
+  // 이동할 사이트가 인증을 필요로 하는 사이트인 경우
   const authentication = ['SignUpView', 'LoginView'].includes(to.name)? false: true
 
   console.log('authenticationState', authenticationState)
   console.log('authentication', authentication)
 
   console.log(from, to)
-  // 비로그인 상태 && 이동하려는 이동할 사이트가 로그인 해야만 하는 사이트인 경우 
+  // 비로그인 상태 && 이동하려는(이동할) 사이트가 로그인 해야만 하는 사이트인 경우 
   if (!authenticationState && authentication) {
     next({name: 'LoginView'})
   }

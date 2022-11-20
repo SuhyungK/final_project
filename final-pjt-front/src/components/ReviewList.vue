@@ -1,12 +1,17 @@
 <template>
-  <div>
-    <h3>리뷰 목록 ReviewList.vue</h3>
-    <AllReviews
-    v-for='review in movieReviews'
-    :key='review.id'
-    :review='review'
-    :movieId='movieId'/>
+  <div class="p-3">
+    <!-- <h3>리뷰 목록 ReviewList.vue</h3> -->
+    <div class="text-start">
+      <p class="h3 fw-bolder">리뷰 목록</p>
+    </div>
+
     <hr>
+    <AllReviews
+      v-for='review in movieReviews'
+      :key='review.id'
+      :review='review'
+      :movieId='movieId'
+    />
   </div>
 </template>
 

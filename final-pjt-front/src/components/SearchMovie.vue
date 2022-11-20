@@ -20,7 +20,7 @@
 
             <!-- title(release_year) -->
             <span class="h3 fw-bold me-2" style="cursor: pointer;" id="movie-title-hover"
-              @click="moveToDetail(movie, $event)"
+              @click="moveToDetail(movie)"
             >
               {{ movie.title }}
             </span>
@@ -69,8 +69,9 @@ export default {
     }
   },
   methods: {
-    moveToDetail() {
-      this.$router.push({name: 'MovieDetailView', params: {}})
+    moveToDetail(movie) {
+      console.log(movie.movie_id)
+      this.$router.push({name: 'MovieDetailView', params: {'movidId': movie.movie_id, movie: movie}})
     }
   }
 }

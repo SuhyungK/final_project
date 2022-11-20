@@ -21,7 +21,7 @@ export default {
     },
     toMovieDetail() {
       console.log('MyMovies.vue 에서 toMovieDetail 함수 실행')
-      this.$router.push({name:'MovieDetailView', params: {movie: this.movie}})
+      this.$router.push({name:'MovieDetailView', params: {movieId: this.movie.movie_id, movie: this.movie}})
     }
   }
 }

@@ -1,19 +1,33 @@
 <template>
-<div>
-  <h1>리뷰 작성 페이지 WriteReview.vue </h1>
-  {{ movieId }}
-  {{ userPk }}
-  <form @submit.prevent="reviewC">
-      <label for="content">content : </label>
-      <input type="text" id="content" v-model='content'><br>
+  <div class="p-3">
+    <!-- 리뷰 작성 페이지 WriteReview.vue -->
+    <div class="text-start">
+      <p class="h4 fw-bolder position-relative" style="top: 4px;">
+        리뷰 작성 페이지
+      </p>
+    </div>
 
-      <label for="rating"> rating: </label>
-      <input type="rating" id="rating" v-model="rating"><br>
+    <hr>
 
-      <input type="submit" value="작성">
-    </form>
-  <hr>
-</div>
+    {{ movieId }}
+    {{ userPk }}
+    <form @submit.prevent="reviewC">
+        <!-- <label for="content">content : </label> -->
+        <input class="form-control" type="text" id="content" v-model='content'><br>
+
+        <label for="rating"> rating: </label>
+        <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br>
+
+        <input type="submit" value="작성">
+        <br>
+        <i class="bi bi-chat-left fs-5"></i>
+      </form>
+
+      <button @click="show = !show">Toggle</button>
+      <Transition>
+        <p v-if="show">hello</p>
+      </Transition>
+  </div>
 </template>
 
 <script>
@@ -44,6 +58,9 @@ export default {
       this.content = null
       this.rating = 0
     },
+    expandInput(e) {
+      console.log(e.target.width)
+    }
   },
 
 }
