@@ -3,7 +3,7 @@
   <div class="container">    
     
     <!-- 쇼츠 영상 재생 / 상위 -->
-    <ShortPage/>
+    <ShortPage class="mt-4"/>
 
     <!-- 상영 중인 영화 -->
     <NowPlayingMovie/>
@@ -13,6 +13,7 @@
       <TopReviewMovie class="col-8"/>
       <UpcomingMovie class="col-4"/>
     </div>
+
   </div>
 </template>
 

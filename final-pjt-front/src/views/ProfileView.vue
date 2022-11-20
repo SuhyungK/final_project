@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="row">
+    <div class="mt-5 mb-3 row">
       <!-- 프로필 정보 -->
       <div class="col-4 border d-flex flex-column">
         <ProfileInfomation/>

@@ -47,17 +47,8 @@ export default new Vuex.Store({
     MY_LIKE_MOVIE_DETAIL(state, movieList) {
       state.myLikeMoviesDetail = movieList
     },
-<<<<<<< HEAD
-    SEARCH_MOVIE_LIST(state, movieList) {
-      state.searchMovieList = movieList
-    },
-    CLEAR_SEARCH_MOVIE_LIST(state) {
-      state.searchMovieList = []
-=======
     SAVE_SEARCH_MOVIE(state, searchMovieList) {
       state.searchMovieResults = searchMovieList
-
->>>>>>> searchbar
     }
   },
   actions: {

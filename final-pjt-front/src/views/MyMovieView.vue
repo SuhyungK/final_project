@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h1>관심영화 페이지</h1>
-    <MymovieList/>
+  <div class="container">
+    <div class="mt-5">
+      <h1>관심영화 페이지</h1>
+      <MymovieList/>
+    </div>
   </div>
 </template>
 

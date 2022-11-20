@@ -3,7 +3,7 @@
   <div class="navbar d-flex justify-content-between">
     <!-- Nav 로고 -->
     <div id="nav-bar-logo">
-      LOGO
+      <p class="h4 fw-bolder fst-italic">PJT</p>
       <!-- <h3 style="font-weight: 900;">LOGO</h3> -->
     </div>
 
@@ -32,9 +32,9 @@
     
     <!-- Nav 프로필-관심영화-로그아웃 -->
     <div id="nav-bar-end">
-      <router-link :to="{name: 'ProfileView' }" class="button-nav-list me-4" @click="toProfile">PROFILE</router-link>
-      <router-link :to="{name: 'MyMovieView' }" class="button-nav-list me-4" @click="toMyMovie">MOVIELIST</router-link>
-      <p class="button-nav-list" @click="logOut">SIGN OUT</p>
+      <router-link :to="{name: 'ProfileView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toProfile">PROFILE</router-link>
+      <router-link :to="{name: 'MyMovieView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toMyMovie">MOVIELIST</router-link>
+      <p class="button-nav-list h6" :style="{'font-weight': '800'}" @click="logOut">SIGN OUT</p>
     </div>
 
     <!-- Nav toggler -->
@@ -159,19 +159,18 @@ export default {
 <style>
 .button-nav-list {
   all: unset;
-  font-weight: 900;
-  font-size: 16px;
 }
 
 .button-nav-list:hover {
   cursor: pointer;
   color: #00ABB3;
+  text-decoration: underline;
 }
 
-#nav-bar-logo {
+/* #nav-bar-logo {
   font-weight: 900;
   font-size: 16px;
-}
+} */
 
 #nav-bar-search {
   position: relative;

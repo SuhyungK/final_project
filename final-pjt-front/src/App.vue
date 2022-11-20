@@ -5,6 +5,10 @@
       <NavbarView class="container py-3"/>
     </div>
     <router-view/>
+
+    <footer class="mt-4 mb-5">
+      <p class="h4 fst-italic" style="font-weight: 900;">FOOTER</p>
+    </footer>
   </div>
 </template>
 
@@ -45,7 +49,7 @@ export default {
 
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&family=Noto+Sans:wght@300;800;900&display=swap');
 </style>
 <style>

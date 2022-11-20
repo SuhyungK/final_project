@@ -15,14 +15,31 @@
       <div class="col-lg-7 col-md-12 p-3 d-flex flex-column" style="cursor: default;">
           
           <!-- 영화 제목 & 개봉 연도 -->
+          
           <div class="text-start mb-3">
+
+            <!-- title(release_year) -->
             <span class="h3 fw-bold me-2" style="cursor: pointer;" id="movie-title-hover"
               @click="moveToDetail(movie, $event)"
             >
               {{ movie.title }}
             </span>
             <span class="" style="position: relative; top: -1px;">({{ movie.release_date.substring(0, 4) }})</span>
-            <p class="fst-italic mt-1">{{ movie.original_title }}</p>
+
+            <div class="d-flex">
+              <!-- original_title -->
+              <p class="fst-italic mt-1 mb-0 me-3">{{ movie.original_title }}</p>
+
+              <!-- genres -->
+              <p v-for="(genre, i) in genres" :key="i" 
+                class="mt-1 d-inline-block fst-italic"
+                >
+                |<span class="ms-2 me-2">{{ genre['genre'] }}</span>
+              </p>
+              <i class="mt-1">|</i>
+            </div>
+            
+            
           </div>
 
           <!-- 영화 줄거리 -->
@@ -32,10 +49,8 @@
             </p>
           </div>
 
-          <!-- 영화 장르 / 버튼 형식? 해시 태그 형식? -->
-          <div>
-            {{ genres }}
-          </div>
+          <!-- 영화 장르  -->
+          
       </div>
       <hr class="mt-3">
     </div>
@@ -65,4 +80,5 @@ export default {
 #movie-title-hover:hover {
   color: #00ABB3;
 }
+
 </style>

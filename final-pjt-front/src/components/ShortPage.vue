@@ -5,7 +5,7 @@
     <div class="d-flex flex-column header-title">
       
       <!-- carousel title -->
-      <p id="carousel-title">
+      <p class="h3 fw-bold">
         Recommend Movie List
       </p>
 
@@ -40,7 +40,7 @@
       <button @click="playVideo">play</button> -->
     </div>
     <hr>
-    <router-view n></router-view>
+    <router-view></router-view>
   </div>
 </template>
 
