@@ -13,6 +13,7 @@
     <button @click="test5">test5 : badgeList 생성</button>
     <button @click="test6">test6 : 내뱃지들 생성</button>
     <button @click="test7">test7 : 사용자가 쓴 리뷰 조회</button>
+    <button @click="test8">test8 : DatePicker Test</button>
     
   </div>
 </template>
@@ -61,7 +62,10 @@ export default {
     },
     test7() {
       this.$store.dispatch('myReview')
-    }
+    },
+    test8() {
+      this.$router.push({name: 'DatePickerTestView'})
+    },
   }
 }
 </script>

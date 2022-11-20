@@ -12,6 +12,7 @@ import SignUpView from '@/views/SignUpView'
 import TmpView from '@/views/TmpView'
 import TmpReviewC from '@/views/TmpReviewC'
 import TmpBadgeDataCreate from '@/views/TmpBadgeDataCreate'
+import DatePickerTestView from '@/views/DatePickerTestView'
 
 Vue.use(VueRouter)
 
@@ -71,6 +72,11 @@ const routes = [
     path: '/TmpBadgeDataCreate',
     name: 'TmpBadgeDataCreate',
     component: TmpBadgeDataCreate
+  },
+  {
+    path: '/DatePickerTestView',
+    name: 'DatePickerTestView',
+    component: DatePickerTestView
   }
 ]
 
