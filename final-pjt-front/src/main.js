@@ -12,6 +12,12 @@ import 'bootstrap-vue/dist/bootstrap-vue.css'
 Vue.use(BootstrapVue)
 
 
+// ShortPage
+import VueYoutube from 'vue-youtube'
+import Carousel3d from 'vue-carousel-3d'
+Vue.use(Carousel3d)
+Vue.use(VueYoutube)
+
 Vue.config.productionTip = false
 
 new Vue({

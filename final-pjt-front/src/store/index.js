@@ -23,6 +23,7 @@ export default new Vuex.Store({
     myReview: [], // 사용자가 쓴 리뷰
     movieReviews: [], // 특정 영화에 대한 리뷰들
     myLikeReview: [], // 내가 좋아요한 리뷰 pk 값 
+    searchMovieResults: [], // 검색한 영화 정보
   },
   getters: {
     isLogin(state) {
@@ -69,6 +70,9 @@ export default new Vuex.Store({
     },
     MOVIE_REVIEWS(state, reviews) {
       state.movieReviews = reviews
+    },
+    SAVE_SEARCH_MOVIE(state, searchMovieList) {
+      state.searchMovieResults = searchMovieList
     }
   },
   actions: {

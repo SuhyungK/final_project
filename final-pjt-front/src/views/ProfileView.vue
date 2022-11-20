@@ -19,6 +19,32 @@
       </div>
 
     </div>
+
+    <!-- 추가 -->
+    <div class="container">
+      <div class="mt-5 mb-3 row">
+        <!-- 프로필 정보 -->
+        <div class="col-4 border d-flex flex-column">
+          <ProfileInfomation/>
+          <MovieGage/>
+        </div>
+
+        <!-- 프로필 정보 외 -->
+        <div class="col-8 border d-flex flex-column">
+          <!-- 예매 정보 & 뱃지 정보 -->
+          <div class="row row-cols-2">
+            <TickedMovie/>
+            <BadgeList/>
+          </div>
+          
+          <!-- 내가 좋아요 한 영화? -->
+          <MymovieList/>
+
+          <!-- 내가 쓴 리뷰 -->
+          <MyReview/>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 

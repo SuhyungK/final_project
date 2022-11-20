@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h3>네브바NavbarPage.vue </h3>
     <button @click="toProfile">프로필</button>
     <button @click="toMyMovie">관심 영화</button>
     <button @click="searchMovie">영화검색</button>
