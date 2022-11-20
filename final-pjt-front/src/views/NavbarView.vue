@@ -111,7 +111,7 @@ export default {
         })
           .then((res) => {
             this.searchMovieList = res.data
-            console.log(this.searchMovieList)
+            // console.log(this.searchMovieList)
           })
           .catch((err) => {
             console.log(err)
@@ -129,12 +129,13 @@ export default {
           }
         })
           .then((res) => {
-            this.searchMovieList = res.data
-            e.target.value = ''
             if (this.searchMovieList.length === 1) {
-              this.$router.push({name: 'MovieDetailView', params: this.searchMovieList[0]})
+              this.searchMovieList = []
+              this.$router.push({name: 'MovieDetailView', params: {'movieId': res.data[0].movie_id, sMovie: res.data[0]}})
             } else {
-              this.$router.push({name: 'SearchMovieView', params: this.SearchMovieView })
+              this.searchMovieList = []
+              this.$store.commit('SAVE_SEARCH_MOVIE', res.data)
+              this.$router.push({name: 'SearchMovieView'})
             }
           })
           .catch((err) => {

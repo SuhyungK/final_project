@@ -68,4 +68,8 @@ export default {
   font-size: 20px;
   /* letter-spacing: .08rem; */
 }
+
+.text-hover {
+  color: #00ABB3;
+}
 </style>
