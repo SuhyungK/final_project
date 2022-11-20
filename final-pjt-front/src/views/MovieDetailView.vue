@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>영화 상세 페이지 MovieDetailView.vue</h1>
+    <h2>{{ this.$route.query }}</h2>
     <DetailPoster/>
     <button @click="toTicketing">포스터 하단에 예매하기 버튼</button>
     <MovieDetail/>

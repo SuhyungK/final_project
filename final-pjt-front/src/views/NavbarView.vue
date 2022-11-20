@@ -1,6 +1,6 @@
 <template>
   <!-- Navbar -->
-  <div class="navbar d-flex justify-content-between border">
+  <div class="navbar d-flex justify-content-between">
     <!-- Nav 로고 -->
     <div id="nav-bar-logo">
       LOGO
@@ -18,12 +18,14 @@
       </div>
       <!-- <button class="button-nav-list" @click="searchMovie">영화검색</button> -->
       <div class="list-group position-absolute" :style="{width: '100%'}">
-        <a class="list-group-item list-group-item-action"
+        <router-link class="list-group-item list-group-item-action"
           v-for="sMovie in searchMovieList" 
           :key="sMovie.movie_id" 
-          :href="`/moviedetail/` + sMovie.movie_id">
+          :to="{name: 'MovieDetailView', query: sMovie }"
+          @click.native="clearSearchList"
+          >
             {{ sMovie.title }}
-          </a>
+        </router-link>
       </div>
     </div>
     
@@ -133,7 +135,10 @@ export default {
             console.log(err)
           })
         }
-    } 
+    },
+    clearSearchList() {
+      this.searchMovieList = []
+    }
   },
   created() {
     // this.$store.dispatch('myLikeMovies') // 인덱스 페이지 오면 유저가 좋아요한 영화 pk 수집
