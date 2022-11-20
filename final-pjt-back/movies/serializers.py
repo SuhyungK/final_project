@@ -29,6 +29,3 @@ class TmpReviewSerializer(serializers.ModelSerializer):
 #         model = Review
 #         fields = '__all__'
 
-
-
-
