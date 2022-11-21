@@ -22,6 +22,9 @@ export default {
     myLikeMoviesDetail() {
       return this.$store.state.myLikeMoviesDetail
     }
+  },
+  beforeCreate() {
+    this.$store.dispatch('myLikeMoviesDetail')
   }
 }
 </script>

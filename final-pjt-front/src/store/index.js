@@ -25,7 +25,10 @@ export default new Vuex.Store({
     myLikeReview: [], // 내가 좋아요한 리뷰 pk 값 
     searchMovieResults: [], // 검색한 영화 정보
     selectSeats: [], // 선택한 좌석들
-    alreadyReserved: [] // 이제 결제된 좌석들
+    alreadyReserved: [], // 이제 결제된 좌석들
+    myPayedMovies: [], // 내가 예매(구매)한 영화
+    genresGage: {}, // 프로필에 장르게이지에 쓸거
+    genresGageSize: 0, // 장르게이지 전체 크기
   },
   getters: {
     isLogin(state) {
@@ -36,7 +39,11 @@ export default new Vuex.Store({
       // console.log(state.myReview)
       return state.myReview.length
       // 사용자가 작성한 리뷰 개수 = 뱃지 획득여부에 사용
-    }
+    },
+    countPayedMovie(state) {
+      return state.myPayedMovies.length
+      // 사용자가 예매한 영화 개수 = 뱃지 획득여부에 사용
+    },
   },
   mutations: {
     SAVE_TOKEN(state, token) {
@@ -95,7 +102,14 @@ export default new Vuex.Store({
     },
     CLEAR_REVERSED_SEAT(state) {
       state.alreadyReserved = []
-    }
+    },
+    REQ_MY_PAYED_MOVIES(state, data) {
+      state.myPayedMovies = data
+    },
+    MYGENRE_GAGE(state, data) {
+      state.genresGage = data.genredict
+      state.genresGageSize = data.cnt
+    },
   },
   actions: {
     signUp(context, payload) {
@@ -412,7 +426,8 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`
         },
         data: {
-          reviewCount : context.getters.countReview
+          reviewCount : context.getters.countReview,
+          payedMovieCount : context.getters.countPayedMovie,
         }
       })
         .then((res) => {
@@ -560,6 +575,50 @@ export default new Vuex.Store({
           console.log('결제한 좌석 정보 저장 실패')
         })
     },
+    // 예매한 영화 목록 가져오기
+    reqMyPayedMovies(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/ticketings/my-payed-movies/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        }
+      })
+        .then((res) => {
+          console.log('내가 예매한 영화 목록 가져오기 성공')
+          context.commit('REQ_MY_PAYED_MOVIES', res.data)
+        })
+        .then(() => {
+          context.dispatch('badgeUpdate')
+          context.dispatch('myMovieGenres')
+        })
+        .catch(() => {
+          console.log('내가 예매한 영화 목록 가져오기 실패')
+        })
+    },
+    // ########################################################예매 관련
+
+    // 영화 게이지 장르 뽑기 예매한 영화 기준
+    myMovieGenres(context) {
+      const myMovies = context.state.myPayedMovies
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/movies/genres-gage/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          myMovies
+        }
+      })
+        .then((res) => {
+          console.log('장르게이지 데이터 뽑아내기 성공')
+          context.commit('MYGENRE_GAGE', res.data)
+        })
+        .catch(() => {
+          console.log('장르게이지 데이터 뽑아내기 실패')
+        })
+    }
   },
   modules: {
   }

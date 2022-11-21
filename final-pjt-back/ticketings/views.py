@@ -9,6 +9,7 @@ from .models import MovieTimeTheater, SeatInfomation, Reservation
 from movies.models import Movie
 
 from .serializers import MovieTimeTheaterSerializer, SeatInfomationSerializer, ReservationSerializer
+from movies.serializers import MovieSerializer
 # Create your views here.
 
 # 날짜, 시간, 상영관 정보를 가지고 DB요청
@@ -64,3 +65,18 @@ def payment(request):
     context = {
     }
     return JsonResponse(context)
+
+
+# 내가 예매한 영화 목록 뽑기
+@api_view(['GET'])
+def MyPayedMovies(request):
+    user = request.user
+    mypayedmovies = Reservation.objects.filter(user=user)
+
+    res = []
+    for paymovie in mypayedmovies:
+        res.append(Movie.objects.get(pk=paymovie.movie.id))
+
+    serializer = MovieSerializer(res, many=True)
+
+    return Response(serializer.data, status=status.HTTP_201_CREATED)

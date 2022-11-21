@@ -54,26 +54,39 @@ def defaultbadges(request):
 
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
+
+# 뱃지정보 업데이트
 @api_view(['POST'])
 def badgeUpdate(request):
     user = request.user
     review_cnt = request.data['reviewCount']
-    print(review_cnt)
+    movie_cnt = request.data['payedMovieCount']
+
+    # 영화 개수 조건, 영화 시창 시간으로 하려했는데 계산을 시간 계산을 좀해야돼서..
+    if movie_cnt >= 15: # 진짜가 나타났다!
+        badge = Badge.objects.get(user=user, badgelist_id=3)
+        badge.isGet = True
+        badge.save()
+    elif movie_cnt >= 8: # 영화 찐 덕후
+        badge = Badge.objects.get(user=user, badgelist_id=2)
+        badge.isGet = True
+        badge.save()
+    elif movie_cnt >= 3: # 영화 덕후
+        badge = Badge.objects.get(user=user, badgelist_id=1)
+        badge.isGet = True
+        badge.save()
 
     # 리뷰개수 조건
     if review_cnt >= 15:
         badge = Badge.objects.get(user=user, badgelist_id=6)
-        print('ㄹㅇ 평론가')
         badge.isGet = True
         badge.save()
     elif review_cnt >= 10:
         badge = Badge.objects.get(user=user, badgelist_id=5)
-        print('우리동네 평론가')
         badge.isGet = True
         badge.save()
     elif review_cnt >= 5:
         badge = Badge.objects.get(user=user, badgelist_id=4)
-        print('방구석 평론가')
         badge.isGet = True
         badge.save()
 

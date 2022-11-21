@@ -15,4 +15,6 @@ urlpatterns = [
     path('like-review/<int:review_pk>/', views.likeReview),  #리뷰 좋아요
     path('like-reviews-list/', views.likeReviewList), # 내가 좋아요한 리뷰 리스트 뽑기
     path('search/', views.searchMovie),
+    path('genres-gage/', views.genreGage), # 장르 기반 영화 게이지 계산
+    
 ]

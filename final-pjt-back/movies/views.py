@@ -191,11 +191,9 @@ def likeReview(request, review_pk):
 # 내가 좋아요한 리뷰 리스트 만들기
 @api_view(['GET'])
 def likeReviewList(request):
-    print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
     me = request.user
     liked = []
     for review in me.like_review.all():
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         liked.append(review.pk)
     context = {
         'liked': liked,
@@ -210,3 +208,25 @@ def searchMovie(request):
     movies = Movie.objects.filter(Q(title__contains=search_word) | Q(original_title=search_word)).order_by('-popularity')
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
+
+
+# 영화 게이지 계산용 장르 카운트
+@api_view(['POST'])
+def genreGage(request):
+    allmovies = request.data['myMovies']
+    genredict = defaultdict(int)
+
+    total_cnt = 0
+    for movie in allmovies:
+        tmp = json.loads(movie['genres'])['result']
+        for K in tmp:
+            G = K['genre']
+            genredict[G] += 1
+            total_cnt += 1
+
+    context = {
+        'genredict': genredict,
+        'cnt' : total_cnt,
+    }
+
+    return JsonResponse(context)

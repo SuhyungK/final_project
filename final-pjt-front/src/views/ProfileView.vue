@@ -10,10 +10,9 @@
 
 
       <div>
-        <TickedMovie class="box"/>
+        <TickedMovieList class="box"/>
         <div class="d-flex flex-row">
         <BadgeList class="box"/>
-        <MymovieList class="box"/>
         <MyReview class="box"/>
         </div>
       </div>
@@ -33,12 +32,9 @@
         <div class="col-8 border d-flex flex-column">
           <!-- 예매 정보 & 뱃지 정보 -->
           <div class="row row-cols-2">
-            <TickedMovie/>
+            <TickedMovieList/>
             <BadgeList/>
           </div>
-          
-          <!-- 내가 좋아요 한 영화? -->
-          <MymovieList/>
 
           <!-- 내가 쓴 리뷰 -->
           <MyReview/>
@@ -51,9 +47,8 @@
 <script>
 import ProfileInfomation from '@/components/ProfileInfomation'
 import MovieGage from '@/components/MovieGage'
-import TickedMovie from '@/components/TickedMovie'
+import TickedMovieList from '@/components/TickedMovieList'
 import BadgeList from '@/components/BadgeList'
-import MymovieList from '@/components/MymovieList'
 import MyReview from '@/components/MyReview'
 
 export default {
@@ -61,9 +56,8 @@ export default {
   components: {
     ProfileInfomation,
     MovieGage,
-    TickedMovie,
+    TickedMovieList,
     BadgeList,
-    MymovieList,
     MyReview,
   },
   computed: {
@@ -72,10 +66,12 @@ export default {
     }
   },
   mounted() {
-
-  },
+    
+    },
   beforeCreate() {
     this.$store.dispatch('myReview') // 리뷰 불러오기
+    this.$store.dispatch('reqMyPayedMovies') // 내가 예매한 영화 불러오기
+    // this.$store.dispatch('myMovieGenres') // 게이지 데이터 뽑기
   }
 
 

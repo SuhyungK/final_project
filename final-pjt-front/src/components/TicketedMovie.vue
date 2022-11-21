@@ -1,12 +1,15 @@
 <template>
   <div>
-    <h3> 예매한 영화들 TickedMovie.vue </h3>
+    {{movie.title}}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'TickedMovie'
+  name: 'TicketedMovie',
+  props: {
+    movie: Object,
+  }
 }
 </script>
 
