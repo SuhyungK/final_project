@@ -13,7 +13,7 @@
         <TickedMovieList class="box"/>
         <div class="d-flex flex-row">
         <BadgeList class="box"/>
-        <MyReview class="box"/>
+        <MyReviews class="box"/>
         </div>
       </div>
 
@@ -37,7 +37,7 @@
           </div>
 
           <!-- 내가 쓴 리뷰 -->
-          <MyReview/>
+          <MyReviews/>
         </div>
       </div>
     </div>
@@ -49,7 +49,7 @@ import ProfileInfomation from '@/components/ProfileInfomation'
 import MovieGage from '@/components/MovieGage'
 import TickedMovieList from '@/components/TickedMovieList'
 import BadgeList from '@/components/BadgeList'
-import MyReview from '@/components/MyReview'
+import MyReviews from '@/components/MyReviews'
 
 export default {
   name: 'ProfileView',
@@ -58,7 +58,7 @@ export default {
     MovieGage,
     TickedMovieList,
     BadgeList,
-    MyReview,
+    MyReviews,
   },
   computed: {
     myBadges() {

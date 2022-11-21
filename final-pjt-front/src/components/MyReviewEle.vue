@@ -1,12 +1,15 @@
 <template>
   <div>
-    <h3> 내가 리뷰한 게시글 MyReview.vue </h3>
+    {{ review }}
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MyReview'
+  name: 'MyReviewEle',
+  props: {
+    review: Object,
+  }
 }
 </script>
 
