@@ -24,6 +24,8 @@ export default new Vuex.Store({
     movieReviews: [], // 특정 영화에 대한 리뷰들
     myLikeReview: [], // 내가 좋아요한 리뷰 pk 값 
     searchMovieResults: [], // 검색한 영화 정보
+    selectSeats: [], // 선택한 좌석들
+    alreadyReserved: [] // 이제 결제된 좌석들
   },
   getters: {
     isLogin(state) {
@@ -73,6 +75,26 @@ export default new Vuex.Store({
     },
     SAVE_SEARCH_MOVIE(state, searchMovieList) {
       state.searchMovieResults = searchMovieList
+    },
+    SELECT_SEAT(state, info) {
+      const i = info.i
+      const j = info.j
+      state.selectSeats.push([i,j])
+    },
+    CANCEL_SEAT(state, info) {
+      console.log("좌석빼기")
+      const i = info.i
+      const j = info.j
+      const arr = [i,j]
+
+      const filtered = state.selectSeats.filter((ele) => JSON.stringify(ele) != JSON.stringify(arr))
+      state.selectSeats = filtered
+    },
+    CLEAR_SEAT(state) {
+      state.selectSeats = []
+    },
+    CLEAR_REVERSED_SEAT(state) {
+      state.alreadyReserved = []
     }
   },
   actions: {
@@ -463,6 +485,79 @@ export default new Vuex.Store({
         })
         .catch(() => {
           console.log('좋아요한 리뷰 목록 불러오기 실패!')
+        })
+    },
+
+    // 예매 관련 함수들 ##################################
+    // 선택한 좌석에 추가
+    selectSeat(context, payload) {
+      console.log('좌석 선택')
+      context.commit('SELECT_SEAT', payload)
+    },
+    // 선택한 좌석 선택 취소
+    cancelSeat(context, payload) {
+      console.log('좌석 선택 취소')
+      context.commit('CANCEL_SEAT', payload)
+    },
+    // 선택한 좌석 비우기
+    clearSeat(context) {
+      console.log('선택한 좌석 클리어')
+      context.commit('CLEAR_SEAT')
+    },
+    // 예약된 죄석 배열 초기화
+    clearReversedSeat(context) {
+      console.log('sdsdsss')
+      context.commit('CLEAR_REVERSED_SEAT')
+    },
+    // 날짜, 시간, 상영관 선택 다했어 이 time 테이블 기준으로
+    // 좌석 테이블 가져와
+    requestSeatInfoDB(context, payload) {
+      const time = payload.time
+      const theater = payload.theater
+      const date = payload.date
+      const movieId = payload.movieId
+      
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/ticketings/request-seat-data/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          date, time, theater, movieId,
+        }
+      })
+        .then((res)=> {
+          console.log('좌석정보 불러옴', res)
+          // alreadyReserved 에 저장하러 ㄱㄱ
+          // context.commit('ALREADY_RESERVED', res.data)
+          context.state.alreadyReserved = res.data
+        })
+        .catch(() => {
+          console.log('좌석정보 불러오기 실패함')
+        })
+    },
+    paymentMovie(context, payload) {
+      const time = payload.time
+      const theater = payload.theater
+      const date = payload.date
+      const movieId = payload.movieId
+      const selectSeats = context.state.selectSeats
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/ticketings/payment/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          date, time, theater, movieId,selectSeats
+        }
+      })
+        .then(() => {
+          console.log('결제한 좌석 정보 저장 성공')
+        })
+        .catch(() => {
+          console.log('결제한 좌석 정보 저장 실패')
         })
     },
   },

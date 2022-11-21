@@ -22,4 +22,5 @@ urlpatterns = [
     path('accounts/signup/', include('dj_rest_auth.registration.urls')),
     path('movies/', include('movies.urls')),
     path('badges/', include('badges.urls')),
+    path('ticketings/', include('ticketings.urls')),
 ]
