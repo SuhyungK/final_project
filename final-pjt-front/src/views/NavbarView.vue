@@ -3,7 +3,7 @@
   <div class="navbar d-flex justify-content-between">
     <!-- Nav 로고 -->
     <div id="nav-bar-logo">
-      <p class="h4 fw-bolder fst-italic">PJT</p>
+      <router-link :to="{name: 'IndexView'}" style="all: unset; cursor: pointer;"><p class="h4 fw-bolder fst-italic">PJT</p></router-link>
       <!-- <h3 style="font-weight: 900;">LOGO</h3> -->
     </div>
 
@@ -24,6 +24,7 @@
           :key="sMovie.movie_id" 
           :to="{name: 'MovieDetailView', query: {movie: JSON.stringify(sMovie)} }"
           @click.native="clearSearchList"
+          style="tab-index: 1;"
           >
             {{ sMovie.title }}
         </router-link>
@@ -39,9 +40,20 @@
 
     <!-- Nav toggler -->
     <div id="navbar-toggler-div">
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <b-button v-b-toggle.sidebar-right class="navbar-toggler" type="button">
         <span class="navbar-toggler-icon"></span>
-      </button>
+        <b-sidebar id="sidebar-right" title="Navbar" right shadow>
+          <div class="my-4">
+            <router-link :to="{name: 'ProfileView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toProfile">PROFILE</router-link>
+          </div>
+          <div class="my-4">
+            <router-link :to="{name: 'MyMovieView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toMyMovie">MOVIELIST</router-link>
+          </div>
+          <div>
+            <p class="button-nav-list h6" :style="{'font-weight': '800'}" @click="logOut">SIGN OUT</p>
+          </div>
+        </b-sidebar>
+      </b-button>
     </div>
 
     <!-- <button class="button-nav-list" @click="test">test</button>
