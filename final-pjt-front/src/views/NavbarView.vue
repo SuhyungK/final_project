@@ -188,9 +188,6 @@ export default {
   cursor: pointer;
 }
 
-#nav-bar-end, #nav-bar-logo {
-}
-
 @media (min-width: 992px) {
   #nav-bar-end {
     display: block;
