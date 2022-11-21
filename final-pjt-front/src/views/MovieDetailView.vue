@@ -65,7 +65,7 @@ export default {
   box-shadow: inset 0 0 50px 60px rgba(255, 255, 255, 1), inset 10px 0 50px 70px rgba(255, 255, 255, 1);
   /* box-shadow: inset 0 0 0 0 blue, inset 0 0 0 0 red; */
   /* border-radius: 50%; */
-  margin-top: -40px;
+  /* margin-top: -40px; */
 }
 
 #backdrop-container > img {

@@ -49,6 +49,11 @@ export default {
   neme: 'MovieDetail',
   props: {
     movie: Object
+  },
+  data() {
+    return {
+      genres: JSON.parse(this.movie.genres).result
+    }
   }
 }
 

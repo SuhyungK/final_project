@@ -61,7 +61,7 @@ export default new Vuex.Store({
     USER_SAVE(state, user) {
       const tmp = {
         userPk: user.pk,
-        userName: user.name
+        userName: user.username
       }
       state.userInfo = tmp      
     },

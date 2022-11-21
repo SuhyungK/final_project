@@ -32,7 +32,7 @@
       <hr>
       <!-- 대댓글 -->
       <!-- 대댓 작성 버튼 -->
-      <button @click="show=!show">대댓글 보여주기</button>
+      <!-- <button @click="show=!show">대댓글 보여주기</button>
       <Transition>
         <div v-if="show">
           <form @submit.prevent="createRecomment">
@@ -40,7 +40,7 @@
             <input type="submit">
           </form>
         </div>
-      </Transition>
+      </Transition> -->
       
     </div>
     <hr class="mt-4">

@@ -1,16 +1,16 @@
 <template>
-  <div>
-    <h1>프로필 페이지 ProfileView.vue</h1>
-    <div class="d-flex flex-row">
+  <div class="container">
+    <!-- <h1>프로필 페이지 ProfileView.vue</h1> -->
+    <div class="row mt-5">
 
-      <div>
-        <ProfileInfomation class="box"/>
+      <div class="col-4">
+        <ProfileInfomation class="mb-2"/>
         <MovieGage class="box"/>
       </div>
 
 
-      <div>
-        <TickedMovieList class="box"/>
+      <div class="col-8">
+        <TickedMovieList class="box mb-4"/>
         <div class="d-flex flex-row">
         <BadgeList class="box"/>
         <MyReviews class="box"/>
@@ -19,28 +19,7 @@
 
     </div>
 
-    <!-- 추가 -->
-    <div class="container">
-      <div class="mt-5 mb-3 row">
-        <!-- 프로필 정보 -->
-        <div class="col-4 border d-flex flex-column">
-          <ProfileInfomation/>
-          <MovieGage/>
-        </div>
-
-        <!-- 프로필 정보 외 -->
-        <div class="col-8 border d-flex flex-column">
-          <!-- 예매 정보 & 뱃지 정보 -->
-          <div class="row row-cols-2">
-            <TickedMovieList/>
-            <BadgeList/>
-          </div>
-
-          <!-- 내가 쓴 리뷰 -->
-          <MyReviews/>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </template>
 

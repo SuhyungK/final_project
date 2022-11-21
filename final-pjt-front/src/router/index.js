@@ -64,7 +64,14 @@ const routes = [
   {
     path: '/sign-up',
     name: 'SignUpView',
-    component: SignUpView
+    component: SignUpView,
+    beforeEnter(to, from, next) {
+      if (store.getters.isLogin) {
+        next({name: 'IndexView'})
+      } else {
+        next()
+      }
+    }
   },
   {
     path: '/tmp',

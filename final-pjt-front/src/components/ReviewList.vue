@@ -12,6 +12,8 @@
       :review='review'
       :movieId='movieId'
     />
+
+    {{ movieReviewData }}
     <button @click="tmp">dasdf</button>
   </div>
 </template>
@@ -24,12 +26,17 @@ export default {
   components: {
     AllReviews,
   },
+  data() {
+    return {
+      movieReviewData: [...this.$store.state.movieReviews]
+    }
+  },
   props: {
     movieId: Number,
   },
   computed: {
     movieReviews() {
-      return this.$store.state.movieReviews
+      return this.movieReviewData
     },
   },
 }

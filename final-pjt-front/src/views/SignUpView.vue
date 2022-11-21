@@ -53,7 +53,8 @@ export default {
       // }
 
       this.$store.dispatch('signUp', payload)
-      this.$router.push({name: 'LoginView'})
+      this.$router.push({name: 'IndexView'})
+      // this.$router.push({name: 'LoginView'})
     }
   },
   computed: {
