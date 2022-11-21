@@ -53,6 +53,7 @@ export default {
       // }
 
       this.$store.dispatch('signUp', payload)
+      console.log('???')
       this.$router.push({name: 'IndexView'})
       // this.$router.push({name: 'LoginView'})
     }
