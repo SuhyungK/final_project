@@ -22,7 +22,7 @@
         <router-link class="list-group-item list-group-item-action"
           v-for="sMovie in searchMovieList" 
           :key="sMovie.movie_id" 
-          :to="{name: 'MovieDetailView', params: {movieId: sMovie.movie_id, movie: sMovie} }"
+          :to="{name: 'MovieDetailView', query: {movie: JSON.stringify(sMovie)} }"
           @click.native="clearSearchList"
           >
             {{ sMovie.title }}

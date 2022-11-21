@@ -4,9 +4,9 @@
       
       <NavbarView class="container py-3"/>
     </div>
-    <router-view/>
+    <router-view :key="$route.fullPath"/>
 
-    <footer class="mt-4 mb-5">
+    <footer v-if="this.$store?.getters?.isLogin?true:false" class="mt-4 mb-5">
       <p class="h4 fst-italic" style="font-weight: 900;">FOOTER</p>
     </footer>
   </div>

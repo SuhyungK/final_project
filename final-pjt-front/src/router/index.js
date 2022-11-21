@@ -110,9 +110,12 @@ router.beforeEach((to, from, next) => {
   if (!authenticationState && authentication) {
     next({name: 'LoginView'})
   }
-  else if (to != from) {
+  else {
     next()
   }
+  // else if (to != from) {
+  //   next()
+  // }
 
 })
 

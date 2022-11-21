@@ -71,7 +71,8 @@ export default {
   methods: {
     moveToDetail(movie) {
       console.log(movie.movie_id)
-      this.$router.push({name: 'MovieDetailView', params: {movie: JSON.stringify(movie)}})
+      // this.$router.push({name: 'MovieDetailView', params: {movie: JSON.stringify(movie)}})
+      this.$router.push({name: 'MovieDetailView', query: {movie: JSON.stringify(movie)}})
     }
   }
 }

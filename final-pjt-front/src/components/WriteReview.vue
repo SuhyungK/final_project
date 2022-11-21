@@ -12,16 +12,16 @@
     {{ movieId }}
     {{ userPk }}
     <form @submit.prevent="reviewC">
-        <!-- <label for="content">content : </label> -->
-        <input class="form-control" type="text" id="content" v-model='content'><br>
+      <label for="rating"> rating: </label>
+      <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br>
 
-        <label for="rating"> rating: </label>
-        <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br>
+      <!-- <label for="content">content : </label> -->
+      <input class="form-control" type="text" id="content" v-model='content'><br>
 
-        <input type="submit" value="작성">
-        <br>
-        <i class="bi bi-chat-left fs-5"></i>
-      </form>
+      <input type="submit" value="댓글쓰기">
+      <br>
+      <i class="bi bi-chat-left fs-5"></i>
+    </form>
 
       <!-- <button @click="show = !show">Toggle</button>
       <Transition>
@@ -55,7 +55,7 @@ export default {
         rating,
       }
       this.$store.dispatch('reviewC', payload)
-      this.content = null
+      this.content = ''
       this.rating = 0
     },
     expandInput(e) {

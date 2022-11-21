@@ -53,7 +53,7 @@ class Movie(models.Model):
 class Review(models.Model):
     content = models.TextField()
     created_at = models.DateTimeField(auto_now_add = True)
-    update_at = models.DateTimeField(auto_now = True)
+    updated_at = models.DateTimeField(auto_now = True)
     rating = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(5)], blank=True, null=True)  # 별점
     isSpoiler = models.BooleanField(default=False)
     username = models.TextField()
@@ -62,16 +62,18 @@ class Review(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     like_users = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name='like_review')
 
-    from_review = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+    # 이건 필요 없는...? 
+    # from_review = models.ForeignKey('self', on_delete=models.CASCADE, blank=True, null=True)
+
+
 class Comment(models.Model):
     content = models.CharField(max_length=50)
-    create_at = models.DateTimeField(auto_now_add=True)
-    update_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
     review = models.ForeignKey(Review, on_delete=models.CASCADE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
-    # 대댓글
-
+    username = models.TextField()
 
 # class Ticketing(models.Model):
 #     date = models.TextField()

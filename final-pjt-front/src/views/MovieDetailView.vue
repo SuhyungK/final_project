@@ -21,7 +21,7 @@
       </div>
 
     </div>
-    {{ this.$route.query }}
+    <!-- {{ this.$route.query }} -->
   </div>
 </template>
 
@@ -36,7 +36,6 @@ export default {
   data() {
     return {
       movie: JSON.parse(this.$route.query.movie),
-      
     }
   },
   components: {
@@ -47,14 +46,13 @@ export default {
   },
   mounted() {
     // console.log('무비 아이디', movie.id)
-    // this.$store.dispatch('movieReviews', movie.id)
     this.movie = JSON.parse(this.$route.query.movie)
-    console.log(this.movie)
+    console.log('영화', this.movie.id)
+    this.$store.dispatch('movieReviews', this.movie.id)
   },
-  beforeRouteUpdate(to, from, next) {
-    this.movie = to.query.movie
-    next({name: 'MovieDetailView', query: {movieId: this.movie.movie_id, movie: JSON.stringify(this.movie)}})
-  }
+  // beforeRouteUpdate(to, from, next) {
+  //   next({name: 'MovieDetailView', query: {movie: JSON.stringify(this.movie)}})
+  // }
 }
 </script>
 
@@ -64,9 +62,10 @@ export default {
   width: inherit;
   height: 600px;
   position: relative;
-  box-shadow: inset 10px 0 50px 70px rgba(255, 255, 255, 1), inset 10px 0 50px 70px rgba(255, 255, 255, 1);
+  box-shadow: inset 0 0 50px 60px rgba(255, 255, 255, 1), inset 10px 0 50px 70px rgba(255, 255, 255, 1);
   /* box-shadow: inset 0 0 0 0 blue, inset 0 0 0 0 red; */
   /* border-radius: 50%; */
+  margin-top: -40px;
 }
 
 #backdrop-container > img {

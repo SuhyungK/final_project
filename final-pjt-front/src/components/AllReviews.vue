@@ -12,9 +12,15 @@
     <div class="col-10">
 
       <!-- 작성자 & 별점 -->
-      <p class="d-inline-block fs-5 fw-bolder me-3">{{ review.username }}</p>
-      <p class="d-inline-block">평점 : {{ review.rating }}</p>
-
+      <div class="d-flex justify-content-between">
+        <div>
+          <p class="d-inline-block fs-5 fw-bolder me-3">{{ review.username }}</p>
+          <p class="d-inline-block">평점 : {{ review.rating }}</p>
+        </div>
+        <div>
+          <p class="fs-6">{{ review.created_at.substring(0, 10) }}</p>
+        </div>
+      </div>
       <!-- 내용 -->
       <p>내용 : {{ review.content }}</p>
 
@@ -23,15 +29,23 @@
       <button v-if="!alradyLiked" @click="likeReview">임시 좋아요 버튼</button>
       <button v-if="alradyLiked" @click="likeReview">임시 좋아요 취소 버튼</button>
       
+      <hr>
       <!-- 대댓글 -->
-      <form @submit.prevent="createRecomment">
-        <input type="text" @input="inputRecomment" :value="recomment">
-        <input type="submit">
-      </form>
+      <!-- 대댓 작성 버튼 -->
+      <button @click="show=!show">대댓글 보여주기</button>
+      <Transition>
+        <div v-if="show">
+          <form @submit.prevent="createRecomment">
+            <input type="text" class="form-control" @input="inputRecomment" :value="recomment">
+            <input type="submit">
+          </form>
+        </div>
+      </Transition>
+      
     </div>
     <hr class="mt-4">
     <!-- 리뷰들 AllReviews.vue -->
-
+  
   </div>
 </template>
 
@@ -42,12 +56,21 @@ export default {
   name: 'AllReviews',
   data() {
     return {
-      recomment: '',
+      show: false,
     }
   },
   props: {
     review: Object,
-    movieId: Number,
+    movieId: Number,  
+  },
+  computed: {
+    liked() {
+      return this.$store.state.myLikeReview
+    },
+    alradyLiked() {
+      console.log('좋아요 했는지 확인')
+      return this.liked.includes(this.review.id)
+    },
   },
   methods: {
     likeReview() {
@@ -63,13 +86,12 @@ export default {
 
       axios({
         method: 'post',
-        url: `${DJANGO_API_URL}/movies/commentC/${reviewId}/`,
+        url: `${DJANGO_API_URL}/movies/comment/${reviewId}/`,
         headers: {
           Authorization: `Token ${this.$store.state.token}`
         },
         data: {
           content: this.recomment,
-          from_review: reviewId
         }
       })
         .then((res) => {
@@ -78,18 +100,8 @@ export default {
     },
     inputRecomment(e) {
       this.recomment = e.target.value
-    }
-  },
-  computed: {
-    liked() {
-      return this.$store.state.myLikeReview
-    },
-    alradyLiked() {
-      console.log('좋아요 했는지 확인')
-      return this.liked.includes(this.review.id)
     },
   },
-
 }
 </script>
 
@@ -102,5 +114,15 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>

@@ -8,7 +8,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view 
 from rest_framework import status
 
-from .serializers import MovieSerializer, TmpMovieListSerializer, TmpReviewSerializer
+from .serializers import MovieSerializer, TmpMovieListSerializer, TmpReviewSerializer, CommentSerializer
 # import requests
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
@@ -42,9 +42,9 @@ def tmpList(request):
         serializer = TmpMovieListSerializer(articles, many=True)
         return Response(serializer.data)
 
-# 댓글 작성
+# 리뷰 작성
 @api_view(['POST'])
-def tmpReviewCeate(request, movie_pk):
+def tmpReviewCreate(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = TmpReviewSerializer(data=request.data)
     print(serializer)
@@ -53,13 +53,13 @@ def tmpReviewCeate(request, movie_pk):
         serializer.save(movie=movie, user=request.user, username=request.user.username)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-# 대댓글 작성
+# 댓글 작성
 @api_view(['POST'])
 def createComment(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
-    serailizer = TmpReviewSerializer(data=request.data)
+    serailizer = CommentSerializer(data=request.data)
     if serailizer.is_valid(raise_exception=True):
-        serailizer.save(movie=review.movie, user=request.user, username=request.user.username)
+        serailizer.save(review=review, user=request.user, username=request.user.username)
         return Response(serailizer.data, status=status.HTTP_201_CREATED)
     return Response()
 
@@ -163,9 +163,9 @@ def reviewcount(request):
 # 특정영화에 대한 리뷰 목록가져오기
 @api_view(['GET'])
 def movieReviews(request, movie_pk):
-    reviews = Review.objects.filter(movie = movie_pk).order_by('-created_at')
+    reviews = Review.objects.filter(movie=movie_pk).order_by('-created_at')
     serializer = TmpReviewSerializer(reviews, many=True)
-
+    print(reviews)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 

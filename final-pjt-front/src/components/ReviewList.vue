@@ -4,7 +4,7 @@
     <div class="text-start">
       <p class="h3 fw-bolder">리뷰 목록</p>
     </div>
-
+    
     <hr>
     <AllReviews
       v-for='review in movieReviews'
@@ -12,6 +12,7 @@
       :review='review'
       :movieId='movieId'
     />
+    <button @click="tmp">dasdf</button>
   </div>
 </template>
 
@@ -22,22 +23,15 @@ export default {
   name: 'ReviewList',
   components: {
     AllReviews,
-
-  },
-  computed: {
-    movieReviews() {
-      return this.$store.state.movieReviews
-    }
   },
   props: {
     movieId: Number,
   },
-  methods: {
-
+  computed: {
+    movieReviews() {
+      return this.$store.state.movieReviews
+    },
   },
-  mounted() {
-    this.$store.dispatch('movieReviews', this.movieId)
-  }
 }
 </script>
 
