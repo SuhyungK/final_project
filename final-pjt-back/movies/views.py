@@ -42,7 +42,7 @@ def tmpList(request):
         serializer = TmpMovieListSerializer(articles, many=True)
         return Response(serializer.data)
 
-
+# 댓글 작성
 @api_view(['POST'])
 def tmpReviewCeate(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
@@ -53,8 +53,15 @@ def tmpReviewCeate(request, movie_pk):
         serializer.save(movie=movie, user=request.user, username=request.user.username)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-
-
+# 대댓글 작성
+@api_view(['POST'])
+def createComment(request, review_pk):
+    review = get_object_or_404(Review, pk=review_pk)
+    serailizer = TmpReviewSerializer(data=request.data)
+    if serailizer.is_valid(raise_exception=True):
+        serailizer.save(movie=review.movie, user=request.user, username=request.user.username)
+        return Response(serailizer.data, status=status.HTTP_201_CREATED)
+    return Response()
 
 
 # 영화 좋아요 기능
@@ -150,10 +157,7 @@ def reviewcount(request):
     reviews = Review.objects.filter(user=user)
     serializer = TmpReviewSerializer(reviews, many=True)
 
-
     return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-
 
 
 # 특정영화에 대한 리뷰 목록가져오기
@@ -199,6 +203,7 @@ def likeReviewList(request):
 
     return JsonResponse(context)
 
+# 영화 검색
 @api_view(['GET'])
 def searchMovie(request):
     search_word = request.GET.get('search_word')

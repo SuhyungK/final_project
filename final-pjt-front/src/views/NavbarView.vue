@@ -130,10 +130,11 @@ export default {
         })
           .then((res) => {
             this.searchMovieList = res.data
-            console.log(this.searchMovieList)
             if (this.searchMovieList.length == 1) {
               this.searchMovieList = []
-              this.$router.push({name: 'MovieDetailView', params: {'movieId': res.data[0].movie_id, 'movie': res.data[0]}})
+              console.log(res.data[0])
+              console.log(JSON.stringify(res.data[0]))
+              this.$router.push({name: 'MovieDetailView', query: {movie: JSON.stringify(res.data[0])}})
               // this.$router.push({name: 'MovieDetailView', params: {movie: res.data[0]}})
             } else {
               this.searchMovieList = []

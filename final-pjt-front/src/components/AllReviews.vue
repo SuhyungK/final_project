@@ -23,9 +23,9 @@
       <button v-if="!alradyLiked" @click="likeReview">임시 좋아요 버튼</button>
       <button v-if="alradyLiked" @click="likeReview">임시 좋아요 취소 버튼</button>
       
-      <p>대댓 달기</p>
-      <form action="" @submit.prevent="createRecomment">
-        <input type="text">
+      <!-- 대댓글 -->
+      <form @submit.prevent="createRecomment">
+        <input type="text" @input="inputRecomment" :value="recomment">
         <input type="submit">
       </form>
     </div>
@@ -36,9 +36,15 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'AllReviews',
-
+  data() {
+    return {
+      recomment: '',
+    }
+  },
   props: {
     review: Object,
     movieId: Number,
@@ -51,8 +57,27 @@ export default {
       }
       this.$store.dispatch('likeReview', payload)
     },
-    createRecomment(e) {
-      console.log(e)
+    createRecomment() {
+      const DJANGO_API_URL = 'http://127.0.0.1:8000'
+      const reviewId = this.review.id
+
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/movies/commentC/${reviewId}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
+        data: {
+          content: this.recomment,
+          from_review: reviewId
+        }
+      })
+        .then((res) => {
+          console.log(res)
+        })
+    },
+    inputRecomment(e) {
+      this.recomment = e.target.value
     }
   },
   computed: {

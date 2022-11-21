@@ -23,10 +23,10 @@
         <i class="bi bi-chat-left fs-5"></i>
       </form>
 
-      <button @click="show = !show">Toggle</button>
+      <!-- <button @click="show = !show">Toggle</button>
       <Transition>
         <p v-if="show">hello</p>
-      </Transition>
+      </Transition> -->
   </div>
 </template>
 

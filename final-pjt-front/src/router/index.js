@@ -55,7 +55,6 @@ const routes = [
     path: '/moviedetail', 
     name: 'MovieDetailView',
     component: MovieDetailView,
-    props: true,
   },
   {
     path: '/ticketing',
