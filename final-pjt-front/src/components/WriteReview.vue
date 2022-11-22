@@ -9,18 +9,23 @@
 
     <hr>
 
-    {{ movieId }}
-    {{ userPk }}
     <form @submit.prevent="reviewC">
       <label for="rating"> rating: </label>
       <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br>
 
       <!-- <label for="content">content : </label> -->
-      <input class="form-control" type="text" id="content" v-model='content'><br>
+      <!-- <input class="form-control" type="text" id="content" v-model='content' ><br> -->
 
-      <input type="submit" value="댓글쓰기">
+      <div class="form-floating">
+        <textarea class="form-control" placeholder="Leave a comment here" id="commentContent" v-model="content" style="height: 150px;"></textarea>
+        <label for="commentContent">영화 리뷰 남기기</label>
+      </div>
+
+      <div class="d-flex justify-content-end mt-3hbmbn ">
+        <input type="submit" class="btn btn-primary" value="리뷰쓰기">
+      </div>
       <br>
-      <i class="bi bi-chat-left fs-5"></i>
+      
     </form>
 
       <!-- <button @click="show = !show">Toggle</button>
@@ -49,14 +54,16 @@ export default {
       const content = this.content
       const rating = this.rating
       
-      const payload = {
-        movieId,
-        content,
-        rating,
+      if (content) {
+        const payload = {
+          movieId,
+          content,
+          rating,
+        }
+        this.$store.dispatch('reviewC', payload)
+        this.content = ''
+        this.rating = 0
       }
-      this.$store.dispatch('reviewC', payload)
-      this.content = ''
-      this.rating = 0
     },
     expandInput(e) {
       console.log(e.target.width)

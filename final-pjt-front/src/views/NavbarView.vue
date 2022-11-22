@@ -3,7 +3,8 @@
   <div class="navbar d-flex justify-content-between">
     <!-- Nav 로고 -->
     <div id="nav-bar-logo">
-      <router-link :to="{name: 'IndexView'}" style="all: unset; cursor: pointer;"><p class="h4 fw-bolder fst-italic">PJT</p></router-link>
+      <!-- <router-link :to="{name: 'IndexView'}" style="all: unset; cursor: pointer;"><p class="h4 fw-bolder fst-italic">PJT</p></router-link> -->
+      <router-link :to="{name: 'IndexView'}" style="text-decoration: none; color: inherit;"><p class="h4 fw-bolder fst-italic">PJT</p></router-link>
       <!-- <h3 style="font-weight: 900;">LOGO</h3> -->
     </div>
 
@@ -14,9 +15,10 @@
         <input type="text" class="form-control" placeholder="영화검색" 
           @input="searchMovie"
           @keydown.enter="moveToSearchPage"
-          
+
           aria-label="search" aria-describedby="search-bar">
       </div>
+
       <!-- <button class="button-nav-list" @click="searchMovie">영화검색</button> -->
       <div class="list-group position-absolute" :style="{width: '100%'}">
         <router-link class="list-group-item list-group-item-action"
@@ -24,7 +26,7 @@
           :key="sMovie.movie_id" 
           :to="{name: 'MovieDetailView', query: {movie: JSON.stringify(sMovie)} }"
           @click.native="clearSearchList"
-          style="tab-index: 1;"
+          style="z-index: 99999;"
           >
             {{ sMovie.title }}
         </router-link>
@@ -55,7 +57,7 @@
         </b-sidebar>
       </b-button>
     </div>
-
+    
     <!-- <button class="button-nav-list" @click="test">test</button>
     <button class="button-nav-list" @click="test1">test1 : 유저가 좋아요한 목록</button>
     <button class="button-nav-list" @click="test2">test2 : 영화추천 알고리즘</button>
@@ -146,8 +148,8 @@ export default {
               this.searchMovieList = []
               console.log(res.data[0])
               console.log(JSON.stringify(res.data[0]))
-              this.$router.push({name: 'MovieDetailView', query: {movie: JSON.stringify(res.data[0])}})
-              // this.$router.push({name: 'MovieDetailView', params: {movie: res.data[0]}})
+              this.$router.push({path: '/moviedetail', name: 'MovieDetailView', query: {movie: JSON.stringify(res.data[0])}})
+              // this.$router.push({name: 'MovieDetailView', params: {movieId: , movie: res.data[0]}})
             } else {
               this.searchMovieList = []
               this.$store.commit('SAVE_SEARCH_MOVIE', res.data)

@@ -3,6 +3,7 @@ import Vuex from 'vuex'
 import axios from 'axios'
 import createPersistedState from 'vuex-persistedstate'
 import router from '@/router'
+import TimeCounting from 'time-counting'
 
 Vue.use(Vuex)
 
@@ -29,6 +30,8 @@ export default new Vuex.Store({
     myPayedMovies: [], // 내가 예매(구매)한 영화
     genresGage: {}, // 프로필에 장르게이지에 쓸거
     genresGageSize: 0, // 장르게이지 전체 크기
+    nowTimes: '',
+    timeStamp: ''
   },
   getters: {
     isLogin(state) {
@@ -110,6 +113,9 @@ export default new Vuex.Store({
       state.genresGage = data.genredict
       state.genresGageSize = data.cnt
     },
+    SET_DATE(state, time) {
+      state.nowTimes = time
+    }
   },
   actions: {
     signUp(context, payload) {
@@ -618,6 +624,36 @@ export default new Vuex.Store({
         .catch(() => {
           console.log('장르게이지 데이터 뽑아내기 실패')
         })
+    },
+
+    // 시간 계산 함수
+    setDate(context) {
+      let year = new Date().getFullYear()
+      let month = new Date().getMonth() + 1 < 10? "0" + (new Date().getMonth() + 1): new Date().getMonth() + 1
+      let date = new Date().getDate() < 10? "0" + new Date().getDate(): new Date().getDate()
+      let hh = new Date().getHours() < 10? "0" + new Date().getHours(): new Date().getHours()
+      let mm = new Date().getMinutes() < 10? "0" + new Date().getMinutes(): new Date().getMinutes()
+      let ss = new Date().getSeconds() < 10? "0" + new Date().getSeconds(): new Date().getSeconds()
+      
+      this.nowTime = year + "-" + month + "-" + date + " " + hh + ":" + mm + ":" + ss
+      
+      context.commit('SET_DATE', this.nowTime)
+    }, 
+    
+    // 시간 차이 계산
+    timeCount(context, targetTime) {
+      context.dispatch('setDate')
+
+      console.log('asdfasdfadsf')
+      const option = {
+        lang: "ko",
+        objectTime: this.nowTimes,
+        calculate: {
+          justNow: 60
+        }
+      }
+
+      context.state.timeStamp = TimeCounting(targetTime, option)
     }
   },
   modules: {

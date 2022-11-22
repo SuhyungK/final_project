@@ -16,8 +16,8 @@
 
       <div class="col-lg-7 col-md-12">
         <MovieDetail style="margin-bottom: 100px;" :movie='movie'/>
-        <ReviewList :movieId='movie.id'/>
         <WriteReview :movieId='movie.id'/>
+        <ReviewList :movieId='movie.id'/>
       </div>
 
     </div>

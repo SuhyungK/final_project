@@ -6,15 +6,14 @@
     </div>
     
     <hr>
+    <!-- {{ this.$store.state.moviesReviewList }} -->
+
     <AllReviews
       v-for='review in movieReviews'
       :key='review.id'
       :review='review'
       :movieId='movieId'
     />
-
-    {{ movieReviewData }}
-    <button @click="tmp">dasdf</button>
   </div>
 </template>
 
@@ -26,17 +25,17 @@ export default {
   components: {
     AllReviews,
   },
-  data() {
-    return {
-      movieReviewData: [...this.$store.state.movieReviews]
-    }
-  },
+  // data() {
+  //   return {
+  //     movieReviewData: [...this.$store.state.movieReviews]
+  //   }
+  // },
   props: {
     movieId: Number,
   },
   computed: {
     movieReviews() {
-      return this.movieReviewData
+      return this.$store.state.movieReviews
     },
   },
 }
