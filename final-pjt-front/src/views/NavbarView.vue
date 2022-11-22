@@ -35,7 +35,7 @@
     
     <!-- Nav 프로필-관심영화-로그아웃 -->
     <div id="nav-bar-end">
-      <router-link :to="{name: 'ProfileView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toProfile">PROFILE</router-link>
+      <router-link :to="{name: 'ProfileView', params: {username: this.$store.state.userInfo.userName}}" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toProfile">PROFILE</router-link>
       <router-link :to="{name: 'MyMovieView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toMyMovie">MOVIELIST</router-link>
       <p class="button-nav-list h6" :style="{'font-weight': '800'}" @click="logOut">SIGN OUT</p>
     </div>
@@ -46,7 +46,7 @@
         <span class="navbar-toggler-icon"></span>
         <b-sidebar id="sidebar-right" title="Navbar" right shadow>
           <div class="my-4">
-            <router-link :to="{name: 'ProfileView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toProfile">PROFILE</router-link>
+            <router-link :to="{name: 'ProfileView', params: {username: this.$store.state.userInfo.userName} }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toProfile">PROFILE</router-link>
           </div>
           <div class="my-4">
             <router-link :to="{name: 'MyMovieView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toMyMovie">MOVIELIST</router-link>

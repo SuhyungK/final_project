@@ -30,6 +30,10 @@ export default new Vuex.Store({
     myPayedMovies: [], // 내가 예매(구매)한 영화
     genresGage: {}, // 프로필에 장르게이지에 쓸거
     genresGageSize: 0, // 장르게이지 전체 크기
+    recommendMovies: [], // 알고리즘 기반 추천영화 목록
+    otheruser: null, // 프로필 이동할때 목적으로 하는 다른 유저 이름
+    followingsList: [], // 팔로잉 리스트(유저 pk)
+    followsList: [], // 팔로우 리스트(유저 pk)
     nowTimes: '',
     timeStamp: ''
   },
@@ -39,13 +43,15 @@ export default new Vuex.Store({
       // 토큰이 null 값이면 false, 아니면 true 사용자가 로그인했지 확인을 위해 사용
     },
     countReview(state) {
-      // console.log(state.myReview)
       return state.myReview.length
       // 사용자가 작성한 리뷰 개수 = 뱃지 획득여부에 사용
     },
     countPayedMovie(state) {
       return state.myPayedMovies.length
       // 사용자가 예매한 영화 개수 = 뱃지 획득여부에 사용
+    },
+    isFollowed(state) {
+      return state.followingsList.includes(state.userInfo.userPk)
     },
   },
   mutations: {
@@ -113,9 +119,21 @@ export default new Vuex.Store({
       state.genresGage = data.genredict
       state.genresGageSize = data.cnt
     },
+    ALGORITHEM_RECOMMENDED_MOVIES(state, data) {
+      state.recommendMovies = data
+    },
+    OTHER_USER_NAME_SAVE(state, name) {
+      state.otheruser = name
+    },
+    REQ_FOLLOWING_LIST(state, data) {
+      state.followingsList = data.followings_list
+    },
+    REQ_FOLLOW_LIST(state, data) {
+      state.followsList = data.follows_list
+    },
     SET_DATE(state, time) {
       state.nowTimes = time
-    }
+    },
   },
   actions: {
     signUp(context, payload) {
@@ -134,10 +152,9 @@ export default new Vuex.Store({
           context.commit('SAVE_TOKEN', res.data.key)
           context.dispatch('initialBadge')
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
+          console.log('회원가입 실패!')
           // 회원가입 정보 유효성 통과 못하면 다시 회원가입 페이지로
-          console.log('33333333333333333333333333333333')
           router.push({ name: 'SignUpView'})
         })
     },
@@ -224,13 +241,16 @@ export default new Vuex.Store({
           rating
         }
       })
-        .then((res) => {
-          console.log(res)
-          context.dispatch('myReview') // 리뷰 작성된후 조회 ( + 뱃지 업데이트)
+        .then(() => {
+          console.log('리뷰작성 완료!')
           context.dispatch('movieReviews', movieId)
         })
-        .catch((err) => {
-          console.log(err)
+        .then(() => {
+          context.dispatch('badgeUpdate') // 리뷰 작성 후 뱃지 업데
+        })
+        .catch(() => {
+          console.log('리뷰작성 실패!')
+          console.log()
         })
     },
 
@@ -248,9 +268,8 @@ export default new Vuex.Store({
           context.commit('USER_SAVE', res.data)
           return context.state.userInfo.userPk
         })
-        .catch((err) => {
+        .catch(() => {
           console.log('유저 정보 소환실패!!!')
-          console.log(err)
         })
     },
 
@@ -263,13 +282,11 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`
         }
       })
-        .then((res) =>{
+        .then(() =>{
           console.log('영화 좋아요 성공!')
-          console.log(res)
           context.dispatch('myLikeMovies') // 내가 좋아요한 목록 갱신
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
           console.log('영화 좋아요 실패ㅜ')
         })
     },
@@ -286,10 +303,8 @@ export default new Vuex.Store({
         .then((res) =>{
           console.log('좋아요 목럭 불러오기 성공!')
           context.state.myLikeMovies = res.data.liked
-          // console.log(context.state.myLikeMovies)
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
           console.log('좋아요 목럭 불러오기 실패!')
         })
     },
@@ -303,13 +318,10 @@ export default new Vuex.Store({
           Authorization: `Token ${context.state.token}`
         }
       })
-      .then((res) =>{
+      .then(() =>{
         console.log('영화 추천 받기 성공!')
-        console.log(res)
-
       })
-      .catch((err) => {
-        console.log(err)
+      .catch(() => {
         console.log('영화 추천 받기 실패!')
       })
     },
@@ -333,41 +345,35 @@ export default new Vuex.Store({
           context.commit('MY_LIKE_MOVIE_DETAIL', res.data)
 
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
           console.log('좋아요 영화 리스트(디테일) 만들기 실패!')
         })
     },
 
     // 회원가입후 초기 뱃지 생성(미획득 상태)
     initialBadge(context) {
-      // context.dispatch('getUser')
-      const userPk = context.dispatch('getUser')
+      context.dispatch('getUser')
       axios({
         method: 'post',
         url: `${DJANGO_API_URL}/badges/initailBadge/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         },
-        data: {
-          userPk
-        }
       })
-        .then((res) => {
+        .then(() => {
           console.log('초기 뱃지 목록 생성!')
-          console.log(res)
         })
-        .catch((err) => {
+        .catch(() => {
           console.log('초기 뱃지 목록 생성 실패!!')
-          console.log(err)
         })
     },
 
     // 지금 내 뱃지들 불러오기
-    myBadges(context) {
+    myBadges(context, name) {
+      const username = name
       axios({
         method: 'get',
-        url: `${DJANGO_API_URL}/badges/mybages/`,
+        url: `${DJANGO_API_URL}/badges/mybages/${username}`,
         headers: {
           Authorization: `Token ${context.state.token}`
         },
@@ -376,8 +382,8 @@ export default new Vuex.Store({
           console.log('내 뱃지들 불러오기 성공!')
           context.commit('MY_BADGES', res.data)
         })
-        .catch((err) => {
-          console.log(err)
+        .catch(() => {
+          console.log('내 뱃지들 불러오기 실패!')
         })
     },
 
@@ -391,17 +397,18 @@ export default new Vuex.Store({
           console.log('배지 표본들 불러오기 성공')
           context.commit('DEFAULT_BADGES', res.data)
         })
-        .catch((err) => {
+        .catch(() => {
           console.log('배지 표본들 불러오기 실패')
-          console.log(err)
         })
       },
     
     // 사용자가 작성한 리뷰 조회
-    myReview(context) {
+    myReview(context, username) {
+      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
+      console.log(username)
       axios({
         method: 'get',
-        url: `${DJANGO_API_URL}/movies/my-review/`,
+        url: `${DJANGO_API_URL}/movies/my-review/${username}/`,
         headers: {
           Authorization: `Token ${context.state.token}`
         },
@@ -411,14 +418,10 @@ export default new Vuex.Store({
           context.commit('MY_REVIEWS', res.data) 
         })
         .then(() => {
-          context.dispatch('badgeUpdate') // 리뷰조회하고 뱃지 얻을 수 있는지 확인
+          context.dispatch('myBadges', username) // 내 뱃지 업데이트
         })
-        .then(() => {
-          context.dispatch('myBadges') // 내 뱃지 업데이트
-        })
-        .catch((err) => {
+        .catch(() => {
           console.log('내가 작성한 리뷰 조회 실패!')
-          console.log(err)
         })
     },
     
@@ -439,8 +442,8 @@ export default new Vuex.Store({
         .then((res) => {
           console.log(res, '뱃지 업데이트 성공!')
         })
-        .catch((err) => {
-          console.log(err, '뱃지 업데이트 실패!')
+        .catch(() => {
+          console.log('뱃지 업데이트 실패!')
         })
     },
 
@@ -460,9 +463,8 @@ export default new Vuex.Store({
           console.log('특정 영화 리뷰들 불러오기 성공')
           context.commit('MOVIE_REVIEWS', res.data)
         })
-        .catch((err) => {
+        .catch(() => {
           console.log('특정 영화 리뷰들 불러오기 실패')
-          console.log(err)
         })
     },
 
@@ -485,9 +487,8 @@ export default new Vuex.Store({
           // 좋아요 실시간 반영을 위해 리뷰목록 다시 불러와야함
           context.dispatch('movieReviews', movieId)
         })
-        .catch((err) => {
+        .catch(() => {
           console.log('리뷰 좋아요 실패!')
-          console.log(err)
         })
     },
 
@@ -576,6 +577,8 @@ export default new Vuex.Store({
       })
         .then(() => {
           console.log('결제한 좌석 정보 저장 성공')
+          context.dispatch('badgeUpdate')
+          context.dispatch('algorithmRecommendedMovies')
         })
         .catch(() => {
           console.log('결제한 좌석 정보 저장 실패')
@@ -595,7 +598,6 @@ export default new Vuex.Store({
           context.commit('REQ_MY_PAYED_MOVIES', res.data)
         })
         .then(() => {
-          context.dispatch('badgeUpdate')
           context.dispatch('myMovieGenres')
         })
         .catch(() => {
@@ -654,6 +656,80 @@ export default new Vuex.Store({
       }
 
       context.state.timeStamp = TimeCounting(targetTime, option)
+    },
+
+    // 알고리즘 영화 목록 뽑기.
+    algorithmRecommendedMovies(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/movies/algorithm/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+       .then((res) => {
+          console.log('알고리즘 기반 영화 추천 받기 성공')
+          context.commit('ALGORITHEM_RECOMMENDED_MOVIES', res.data)
+       })
+       .catch(() => {
+        console.log('알고리즘 기반 영화 추천 받기 실패')
+       })
+    },
+
+    // 이동할 프로필 유저(다른 사람)
+    otherUserNameSave(context, name) {
+      context.commit('OTHER_USER_NAME_SAVE', name)
+    },
+
+    // 아무개를 팔로우 하고 있는 사람들 목록 뽑기
+    reqFollowingsList(context, username) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/profile/followings-list/${username}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((res) => {
+          console.log('프로필 주인 팔로잉 목록 소환 성공')
+          context.commit('REQ_FOLLOWING_LIST', res.data)
+        })
+        .catch(() => {
+          console.log('프로필 주인 팔로잉 목록 소환 실패')
+        })
+    },
+    // 팔로우 리스트 요청
+    reqFollowsList(context, username) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/profile/follows-list/${username}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((res) => {
+          console.log('프로필 주인 팔로우 목록 소환 성공')
+          context.commit('REQ_FOLLOW_LIST', res.data)
+        })
+        .catch(() => {
+          console.log('프로필 주인 팔로우 목록 소환 실패')
+        })
+    },
+    doFollow(context, username) {
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/profile/follow/${username}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then(() => {
+          console.log('팔로우 기능 무사히 수행!')
+          context.dispatch('reqFollowingsList', username)
+        })
+        .catch(() => {
+          console.log('팔로우 기능 실패!')
+        })
     }
   },
   modules: {

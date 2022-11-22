@@ -33,7 +33,6 @@ def index(request):
 
 ###
 @api_view(['GET', 'POST'])
-# @permission_classes([IsAuthenticated])
 def tmpList(request):
     print("실행!!!!!!!!!!!!!!!!")
     if request.method == 'GET':
@@ -47,9 +46,7 @@ def tmpList(request):
 def tmpReviewCreate(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = TmpReviewSerializer(data=request.data)
-    print(serializer)
     if serializer.is_valid(raise_exception=True):
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   !!!!!")
         serializer.save(movie=movie, user=request.user, username=request.user.username)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -97,7 +94,7 @@ def likeList(request):
     return JsonResponse(context)
 
 
-
+# 알고리즘 영화 추천
 @api_view(['GET'])
 def algorithm(request):
     movies = get_list_or_404(Movie)
@@ -129,13 +126,12 @@ def algorithm(request):
 
     my_movie = []
     for s, i in  movie_list[:10]:
-        my_movie.append(i)
+        rec_movie = Movie.objects.get(pk=i)
+        my_movie.append(Movie.objects.get(pk=i))
 
-    context = {
-        'myMovie': my_movie
-    }
+    serializer = MovieSerializer(my_movie, many=True)
 
-    return JsonResponse(context)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['POST'])
@@ -152,8 +148,9 @@ def likeListDetail(request):
 
 # 사용자가 쓴 리뷰
 @api_view(['GET'])
-def reviewcount(request):
-    user = request.user
+def reviewcount(request, username):
+    User = get_user_model()
+    user = User.objects.get(username=username)
     reviews = Review.objects.filter(user=user)
     serializer = TmpReviewSerializer(reviews, many=True)
 
@@ -165,7 +162,6 @@ def reviewcount(request):
 def movieReviews(request, movie_pk):
     reviews = Review.objects.filter(movie=movie_pk).order_by('-created_at')
     serializer = TmpReviewSerializer(reviews, many=True)
-    print(reviews)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
