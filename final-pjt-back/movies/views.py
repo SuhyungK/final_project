@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.contrib.auth import get_user, get_user_model
 from django.http import JsonResponse
 
-from .models import Movie, Review
+from .models import Movie, Review, Comment
 
 from rest_framework.response import Response 
 from rest_framework.decorators import api_view 
@@ -30,12 +30,12 @@ def index(request):
     return Response(movies_serializers.data)
 
 
-
 ###
 @api_view(['GET', 'POST'])
 def tmpList(request):
     if request.method == 'GET':
         # articles = Article.objects.all()
+        print(request.GET)
         articles = get_list_or_404(Movie)
         serializer = TmpMovieListSerializer(articles, many=True)
         return Response(serializer.data)
@@ -49,16 +49,20 @@ def tmpReviewCreate(request, movie_pk):
         serializer.save(movie=movie, user=request.user, username=request.user.username)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-# 댓글 작성
-@api_view(['POST'])
+
+# 리뷰에 달린 댓글 조회 / 작성
+@api_view(['GET', 'POST'])
 def createComment(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
-    serailizer = CommentSerializer(data=request.data)
-    if serailizer.is_valid(raise_exception=True):
-        serailizer.save(review=review, user=request.user, username=request.user.username)
-        return Response(serailizer.data, status=status.HTTP_201_CREATED)
-    return Response()
-
+    if request.method == 'POST':
+        serailizer = CommentSerializer(data=request.data)
+        if serailizer.is_valid(raise_exception=True):
+            serailizer.save(review=review, user=request.user, username=request.user.username)
+            return Response(serailizer.data, status=status.HTTP_201_CREATED)
+    else:
+        comments = Comment.objects.filter(review=review_pk).order_by('-created_at')
+        serailizer = CommentSerializer(comments, many=True)
+        return Response(serailizer.data)
 
 # 영화 좋아요 기능
 @api_view(['POST'])
@@ -200,7 +204,7 @@ def likeReviewList(request):
 @api_view(['GET'])
 def searchMovie(request):
     search_word = request.GET.get('search_word')
-    movies = Movie.objects.filter(Q(title__contains=search_word) | Q(original_title=search_word)).order_by('-popularity')
+    movies = Movie.objects.filter(Q(title__contains=search_word) | Q(original_title=search_word)).order_by('-popularity').distinct()
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 

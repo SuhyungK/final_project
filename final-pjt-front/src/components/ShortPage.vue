@@ -22,7 +22,9 @@
                 }" 
               :src="slide.src"
             >
-              <youtube :video-id='slides[index]' ref="youtube" >
+
+              <youtube :video-id='slides[index]' ref="youtube">
+
               </youtube>
                 <h1>dssds</h1>
             </div>
@@ -123,4 +125,5 @@ export default {
   height: 100%;
   object-fit: cover;
 }
+
 </style>

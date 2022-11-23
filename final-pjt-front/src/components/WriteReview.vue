@@ -23,7 +23,7 @@
         <label for="commentContent">영화 리뷰 남기기</label>
       </div>
 
-      <div class="d-flex justify-content-end mt-3hbmbn ">
+      <div class="d-flex justify-content-end mt-3">
         <input type="submit" class="btn btn-primary" value="리뷰쓰기">
       </div>
       <br>
