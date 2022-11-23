@@ -652,7 +652,6 @@ export default new Vuex.Store({
     timeCount(context, targetTime) {
       context.dispatch('setDate')
 
-      console.log('asdfasdfadsf')
       const option = {
         lang: "ko",
         objectTime: this.nowTimes,
