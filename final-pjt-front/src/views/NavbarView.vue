@@ -125,6 +125,7 @@ export default {
         })
           .then((res) => {
             this.searchMovieList = res.data
+            console.log(res.data)
             // console.log(this.searchMovieList)
           })
           .catch((err) => {
@@ -146,9 +147,7 @@ export default {
             this.searchMovieList = res.data
             if (this.searchMovieList.length == 1) {
               this.searchMovieList = []
-              console.log(res.data[0])
-              console.log(JSON.stringify(res.data[0]))
-              this.$router.push({path: '/moviedetail', name: 'MovieDetailView', query: {movie: JSON.stringify(res.data[0])}})
+              this.$router.push({name: 'MovieDetailView', params: {moviePk: res.data[0].movie_id}})
               // this.$router.push({name: 'MovieDetailView', params: {movieId: , movie: res.data[0]}})
             } else {
               this.searchMovieList = []

@@ -37,6 +37,7 @@ export default new Vuex.Store({
     nowTimes: '',
     timeStamp: '',
     TopReviewMovies: [], // 리뷰 좋아요 순 출력
+    movieinfo: [] // 특정 영화에 대한 정보
   },
   getters: {
     isLogin(state) {
@@ -137,6 +138,9 @@ export default new Vuex.Store({
     },
     TOP_REVIWE_MOVIE(state, data) {
       state.TopReviewMovies = data
+    },
+    CHECK_MOVIE(state, data) {
+      state.movieinfo = data
     }
   },
   actions: {
@@ -408,8 +412,6 @@ export default new Vuex.Store({
     
     // 사용자가 작성한 리뷰 조회
     myReview(context, username) {
-      console.log('@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@')
-      console.log(username)
       axios({
         method: 'get',
         url: `${DJANGO_API_URL}/movies/my-review/${username}/`,
@@ -751,6 +753,24 @@ export default new Vuex.Store({
         .catch(() => {
           console.log('리뷰 좋아요순 정렬 실패')
         })
+    },
+    // 특정 영화 조회하기
+    checkMovie(context, moviePk) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/movies/movie-infomation/${moviePk}/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+       .then((res) => {
+        console.log('특정 영화 정보 조회 성공')
+        context.commit('CHECK_MOVIE', res.data)
+       })
+       .catch(() => {
+        console.log('특정 영화 정보 조회 실패')
+       })
+
     }
   },
   modules: {

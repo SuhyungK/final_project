@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{genres}}
     <!-- 개별 영화 div -->
     <div id="searchMovie" class="d-flex row">
       
@@ -72,7 +73,12 @@ export default {
     moveToDetail(movie) {
       console.log(movie.movie_id)
       // this.$router.push({name: 'MovieDetailView', params: {movie: JSON.stringify(movie)}})
-      this.$router.push({name: 'MovieDetailView', query: {movie: JSON.stringify(movie)}})
+      // this.$router.push({name: 'MovieDetailView', query: {movie: JSON.stringify(movie)}})
+      this.$store.dispatch('checkMovie', this.movie.movie_id)
+      .then(() => {
+        console.log('이동!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
+        this.$router.push({name: 'MovieDetailView', params: {moviePk: this.movie.movie_id}})
+      })
     }
   }
 }

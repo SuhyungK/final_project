@@ -16,8 +16,8 @@
 
       <div class="col-lg-7 col-md-12">
         <MovieDetail style="margin-bottom: 100px;" :movie='movie'/>
-        <WriteReview :movieId='movie.id'/>
-        <ReviewList :movieId='movie.id'/>
+        <WriteReview :movieId='moviePk'/>
+        <ReviewList :movieId='moviePk'/>
       </div>
 
     </div>
@@ -35,7 +35,9 @@ export default {
   name: 'MovieDetailView',
   data() {
     return {
-      movie: JSON.parse(this.$route.query.movie),
+      // movie: JSON.parse(this.$route.query.movie),
+      moviePk: this.$route.params.moviePk,
+      movie: this.$store.state.movieinfo
     }
   },
   components: {
@@ -46,9 +48,9 @@ export default {
   },
   mounted() {
     // console.log('무비 아이디', movie.id)
-    this.movie = JSON.parse(this.$route.query.movie)
-    console.log('영화', this.movie.id)
-    this.$store.dispatch('movieReviews', this.movie.id)
+    // this.movie = JSON.parse(this.$route.query.movie)
+    this.$store.dispatch('checkMovie', this.moviePk)
+    this.$store.dispatch('movieReviews', this.moviePk)
   },
   // beforeRouteUpdate(to, from, next) {
   //   next({name: 'MovieDetailView', query: {movie: JSON.stringify(this.movie)}})
