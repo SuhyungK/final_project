@@ -1,7 +1,7 @@
 <template>
-  <div>
-    {{ genre }} :
-    {{ gage }}
+  <div class="progress my-1 mx-3" style="height: 30px;">
+    <div class="progress-bar bg-success progress-bar-striped active" role="progressbar" :style="`width: ${ gage }%;`" :aria-valuenow="`${ gage }`" aria-valuemin="0" aria-valuemax="100">
+    {{ genre }} : {{ gage }}%</div>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   },
   computed: {
     gage() {
-      return Math.round((this.cnt / this.genresGageSize) * 100) / 10
+      return Math.round((this.cnt / this.genresGageSize) * 1000) / 10
     }
   }
   

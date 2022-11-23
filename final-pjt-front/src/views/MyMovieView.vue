@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <!-- <h1>관심영화 페이지 MyMovieView.vue</h1> -->
+    <h1>관심영화 페이지 MyMovieView.vue</h1>
     <!-- <MymovieList/> -->
     <MyMovies
     v-for='movie in myLikeMoviesDetail'

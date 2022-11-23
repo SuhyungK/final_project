@@ -23,4 +23,5 @@ urlpatterns = [
     path('movies/', include('movies.urls')),
     path('badges/', include('badges.urls')),
     path('ticketings/', include('ticketings.urls')),
+    path('profile/', include('accounts.urls')),
 ]

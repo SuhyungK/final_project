@@ -9,9 +9,11 @@
 
     <hr>
 
-    <form @submit.prevent="reviewC" class="text-start">
-      <!-- <label for="rating"> rating: </label> -->
-      <input type="range" id="rating" v-model="rating" min="0" max="5" step="0.5" class="form-range" @focus="expandInput"><br>
+    {{ movieId }}
+    {{ userPk }}
+    <form @submit.prevent="reviewC">
+      <label for="rating"> rating: </label>
+      <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br>
 
       <!-- <label for="content">content : </label> -->
       <!-- <input class="form-control" type="text" id="content" v-model='content' ><br> -->

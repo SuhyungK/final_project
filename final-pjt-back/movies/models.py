@@ -33,7 +33,7 @@ class Movie(models.Model):
     # #  가격????
 
     
-    movie_id = models.IntegerField()
+    movie_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=20)
     original_title = models.CharField(max_length=20)
     genres = models.TextField()

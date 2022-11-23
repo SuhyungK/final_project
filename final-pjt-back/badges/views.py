@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, get_list_or_404
 from django.contrib.auth import get_user, get_user_model
 from django.http import JsonResponse
 from .models import BadgeList, Badge
+from accounts.models import User
+from movies.models import Review
+from ticketings.models import Reservation
 
 from rest_framework.response import Response 
 from rest_framework.decorators import api_view 
@@ -33,14 +36,14 @@ def initailBadge(request):
         badge.save()
 
     context = {
-
     }
     return JsonResponse(context)
 
 
 @api_view(['GET'])
-def mybages(request):
-    user = request.user
+def mybages(request, username):
+    user = User.objects.get(username=username)
+
     my_badges = Badge.objects.filter(user=user)
 
     serializer = InitialBadgeCreate(my_badges, many=True)
@@ -59,8 +62,14 @@ def defaultbadges(request):
 @api_view(['POST'])
 def badgeUpdate(request):
     user = request.user
-    review_cnt = request.data['reviewCount']
-    movie_cnt = request.data['payedMovieCount']
+    
+    # review_cnt = request.data['reviewCount']
+    # movie_cnt = request.data['payedMovieCount']
+
+
+    review_cnt = Review.objects.filter(user=user).count()
+    movie_cnt = Reservation.objects.filter(user=user).count()
+    followings_cnt = user.followers.all().count()
 
     # 영화 개수 조건, 영화 시창 시간으로 하려했는데 계산을 시간 계산을 좀해야돼서..
     if movie_cnt >= 15: # 진짜가 나타났다!
@@ -69,7 +78,6 @@ def badgeUpdate(request):
         badge.save()
     elif movie_cnt >= 8: # 영화 찐 덕후
         badge = Badge.objects.get(user=user, badgelist_id=2)
-        print("???????????????????????????????")
         badge.isGet = True
         badge.save()
     elif movie_cnt >= 3: # 영화 덕후
@@ -88,6 +96,21 @@ def badgeUpdate(request):
         badge.save()
     elif review_cnt >= 5:
         badge = Badge.objects.get(user=user, badgelist_id=4)
+        badge.isGet = True
+        badge.save()
+
+    
+    # 팔로잉 개수 조건
+    if followings_cnt >= 10:
+        badge = Badge.objects.get(user=user, badgelist_id=9)
+        badge.isGet = True
+        badge.save()
+    elif followings_cnt >= 6:
+        badge = Badge.objects.get(user=user, badgelist_id=8)
+        badge.isGet = True
+        badge.save()
+    elif followings_cnt >= 3:
+        badge = Badge.objects.get(user=user, badgelist_id=7)
         badge.isGet = True
         badge.save()
 

@@ -30,12 +30,9 @@ def index(request):
     return Response(movies_serializers.data)
 
 
-
 ###
 @api_view(['GET', 'POST'])
-# @permission_classes([IsAuthenticated])
 def tmpList(request):
-    # print("실행!!!!!!!!!!!!!!!!")
     if request.method == 'GET':
         # articles = Article.objects.all()
         print(request.GET)
@@ -48,9 +45,7 @@ def tmpList(request):
 def tmpReviewCreate(request, movie_pk):
     movie = get_object_or_404(Movie, pk=movie_pk)
     serializer = TmpReviewSerializer(data=request.data)
-    print(serializer)
     if serializer.is_valid(raise_exception=True):
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   !!!!!")
         serializer.save(movie=movie, user=request.user, username=request.user.username)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
@@ -102,7 +97,7 @@ def likeList(request):
     return JsonResponse(context)
 
 
-
+# 알고리즘 영화 추천
 @api_view(['GET'])
 def algorithm(request):
     movies = get_list_or_404(Movie)
@@ -134,13 +129,12 @@ def algorithm(request):
 
     my_movie = []
     for s, i in  movie_list[:10]:
-        my_movie.append(i)
+        rec_movie = Movie.objects.get(pk=i)
+        my_movie.append(Movie.objects.get(pk=i))
 
-    context = {
-        'myMovie': my_movie
-    }
+    serializer = MovieSerializer(my_movie, many=True)
 
-    return JsonResponse(context)
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
 @api_view(['POST'])
@@ -157,8 +151,9 @@ def likeListDetail(request):
 
 # 사용자가 쓴 리뷰
 @api_view(['GET'])
-def reviewcount(request):
-    user = request.user
+def reviewcount(request, username):
+    User = get_user_model()
+    user = User.objects.get(username=username)
     reviews = Review.objects.filter(user=user)
     serializer = TmpReviewSerializer(reviews, many=True)
 
@@ -170,7 +165,6 @@ def reviewcount(request):
 def movieReviews(request, movie_pk):
     reviews = Review.objects.filter(movie=movie_pk).order_by('-created_at')
     serializer = TmpReviewSerializer(reviews, many=True)
-    print(reviews)
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 
@@ -235,3 +229,40 @@ def genreGage(request):
     }
 
     return JsonResponse(context)
+
+
+@api_view(['GET'])
+def movie_infomation(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    serializer = MovieSerializer(movie)
+
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+api_view(['GET'])
+def TopReviewMovie(request):
+    reviews = Review.objects.all()
+
+    sort_reviews = []
+    for review in reviews:
+        cnt = review.like_users.all().count()
+        movie_tile = review.movie.title
+        movie_poster_path = review.movie.poster_path
+        user = review.username
+        review_content = review.content
+
+        sort_reviews.append([cnt, movie_tile, movie_poster_path, user, review_content])
+
+    sort_reviews.sort(reverse=True)
+    
+    res = {}
+    for i, v in enumerate(sort_reviews):
+        res[i] = v
+        
+    print(sort_reviews)
+    resdump = json.dumps(res)
+    print(resdump)
+    context= {
+        'res': resdump
+    }
+    return JsonResponse(context)
+    

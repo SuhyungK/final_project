@@ -3,7 +3,7 @@
 
     <!-- 영화 포스터 -->
     <div id="mini-poster-container" class="col-2">
-      <img src="https://lumiere-a.akamaihd.net/v1/images/p_findingnemo_19752_05271d3f.jpeg" alt="영화이미지">
+      <img class='' :src="`https://image.tmdb.org/t/p/original${posturl}`" alt="영화이미지">
     </div>
 
     <div class="col-10">
@@ -30,18 +30,24 @@ export default {
   props: {
     review: Object,
   },
+  data() {
+    return {
+      posturl: 'xx'
+    }
+  },
   created() {
     const DJANGO_API_URL = 'http://127.0.0.1:8000'
-
+    const moviePk = this.review.movie
     axios({
       method: 'get',
-      url: `${DJANGO_API_URL}/movies/tmp_list/`,
-      params: {
-        'movie_pk': this.review.movie
-      }
+      url: `${DJANGO_API_URL}/movies/movie-infomation/${moviePk}`,
+      // params: {
+      //   'movie_pk': this.review.movie
+      // }
     })
       .then((res) => {
         console.log(res.data)
+        this.posturl = res.data.poster_path
       })
       .catch((err) => {
         console.log(err)

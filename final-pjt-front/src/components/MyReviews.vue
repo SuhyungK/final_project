@@ -10,7 +10,7 @@
   <div class="p-3">
     <!-- <h3>리뷰 목록 ReviewList.vue</h3> -->
     <div class="text-start">
-      <p class="h4 fw-bolder"><span style="font-weight: 900; color: #00ABB3;">{{ this.$store.state.userInfo.userName }}</span>의 리뷰</p>
+      <p class="h4 fw-bolder"><span style="font-weight: 900; color: #00ABB3;">{{ profileOwner }}</span>의 리뷰</p>
     </div>
     
     <hr>
@@ -29,6 +29,9 @@ export default {
   name: 'MyReviews',
   components: {
     MyReviewEle,
+  },
+  props: {
+    profileOwner: String,
   },
   computed: {
     MyReviews() {

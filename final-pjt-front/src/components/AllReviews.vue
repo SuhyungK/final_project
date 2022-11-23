@@ -3,7 +3,7 @@
 
     <div class="col-2 px-3 pt-1">
       <!-- 프로필 이미지 -->
-      <div id="review-profile" class="rounded-circle" style="width: 65px; height: 65px;">
+      <div id="review-profile" @click='toOtherProfile' class="rounded-circle" style="width: 65px; height: 65px;">
         <img src="https://img.asiatoday.co.kr/file/2021y/07m/16d/2021071601001598100096001.jpg" alt="IU">
       </div>
     </div>
@@ -168,6 +168,12 @@ export default {
         .then((res) => {
           console.log(res)
         })
+    },
+    toOtherProfile() {
+      console.log('확인',this.review.username)
+      this.$store.dispatch('otherUserNameSave', this.review.username)
+      this.$router.push(`/profile/${this.review.username}`)
+
     },
     // setDate() {
     //   let year = new Date().getFullYear()

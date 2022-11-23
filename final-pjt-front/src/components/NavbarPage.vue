@@ -13,7 +13,10 @@
     <button @click="test6">test6 : 내뱃지들 생성</button>
     <button @click="test7">test7 : 사용자가 쓴 리뷰 조회</button>
     <button @click="test8">test8 : DatePicker Test</button>
-    
+    <button @click="test9">test9 : 알고리즘 영화 추천 목록 뽑기</button>
+    <button @click="test10">test10 : 예매한 목록 뽑기</button>
+    <button @click="test11">test11 : 리뷰 좋아요 순 정렬</button>
+
   </div>
 </template>
 
@@ -64,6 +67,15 @@ export default {
     },
     test8() {
       this.$router.push({name: 'DatePickerTestView'})
+    },
+    test9() {
+      this.$store.dispatch('algorithmRecommendedMovies')
+    },
+    test10() {
+      this.$store.dispatch('reqMyPayedMovies')
+    },
+    test11() {
+      this.$store.dispatch('topReviewMovie')
     },
   }
 }
