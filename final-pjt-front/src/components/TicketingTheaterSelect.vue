@@ -2,17 +2,20 @@
   <div>
     상영관 선택 TicketingTheaterSelect.vue
 
-    <div class='d-flex flex-row'>
+    <div class='d-flex flex-row justify-content-evenly fw-bold text-center fs-3'>
     
-      <div class='timebox' @click='theaterSelect1'>
+      <div id='1' :class="{ 'MouseOver': tigger==1, 'beforeMouseOver': tigger!=1}" 
+      @click='theaterSelect1' @mouseover="mouseover" @mouseout="mouseout">
         상영 1관
       </div>
 
-      <div class='timebox' @click='theaterSelect2'>
+      <div id='2' :class="{ 'MouseOver': tigger==2, 'beforeMouseOver': tigger!=2}" 
+      @click='theaterSelect2' @mouseover="mouseover" @mouseout="mouseout">
         상영 2관
       </div>
 
-      <div class='timebox' @click='theaterSelect3'>
+      <div id='3' :class="{ 'MouseOver': tigger==3, 'beforeMouseOver': tigger!=3}" 
+      @click='theaterSelect3' @mouseover="mouseover" @mouseout="mouseout">
         상영 3관
       </div>
 
@@ -26,7 +29,8 @@ export default {
   name: 'TicketingTheaterSelect',
   data() {
     return {
-      theater: 0
+      theater: 0,
+      tigger: null,
     }
   },
   methods: {
@@ -42,6 +46,12 @@ export default {
       this.theater = 3
       this.$emit('selectedTheater', this.theater)
     },
+    mouseover(e) {
+      this.tigger = e.target.id
+    },
+    mouseout() {
+      this.tigger = null
+    }
   }
 }
 </script>

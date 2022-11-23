@@ -1,10 +1,11 @@
 <template>
-  <div class='box1'>
+  <div style='width:600px'>
     <h1>날짜선택 DatePickerSelect.vue</h1>
-    <h3>{{datepicker}} // {{nowDate}} // {{nowTime}}</h3>
-    <h3>선택 시간: {{selectedTimeData}} // 선택 상영관: {{selectedTheaterData}}</h3>
+    <!-- <h3>{{datepicker}} // {{nowDate}} // {{nowTime}}</h3> -->
+    <!-- <h3>선택 시간: {{selectedTimeData}} // 선택 상영관: {{selectedTheaterData}}</h3> -->
     <h3 v-if='selectedTheaterData'>모두 선택했다 사실 상영관 선택하면 모두 선택한거</h3>
     <h3 v-if='!selectedTheaterData'>모두 선택안했다</h3>
+
     <date-picker v-model="datepicker" valueType="YYYYMMDD"></date-picker>
 
     <TicketingTimeSelect
@@ -120,7 +121,9 @@ export default {
 </script>
 
 <style>
-.box1 {
-  border: 2px solid rgb(1, 1, 1);
-}
+/* .boxDate {
+  width: auto;
+  height: auto;
+  padding-bottom: 2rem;
+} */
 </style>

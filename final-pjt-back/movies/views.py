@@ -254,9 +254,7 @@ def TopReviewMovie(request):
     for i, v in enumerate(sort_reviews):
         res[i] = v
         
-    print(sort_reviews)
     resdump = json.dumps(res)
-    print(resdump)
     context= {
         'res': resdump
     }

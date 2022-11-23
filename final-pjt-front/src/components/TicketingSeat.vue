@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <div class='seat-X' @click='selectSeat' v-if="!isSelected && !isReserved"></div>
+  <div :class="{ 'maginR': (j == 2), 'maginL': (j == 6), 'maginLi': (j == 1), 'maginRi': (j == 7)}">
+  <!-- <div :class="{ (j == 2)? 'maginR': '', (j == 6)? 'maginL': ''}"> -->
+    <div class='seat-N' @click='selectSeat' v-if="!isSelected && !isReserved"></div>
     <div class='seat-O' @click='cancelSeat' v-if='isSelected && !isReserved'></div>
     <div class='seat-R' v-if='isReserved'></div>
   </div>
@@ -64,25 +65,45 @@ export default {
 
 <style>
   .seat-O{
-      border : 1px solid;
-      padding : 30px;
-      background-color: #53535a;
-      width : 80px;
-      height : 80px;
-    }
+    background-color: #6feaf6;
+    height: 60px;
+    width: 75px;
+    margin: 3px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
 
-  .seat-X{
-      border : 1px solid;
-      padding : 30px;
-      background-color: #bcbcd6;
-      width : 80px;
-      height : 80px;
-    }
   .seat-R{
-      border : 1px solid;
-      padding : 30px;
-      background-color: #3333ef;
-      width : 80px;
-      height : 80px;
-    }
+    background-color: #fff;
+    height: 60px;
+    width: 75px;
+    margin: 3px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+
+  .seat-N {
+    background-color: #444451;
+    height: 60px;
+    width: 75px;
+    margin: 3px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+  }
+
+  .maginR {
+    margin-right: 3rem;
+  }
+
+  .maginL {
+    margin-left: 3rem;
+  }
+
+  .maginLi {
+    margin-left: 2rem;
+  }
+
+  .maginRi {
+    margin-right: 2rem;
+  }
 </style>

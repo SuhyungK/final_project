@@ -4,11 +4,20 @@
     selectedTheaterData : {{selectedTheaterData}}<br>
     <!-- alreadyReserved : {{$store.state.alreadyReserved}} -->
     
-    <TicketingPoster/>
-    <DatePickerSelect @sendData='sendData'/>
-    <!-- @reqClearResSeat='reqClearResSeat'/> -->
-    <TicketingSeatSelect :selectedTheaterData="selectedTheaterData"
+    <div class='d-flex flex-row'>
+    <TicketingPoster :movie='movie'
+    :selectedDate='selectedDate'
+    :selectedTimeData='selectedTimeData'
+    :selectedTheaterData='selectedTheaterData'
     @payment='payment'/>
+      <div>
+        <DatePickerSelect @sendData='sendData'/>
+        <!-- @reqClearResSeat='reqClearResSeat'/> -->
+        <TicketingSeatSelect v-if='selectedTheaterData'
+        :selectedTheaterData="selectedTheaterData"
+        @payment='payment'/>
+      </div>
+    </div>
 
   </div>
 </template>
