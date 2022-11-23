@@ -16,5 +16,7 @@ urlpatterns = [
     path('like-reviews-list/', views.likeReviewList), # 내가 좋아요한 리뷰 리스트 뽑기
     path('search/', views.searchMovie),
     path('genres-gage/', views.genreGage), # 장르 기반 영화 게이지 계산
+    path('movie-infomation/<int:movie_pk>/', views.movie_infomation), # 특정 영화 정보 조회
+    path('top-review-movie/', views.TopReviewMovie), # 좋아요 순으로 리뷰 정렬
     
 ]

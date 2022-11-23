@@ -35,7 +35,8 @@ export default new Vuex.Store({
     followingsList: [], // 팔로잉 리스트(유저 pk)
     followsList: [], // 팔로우 리스트(유저 pk)
     nowTimes: '',
-    timeStamp: ''
+    timeStamp: '',
+    TopReviewMovies: [], // 리뷰 좋아요 순 출력
   },
   getters: {
     isLogin(state) {
@@ -134,6 +135,9 @@ export default new Vuex.Store({
     SET_DATE(state, time) {
       state.nowTimes = time
     },
+    TOP_REVIWE_MOVIE(state, data) {
+      state.TopReviewMovies = data
+    }
   },
   actions: {
     signUp(context, payload) {
@@ -729,6 +733,23 @@ export default new Vuex.Store({
         })
         .catch(() => {
           console.log('팔로우 기능 실패!')
+        })
+    },
+    topReviewMovie(context) {
+      axios({
+        method: 'get',
+        url: `${DJANGO_API_URL}/movies/top-review-movie/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+      })
+        .then((res) => {
+          console.log('리뷰 좋아요순 정렬 성공')
+          const tmp = JSON.parse(res.data.res)
+          context.commit('TOP_REVIWE_MOVIE', tmp)
+        })
+        .catch(() => {
+          console.log('리뷰 좋아요순 정렬 실패')
         })
     }
   },

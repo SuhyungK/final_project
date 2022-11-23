@@ -34,7 +34,6 @@ def index(request):
 ###
 @api_view(['GET', 'POST'])
 def tmpList(request):
-    print("실행!!!!!!!!!!!!!!!!")
     if request.method == 'GET':
         # articles = Article.objects.all()
         articles = get_list_or_404(Movie)
@@ -226,3 +225,40 @@ def genreGage(request):
     }
 
     return JsonResponse(context)
+
+
+@api_view(['GET'])
+def movie_infomation(request, movie_pk):
+    movie = get_object_or_404(Movie, pk=movie_pk)
+    serializer = MovieSerializer(movie)
+
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+api_view(['GET'])
+def TopReviewMovie(request):
+    reviews = Review.objects.all()
+
+    sort_reviews = []
+    for review in reviews:
+        cnt = review.like_users.all().count()
+        movie_tile = review.movie.title
+        movie_poster_path = review.movie.poster_path
+        user = review.username
+        review_content = review.content
+
+        sort_reviews.append([cnt, movie_tile, movie_poster_path, user, review_content])
+
+    sort_reviews.sort(reverse=True)
+    
+    res = {}
+    for i, v in enumerate(sort_reviews):
+        res[i] = v
+        
+    print(sort_reviews)
+    resdump = json.dumps(res)
+    print(resdump)
+    context= {
+        'res': resdump
+    }
+    return JsonResponse(context)
+    

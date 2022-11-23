@@ -15,7 +15,7 @@
 
       <div class="col-8">
         <TickedMovieList class="box mb-4"/>
-        <div class="d-flex flex-row">
+        <div class="">
         <BadgeList class="box"/>
         <MyReviews class="box"
         :profileOwner='profileOwner'/>

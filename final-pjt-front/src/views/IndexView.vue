@@ -42,13 +42,16 @@ export default {
       // this.$router.push({name:'LoginView'})
     }
     this.$store.dispatch('myLikeMovies')
+    this.$store.dispatch('topReviewMovie')
   },
   mounted() {
     this.$store.dispatch('defaultBadges') // 뱃지 표본 불러오기
     this.$store.dispatch('myBadges', this.$store.state.userInfo.userName) // 내 뱃지들 불러오기
     this.$store.dispatch('badgeUpdate')
     this.$store.dispatch('algorithmRecommendedMovies') // 추천 영화 뽑기
-  }
+  },
+
+
 
 }
 
