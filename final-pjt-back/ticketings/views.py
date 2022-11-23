@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.contrib.auth import get_user_model
 
 from rest_framework.response import Response 
 from rest_framework.decorators import api_view 
@@ -69,13 +70,14 @@ def payment(request):
 
 # 내가 예매한 영화 목록 뽑기
 @api_view(['GET'])
-def MyPayedMovies(request):
-    user = request.user
+def MyPayedMovies(request, username):
+    User = get_user_model()
+    user = User.objects.get(username=username)
     mypayedmovies = Reservation.objects.filter(user=user)
 
     res = []
     for paymovie in mypayedmovies:
-        res.append(Movie.objects.get(pk=paymovie.movie.id))
+        res.append(Movie.objects.get(pk=paymovie.movie.movie_id))
 
     serializer = MovieSerializer(res, many=True)
 

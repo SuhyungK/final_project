@@ -18,7 +18,7 @@ export default {
   props: {
     movie: Object,
     selectedDate: String,
-    selectedTimeData: Number,
+    selectedTimeData: String,
     selectedTheaterData: Number,
   },
   computed: {

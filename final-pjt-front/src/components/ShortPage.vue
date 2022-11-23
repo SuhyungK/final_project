@@ -20,7 +20,7 @@
                 onLeft: (leftIndex >= 0), 
                 onRight: (rightIndex >= 0) 
                 }" 
-              :src="slide.src"
+              
             >
 
               <youtube :video-id='slides[index]' ref="youtube">
@@ -58,23 +58,7 @@ export default {
   },
   data() {
     return {
-      // slides: [
-      //   { src: 'https://www.aljazeera.com/wp-content/uploads/2022/07/2022-07-12T152833Z_228842849_RC2BAV985K5J_RTRMADP_3_SPACE-EXPLORATION-TELESCOPE.jpg?resize=1920%2C1158' },
-      //   { src: 'https://exoplanets.nasa.gov/internal_resources/1763' }, 
-      //   { src: 'https://www.aljazeera.com/wp-content/uploads/2022/07/2022-07-12T152833Z_228842849_RC2BAV985K5J_RTRMADP_3_SPACE-EXPLORATION-TELESCOPE.jpg?resize=1920%2C1158' },
-      //   { src: 'https://exoplanets.nasa.gov/internal_resources/1763' }, 
-      //   { src: 'https://www.aljazeera.com/wp-content/uploads/2022/07/2022-07-12T152833Z_228842849_RC2BAV985K5J_RTRMADP_3_SPACE-EXPLORATION-TELESCOPE.jpg?resize=1920%2C1158' },
-      //   { src: 'https://exoplanets.nasa.gov/internal_resources/1763' }, 
-      //   { src: 'https://www.aljazeera.com/wp-content/uploads/2022/07/2022-07-12T152833Z_228842849_RC2BAV985K5J_RTRMADP_3_SPACE-EXPLORATION-TELESCOPE.jpg?resize=1920%2C1158' },
-      //   { src: 'https://exoplanets.nasa.gov/internal_resources/1763' }, 
-      // ],
-      // playerVars: {
-      //   autoplay: 1,
-      //   mute: 1,
-      //   loop: 1,
-      //   start: 15, 
-      //   end: 30, 
-      // }
+
     }
   },
   computed: {

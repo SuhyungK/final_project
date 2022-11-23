@@ -5,11 +5,14 @@
     <h3>{{movie.title}}</h3>
     <button @click="toMovieDetail">영화 상세 페이지 이동</button>
     <button @click="ticketing">예매하기</button>
+    
     <hr>
   </div>
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'MyMovies',
   props: {
@@ -20,9 +23,15 @@ export default {
       this.$router.push({name:'TicketingView', params: {movie: this.movie}})
     },
     toMovieDetail() {
-      console.log('MyMovies.vue 에서 toMovieDetail 함수 실행', this.movie.movie_id)
-      // this.$router.push({name:'MovieDetailView', params: {moviePK: this.movie.movie_id, movie: this.movie}})
-      this.$router.push({name:'MovieDetailView', params: {moviePK: this.movie.movie_id}})
+      // console.log('MyMovies.vue 에서 toMovieDetail 함수 실행', this.movie.movie_id)
+      // // this.$router.push({name:'MovieDetailView', params: {moviePK: this.movie.movie_id, movie: this.movie}})
+      // this.$router.push({name:'MovieDetailView', params: {moviePK: this.movie.movie_id}})
+      // console.log('으아아아아아아아아아!!!!!', this.movie.movie_id)
+
+      const moviePk = this.movie.movie_id
+      axios.get(`http://127.0.0.1:8000/movies/movie-infomation/${moviePk}/`)
+      .then((res) => this.$store.commit('CHECK_MOVIE', res.data))
+      .then(() => this.$router.push({name: 'MovieDetailView', params: {moviePk: this.movie.movie_id}}))
     }
   }
 }

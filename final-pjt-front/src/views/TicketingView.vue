@@ -1,6 +1,7 @@
 <template>
   <div>
     <h1>예매 페이지 TicketingView</h1>
+    {{movie}}
     selectedTheaterData : {{selectedTheaterData}}<br>
     <!-- alreadyReserved : {{$store.state.alreadyReserved}} -->
     
@@ -69,7 +70,7 @@ export default {
         date: this.selectedDate,
         time: this.selectedTimeData,
         theater: this.selectedTheaterData,
-        movieId: this.movie.id
+        movieId: this.movie.movie_id
       }
       this.$store.dispatch('requestSeatInfoDB', payload)
     } else {

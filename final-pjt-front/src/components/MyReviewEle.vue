@@ -46,7 +46,6 @@ export default {
       // }
     })
       .then((res) => {
-        console.log(res.data)
         this.posturl = res.data.poster_path
       })
       .catch((err) => {

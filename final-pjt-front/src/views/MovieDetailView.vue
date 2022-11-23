@@ -11,7 +11,7 @@
     <div id="detail-cotent" class="d-flex row">
 
       <div class="offset-lg-1 col-lg-3 offset-md-0 col-md-12">
-        <DetailPoster :moviePostUrl='movie.poster_path'/>
+        <DetailPoster :movie='movie'/>
       </div>
 
       <div class="col-lg-7 col-md-12">

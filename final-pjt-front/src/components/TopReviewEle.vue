@@ -23,7 +23,7 @@
 export default {
   name: 'TopReviewEle',
   props: {
-    review: Object,
+    review: Array,
   },
   computed: {
     cnt() {

@@ -544,7 +544,7 @@ export default new Vuex.Store({
       const theater = payload.theater
       const date = payload.date
       const movieId = payload.movieId
-      console.log('!!!!!!!!!!!!!!!!', movieId)
+
       axios({
         method: 'post',
         url: `${DJANGO_API_URL}/ticketings/request-seat-data/`,
@@ -591,10 +591,10 @@ export default new Vuex.Store({
         })
     },
     // 예매한 영화 목록 가져오기
-    reqMyPayedMovies(context) {
+    reqMyPayedMovies(context, username) {
       axios({
         method: 'get',
-        url: `${DJANGO_API_URL}/ticketings/my-payed-movies/`,
+        url: `${DJANGO_API_URL}/ticketings/my-payed-movies/${username}`,
         headers: {
           Authorization: `Token ${context.state.token}`
         }

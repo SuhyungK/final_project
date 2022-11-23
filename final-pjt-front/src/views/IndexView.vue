@@ -43,6 +43,7 @@ export default {
     }
     this.$store.dispatch('myLikeMovies')
     this.$store.dispatch('topReviewMovie')
+    this.$store.dispatch('badgeUpdate')
   },
   mounted() {
     this.$store.dispatch('defaultBadges') // 뱃지 표본 불러오기
@@ -50,6 +51,7 @@ export default {
     this.$store.dispatch('badgeUpdate')
     this.$store.dispatch('algorithmRecommendedMovies') // 추천 영화 뽑기
   },
+
 
 
 
