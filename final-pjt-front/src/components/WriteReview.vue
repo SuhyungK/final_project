@@ -9,9 +9,9 @@
 
     <hr>
 
-    <form @submit.prevent="reviewC">
-      <label for="rating"> rating: </label>
-      <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br>
+    <form @submit.prevent="reviewC" class="text-start">
+      <!-- <label for="rating"> rating: </label> -->
+      <input type="range" id="rating" v-model="rating" min="0" max="5" step="0.5" class="form-range" @focus="expandInput"><br>
 
       <!-- <label for="content">content : </label> -->
       <!-- <input class="form-control" type="text" id="content" v-model='content' ><br> -->
@@ -21,7 +21,7 @@
         <label for="commentContent">영화 리뷰 남기기</label>
       </div>
 
-      <div class="d-flex justify-content-end mt-3hbmbn ">
+      <div class="d-flex justify-content-end mt-3">
         <input type="submit" class="btn btn-primary" value="리뷰쓰기">
       </div>
       <br>

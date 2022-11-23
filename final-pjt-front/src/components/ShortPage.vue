@@ -22,8 +22,8 @@
                 }" 
               :src="slide.src"
             >
-              <youtube video-id="pjMt1MIk2EA" ref="youtube" >
-
+              <youtube id="ytb" video-id="pjMt1MIk2EA" ref="youtube" >
+                
 
               </youtube>
             </div>
@@ -113,4 +113,5 @@ export default {
   height: 100%;
   object-fit: cover;
 }
+
 </style>

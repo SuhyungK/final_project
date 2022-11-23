@@ -4,8 +4,8 @@ from . import views
 urlpatterns = [
     path('', views.index),
     path('tmp_list/', views.tmpList),
-    path('tmp_reviewC/<int:movie_pk>/', views.tmpReviewCreate),
-    path('comment/<int:review_pk>/', views.createComment), # 대댓글
+    path('tmp_reviewC/<int:movie_pk>/', views.tmpReviewCreate), # 리뷰 쓰기
+    path('comment/<int:review_pk>/', views.createComment), # 리뷰에 댓글
     path('like/<int:movie_pk>/', views.likeMovie),  #영화 좋아요
     path('like-list/', views.likeList),
     path('like-list-Detail/', views.likeListDetail),
