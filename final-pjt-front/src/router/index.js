@@ -52,7 +52,7 @@ const routes = [
     component: SearchMovieView
   },
   {
-    path: '/moviedetail/:moviePk', 
+    path: '/moviedetail/:moviePk/:movie', 
     name: 'MovieDetailView',
     component: MovieDetailView,
   },

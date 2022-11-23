@@ -55,7 +55,7 @@ export default {
         date: this.selectedDate,
         time: this.selectedTimeData,
         theater: this.selectedTheaterData,
-        movieId: this.movie.id
+        movieId: this.movie.movie_id
       }
       this.$store.dispatch('paymentMovie', payload)
     }

@@ -1,8 +1,8 @@
 <template>
   <div style='width:600px'>
     <h1>날짜선택 DatePickerSelect.vue</h1>
-    <!-- <h3>{{datepicker}} // {{nowDate}} // {{nowTime}}</h3> -->
-    <!-- <h3>선택 시간: {{selectedTimeData}} // 선택 상영관: {{selectedTheaterData}}</h3> -->
+    <h3>{{datepicker}} // {{nowDate}} // {{nowTime}}</h3>
+    <h3>선택 시간: {{selectedTimeData}} // 선택 상영관: {{selectedTheaterData}}</h3>
     <h3 v-if='selectedTheaterData'>모두 선택했다 사실 상영관 선택하면 모두 선택한거</h3>
     <h3 v-if='!selectedTheaterData'>모두 선택안했다</h3>
 

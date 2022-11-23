@@ -20,8 +20,9 @@ export default {
       this.$router.push({name:'TicketingView', params: {movie: this.movie}})
     },
     toMovieDetail() {
-      console.log('MyMovies.vue 에서 toMovieDetail 함수 실행')
-      this.$router.push({name:'MovieDetailView', params: {movieId: this.movie.movie_id, movie: this.movie}})
+      console.log('MyMovies.vue 에서 toMovieDetail 함수 실행', this.movie.movie_id)
+      // this.$router.push({name:'MovieDetailView', params: {moviePK: this.movie.movie_id, movie: this.movie}})
+      this.$router.push({name:'MovieDetailView', params: {moviePK: this.movie.movie_id}})
     }
   }
 }

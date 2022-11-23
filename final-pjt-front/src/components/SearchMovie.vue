@@ -59,6 +59,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'SearchMovie',
   props: {
@@ -70,15 +72,11 @@ export default {
     }
   },
   methods: {
-    moveToDetail(movie) {
-      console.log(movie.movie_id)
-      // this.$router.push({name: 'MovieDetailView', params: {movie: JSON.stringify(movie)}})
-      // this.$router.push({name: 'MovieDetailView', query: {movie: JSON.stringify(movie)}})
-      this.$store.dispatch('checkMovie', this.movie.movie_id)
-      .then(() => {
-        console.log('이동!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!')
-        this.$router.push({name: 'MovieDetailView', params: {moviePk: this.movie.movie_id}})
-      })
+    moveToDetail() {
+      const moviePk = this.movie.movie_id
+      axios.get(`http://127.0.0.1:8000/movies/movie-infomation/${moviePk}/`)
+      .then((res) => this.$store.commit('CHECK_MOVIE', res.data))
+      .then(() => this.$router.push({name: 'MovieDetailView', params: {moviePk: this.movie.movie_id}}))
     }
   }
 }

@@ -544,7 +544,7 @@ export default new Vuex.Store({
       const theater = payload.theater
       const date = payload.date
       const movieId = payload.movieId
-      
+      console.log('!!!!!!!!!!!!!!!!', movieId)
       axios({
         method: 'post',
         url: `${DJANGO_API_URL}/ticketings/request-seat-data/`,
