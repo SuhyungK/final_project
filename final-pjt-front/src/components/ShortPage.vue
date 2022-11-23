@@ -21,12 +21,13 @@
                 }" 
               :src="slide.src"
               style="z-index: -1; positon: relative;"
+              @click="likeMovie(index)"
             >
               <div v-if="isCurrent" @mouseover="thislike=true" @mouseout="thislike=false" id="likeIcon" class="position-absolute d-flex justify-content-center align-items-center rounded-circle shadow-lg bg-body" 
                 style="z-index: 99999; opacity: 0.7; bottom: 5px; right: 5px; font-size: 30px; width: 50px; height: 50px; background-color: #FFFFFF;"
                 >
                 <i v-if="!thislike" id="likeLike" class="bi bi bi-suit-heart"></i>
-                <i v-if="thislike" @click="likeMovie" id="likeLike" class="bi bi bi-suit-heart-fill"></i>
+                <i v-if="thislike" id="likeLike" class="bi bi bi-suit-heart-fill"></i>
                 <!-- <i class="bi bi-suit-heart"></i> -->
               </div>
 
@@ -105,8 +106,9 @@ export default {
     playVideo() {
       this.$refs.youtube.player.playVideo()
     },
-    likeMovie() {
-      console.log(this.slides)
+    likeMovie(index) {
+      // console.log(this.slides[index])
+      this.$store.dispatch('likeMovie', this.slides[index].movie_id)
     }
   },
   mounted() {
