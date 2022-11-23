@@ -6,12 +6,14 @@
     </p>
 
     <!-- Now Playing Movie -->
-    <div class="d-flex mb-4" style="overflow-x: scroll">
-      <img v-for="(npMovie, i) in nowPlayingMovieList" :key="i" 
+    <div class="d-flex mb-4 position-relative" style="overflow-x: scroll">
+      <div v-if="showInfo" class="bg-dark rounded" id="image-mouse-hover"></div>
+      <img @mouserover="showInfo=true" v-for="(npMovie, i) in nowPlayingMovieList" :key="i" 
         :src="`https://image.tmdb.org/t/p/w500/` + npMovie.poster_path" 
         :alt="npMovie.title"
-        style="width: 200px;"
-        class="me-3"
+        @mouseover="showInfo" 
+        style="width: 200px; cursor: pointer;"
+        class="me-3 rounded"
       >
     </div>
 
@@ -29,6 +31,7 @@ export default {
   data() {
     return {
       nowPlayingMovieList: [],
+      showInfo: false,
     }
   },
   created() {
@@ -60,4 +63,11 @@ export default {
   object-fit: cover;
 }
 
+#image-mouse-hover {
+  width: 200px;
+  height: 300px;
+  z-index: 10000;
+  position: absolute;
+  opacity: 0.5;
+}
 </style>

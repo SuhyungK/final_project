@@ -1,6 +1,6 @@
 <template>
   <div>
-    {{genres}}
+    <!-- {{genres}} -->
     <!-- 개별 영화 div -->
     <div id="searchMovie" class="d-flex row">
       
@@ -45,7 +45,7 @@
 
           <!-- 영화 줄거리 -->
           <div>
-            <p class="text-start fs-5">
+            <p class="text-start fs-6">
               {{ movie.overview }}
             </p>
           </div>

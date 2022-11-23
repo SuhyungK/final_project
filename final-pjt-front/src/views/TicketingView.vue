@@ -1,20 +1,30 @@
 <template>
-  <div>
-    <h1>예매 페이지 TicketingView</h1>
-    {{movie}}
-    selectedTheaterData : {{selectedTheaterData}}<br>
+  <!-- <h1>예매 페이지 TicketingView</h1> -->
+  <div class="container">
+
+    <!-- 배경이미지...? -->
+    <div id="ticket-container" style="height: 300px;">
+      <img :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path" alt="">
+    </div>
+
+    <!-- {{movie}} -->
+    <!-- selectedTheaterData : {{selectedTheaterData}}<br> -->
     <!-- alreadyReserved : {{$store.state.alreadyReserved}} -->
     
-    <div class='d-flex flex-row'>
-    <TicketingPoster :movie='movie'
-    :selectedDate='selectedDate'
-    :selectedTimeData='selectedTimeData'
-    :selectedTheaterData='selectedTheaterData'
-    @payment='payment'/>
-      <div>
-        <DatePickerSelect @sendData='sendData'/>
+    <div class="d-flex flex-column">
+      
+      <div style="margin-top: -30px; z-index: 10000;">
+        <TicketingPoster :movie='movie'
+          :selectedDate='selectedDate'
+          :selectedTimeData='selectedTimeData'
+          :selectedTheaterData='selectedTheaterData'
+          @payment='payment'/>
+      </div>
+    
+      <div class="">
+        <DatePickerSelect class="border" @sendData='sendData'/>
         <!-- @reqClearResSeat='reqClearResSeat'/> -->
-        <TicketingSeatSelect v-if='selectedTheaterData'
+        <TicketingSeatSelect class="border" v-if='selectedTheaterData'
         :selectedTheaterData="selectedTheaterData"
         @payment='payment'/>
       </div>
@@ -81,5 +91,20 @@ export default {
 </script>
 
 <style>
+#ticket-container {
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 50px 50px 100px 50px white;
+}
 
+#ticket-container > img {
+  filter: opacity(25%);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  
+}
 </style>

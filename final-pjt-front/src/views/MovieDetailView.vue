@@ -52,9 +52,10 @@ export default {
     this.$store.dispatch('checkMovie', this.moviePk)
     this.$store.dispatch('movieReviews', this.moviePk)
   },
-  // beforeRouteUpdate(to, from, next) {
-  //   next({name: 'MovieDetailView', query: {movie: JSON.stringify(this.movie)}})
-  // }
+  beforeRouteUpdate(to, from, next) {
+    console.log(to)
+    next({name: 'MovieDetailView', params: {movie: to.params.moviePk}})
+  }
 }
 </script>
 

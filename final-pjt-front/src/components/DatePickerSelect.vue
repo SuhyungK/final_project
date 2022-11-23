@@ -1,5 +1,5 @@
 <template>
-  <div style='width:600px'>
+  <div>
     <h1>날짜선택 DatePickerSelect.vue</h1>
     <h3>{{datepicker}} // {{nowDate}} // {{nowTime}}</h3>
     <h3>선택 시간: {{selectedTimeData}} // 선택 상영관: {{selectedTheaterData}}</h3>
