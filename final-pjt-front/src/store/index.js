@@ -55,6 +55,12 @@ export default new Vuex.Store({
     isFollowed(state) {
       return state.followingsList.includes(state.userInfo.userPk)
     },
+    myPayedMoviesPk(state) {
+      const arr = state.myPayedMovies.map((ele) => {
+        return ele.movie_id
+      })
+      return arr
+    }
   },
   mutations: {
     SAVE_TOKEN(state, token) {

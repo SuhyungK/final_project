@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if='isLike'>
+    <div v-if='isLike && !isTicketed'>
       <h3>내가 관심있는 영화 MyMovies.vue</h3>
       <img style="width: 200px; height: auto;" :src='`https://image.tmdb.org/t/p/original${movie.poster_path}`' alt="no image">
       <h3>{{movie.title}}</h3>
@@ -44,13 +44,22 @@ export default {
       const moviePk = this.movie.movie_id
       const arr = this.$store.state.myLikeMovies
       for (let i of arr) {
-        console.log(i)
         if (i == moviePk) {
           return true
         }
       }
       return false
-    }
+    },
+    isTicketed() {
+      const moviePk = this.movie.movie_id
+      const arr = this.$store.getters.myPayedMoviesPk
+      for (let i of arr) {
+        if (i == moviePk) {
+          return true
+        }
+      }
+      return false
+    },
   }
 }
 </script>
