@@ -197,4 +197,38 @@ return Response(serializer.da
 
 
 
-### 
+### 그 외
+
+ movies app 모델(Movie, Comment, Review)![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-21-38-image.png)
+
+
+
+
+
+accounts app 모델(User)
+
+![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-22-49-image.png)
+
+
+
+
+
+badges app 모델(Badge, BadgeList)
+
+![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-23-29-image.png)
+
+
+
+
+
+ticketings app 모델(MovieTimeTheater, Reservation, SeatInformation)
+
+![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-24-49-image.png)
+
+
+
+
+
+전체 ERD
+
+![erd_최종.jpg](C:\Users\gbj\Desktop\erd_최종.jpg)
