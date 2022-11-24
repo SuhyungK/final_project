@@ -1,7 +1,6 @@
 <template>
   <!-- <h1>예매 페이지 TicketingView</h1> -->
   <div class="container">
-
     <!-- 배경이미지...? -->
     <div id="ticket-container" style="border-radius: 50rem; border: 1px solid white; height: 300px;">
       <img :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path" alt="backdrop_path" style="border-radius: 50rem; border: 1px solid white">
@@ -48,8 +47,8 @@ export default {
   },
   data() {
     return {
-      movie: this.$route.params.movie,
-
+      // movie: this.$route.params.movie,
+      // movie: this.$store.state.movieinfo,
       selectedDate: null,
       selectedTimeData: null,
       selectedTheaterData: null,
@@ -72,6 +71,9 @@ export default {
     }
   },
   computed: {
+    movie() {
+      return this.$store.state.movieinfo
+    }
   },
   updated() {
     // 상영관 까지 다 선택했을때
@@ -86,6 +88,10 @@ export default {
     } else {
       this.$store.dispatch('clearSeat')
     }
+  },
+  beforeCreate() {
+    const moviePk = this.$route.params.moviePk
+    this.$store.dispatch('checkMovie', moviePk)
   }
 }
 </script>

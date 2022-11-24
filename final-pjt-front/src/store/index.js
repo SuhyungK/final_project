@@ -147,6 +147,7 @@ export default new Vuex.Store({
     },
     CHECK_MOVIE(state, data) {
       state.movieinfo = data
+      console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
     }
   },
   actions: {
@@ -590,6 +591,9 @@ export default new Vuex.Store({
         .then(() => {
           console.log('결제한 좌석 정보 저장 성공')
           context.dispatch('badgeUpdate')
+          context.dispatch('reqMyPayedMovies')
+        })
+        .then(() => {
           context.dispatch('algorithmRecommendedMovies')
         })
         .catch(() => {

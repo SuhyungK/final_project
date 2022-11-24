@@ -57,7 +57,7 @@ const routes = [
     component: MovieDetailView,
   },
   {
-    path: '/ticketing',
+    path: '/ticketing/:moviePk',
     name: 'TicketingView',
     component: TicketingView
   },
