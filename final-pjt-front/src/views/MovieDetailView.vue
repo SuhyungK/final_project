@@ -17,7 +17,7 @@
       <div class="col-lg-7 col-md-12">
         <MovieDetail style="margin-bottom: 100px;" :movie='movie'/>
         <WriteReview :movieId='moviePk'/>
-        <ReviewList @noMyReview="noMyReview" :movieId='moviePk'/>
+        <ReviewList v-if="myReviewShow" @noMyReview="noMyReview" :movieId='moviePk'/>
       </div>
 
     </div>
@@ -38,7 +38,7 @@ export default {
       // movie: JSON.parse(this.$route.query.movie),
       moviePk: this.$route.params.moviePk,
       movie: this.$store.state.movieinfo,
-      myReviewShow: ''
+      myReviewShow: true,
     }
   },
   components: {
@@ -49,7 +49,8 @@ export default {
   },
   methods: {
     noMyReview() {
-
+      this.myReviewShow = false
+      console.log('emit')
     }
   },
   mounted() {

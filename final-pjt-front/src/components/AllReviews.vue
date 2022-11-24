@@ -17,33 +17,52 @@
           <p class="d-inline-block fs-5 fw-bolder me-3">{{ review.username }}</p>
           <p class="d-inline-block">평점 : {{ review.rating }}</p>
         </div>
+        <!-- 작성시간 -->
         <div>
           <p class="" style="font-size: 14px;">{{ $store.state.timeStamp }}</p>
         </div>
       </div>
       <!-- 내용 -->
-      <p class="mb-5" style="text-align: justify;">{{ review.content }}</p>
+      <p v-if="showReviewContent" class="mb-5" style="text-align: justify;">{{ updateReviewContent }}</p>
+      <form @submit.prevent="putReview">
+        <textarea v-if="!showReviewContent" type="text" class="form-control mb-2" :value="updateReviewContent" @input="updateReview"></textarea>
+        <div v-if="!showReviewContent" class="text-end">
+          <input type="submit" class="btn btn-primary mb-2">
+        </div>
+      </form>
 
       <!-- 좋아요 + 좋아요 개수  //  대댓글 작성하는 input창 띄우기-->
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between" style="margin-bottom: -15px;">
 
-        <!-- 좋아요 누르기 + 좋아요 개수 -->
-        <div class="d-flex border border-white">
-          <!-- 좋아요 버튼 toggle -->
-          <button v-if="!alreadyLiked" @click="likeReview" style="all: unset;"><i class="bi bi-heart fs-6 fw-bolder" style=""></i></button>
-          <button v-if="alreadyLiked" @click="likeReview"  style="all: unset;"><i class="bi bi-arrow-through-heart-fill fs-6 fw-bolder"></i></button>
-          
-          <!-- 좋아요 개수 -->
-          <span class="fs-6 ms-2" style="">{{ review.like_users.length }} likes </span>
-        </div>
-
-        <!-- 대댓작성 창 띄우는 아이콘 -->
-        <form @submit.prevent="createComment">
-          <div class="border border-white">
-            <i class="bi bi-chat-left fs-6 cursor-pointer" @click="commentInputShow=!commentInputShow"></i>
+        <div class="d-flex">
+          <!-- 좋아요 누르기 + 좋아요 개수 -->
+          <div class="d-flex">
+            <!-- 좋아요 버튼 toggle -->
+            <button v-if="!alreadyLiked" @click="likeReview" style="all: unset;"><i style="position: relative; top: -5px;" class="bi bi-heart fs-6 fw-bolder"></i></button>
+            <button v-if="alreadyLiked" @click="likeReview"  style="all: unset;"><i style="position: relative; top: -5px;" class="bi bi-arrow-through-heart-fill fs-6 fw-bolder"></i></button>
+            
+            <!-- 좋아요 개수 -->
+            <span class="fs-6 ms-2" style="">{{ review.like_users.length }} </span>
           </div>
-        </form>
+
+          <!-- 대댓작성 창 띄우는 아이콘 -->
+          <form @submit.prevent="createComment">
+            <div class="ms-3" style="margin-top: 1px;">
+              <i class="bi bi-chat-left fs-6 cursor-pointer" @click="commentInputShow=!commentInputShow"></i>
+            </div>
+          </form>
+        </div>
         
+        <!-- 수정 | 삭제 -->
+        <div class="d-flex" style="font-size: 14px;">
+          <!-- 수정 -->
+          <div class="me-2" @click="showReviewContent=!showReviewContent">
+            <p style="cursor: pointer;">수정</p> 
+          </div> | 
+          <div style="cursor: pointer;" class="ms-2" @click="deleteReview">
+            삭제         
+          </div>
+        </div>
         
       </div>
       <hr>
@@ -85,7 +104,9 @@ export default {
       comment: null,
       DJANGO_API_URL: 'http://127.0.0.1:8000',
       commentList: [],
-      nowTime: ''
+      nowTime: '',
+      showReviewContent: true,
+      updateReviewContent: this.review.content
     }
   },
   props: {
@@ -109,6 +130,9 @@ export default {
     timeStamp() {
       this.$store.dispatch()
       return this.nowTimes()
+    },
+    changeReviewCotent() {
+      return this.review.content
     },
   },
   methods: {
@@ -202,6 +226,55 @@ export default {
       }
 
       return TimeCounting(targetTime, option)
+    },
+    // 댓글 수정
+    putReview() {
+      if (this.review.content != this.updateReviewContent) {
+        const DJANGO_API_URL = 'http://127.0.0.1:8000'
+        const content = this.updateReviewContent
+        const reviewId = this.review.id
+
+        axios({
+          method: 'put',
+          url: `${DJANGO_API_URL}/movies/review/${reviewId}/`,
+          headers: {
+            Authorization: `Token ${this.$store.state.token}`
+          },
+          data: {
+            content 
+          }
+        }) 
+          .then((res) => {
+            this.updateReviewContent = res.data.content
+            this.showReviewContent = true
+            this.$store.dispatch('movieReviews', this.movieId)
+          })
+          .catch((err) => {
+            console.log(err)
+          })
+      }
+    },
+    // 실시간 댓글 변경사항 반영
+    updateReview(e) { 
+      this.updateReviewContent = e.target.value
+    },
+    deleteReview() {
+      const DJANGO_API_URL = 'http://127.0.0.1:8000'
+      const reviewId = this.review.id
+
+      axios({
+        method: 'delete',
+        url: `${DJANGO_API_URL}/movies/review/${reviewId}/`,
+        headers: {
+          Authorization: `Token ${this.$store.state.token}`
+        },
+      }) 
+        .then(() => {
+          this.$store.dispatch('movieReviews', this.movieId)
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     }
   },
   mounted() {
