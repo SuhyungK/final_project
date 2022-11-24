@@ -6,32 +6,6 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 
 # 영화
 class Movie(models.Model):
-    # # TMDB latest
-    # movieId = models.IntegerField() # id
-    # title = models.CharField(max_length=100)
-    # release_date = models.TextField()
-    # runtime = models.IntegerField()
-    # overview = models.TextField()
-    # vote_average = models.FloatField()
-    # poster_path = models.TextField()
-    # ## 장르가 dictionary 형태로 들어옴
-    # genre_id = models.IntegerField() #
-    # genre_name = models.TextField() #
-
-
-
-    # # TMDB credits '/movie/{movie_id}/credits'
-    # actors = models.TextField() # 리스트형태 -> 제이슨
-    # # director = 모든 제작진이 조회가 됨
-
-
-    # # TMDB Videos '/movie/{movie_id}/videos'
-    # youtubeKey = models.TextField() #
-
-    # # TMDB Image '/movie/{movie_id}/images'
-    # backgroundPost = models.TextField() # 제이
-    # #  가격????
-
     
     movie_id = models.IntegerField(primary_key=True)
     title = models.CharField(max_length=20)

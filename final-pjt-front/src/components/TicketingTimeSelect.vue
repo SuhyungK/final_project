@@ -1,7 +1,8 @@
 <template>
-  <div class='box1'>
-    <h4>예매 시간 선택 TicketingTimeSelect.vue</h4>
-    {{time}}
+  <div class='mb-5'>
+    <!-- <h4>예매 시간 선택 TicketingTimeSelect.vue</h4> -->
+    <!-- {{time}} -->
+    <h3 v-if='!time'>영화 시간을 선택해 주세요</h3>
     <div class='d-flex flex-row justify-content-evenly fw-bold text-center fs-3'>
 
         <div id='9' :class="{ 'MouseOver': tigger==9, 'beforeMouseOver': tigger!=9}"

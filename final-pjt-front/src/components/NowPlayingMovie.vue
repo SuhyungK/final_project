@@ -75,14 +75,14 @@ export default {
       console.log(this.npList[idx].movie.title, this.npList[idx].isShow)
     }
   },
-  methods: {
-    test(v) {
-      console.log(v)
-    },
-    showInfo() {
-      this.isShow = true
-    },
-  },
+  // methods: {
+  //   test(v) {
+  //     console.log(v)
+  //   },
+  //   showInfo() {
+  //     this.isShow = true
+  //   },
+  // },
   created() {
     axios({
         method: 'get',

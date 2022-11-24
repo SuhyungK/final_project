@@ -1,16 +1,22 @@
 <template>
-  <div>
-    <h1>날짜선택 DatePickerSelect.vue</h1>
-    <h3>{{datepicker}} // {{nowDate}} // {{nowTime}}</h3>
-    <h3>선택 시간: {{selectedTimeData}} // 선택 상영관: {{selectedTheaterData}}</h3>
-    <h3 v-if='selectedTheaterData'>모두 선택했다 사실 상영관 선택하면 모두 선택한거</h3>
-    <h3 v-if='!selectedTheaterData'>모두 선택안했다</h3>
-
-    <date-picker v-model="datepicker" valueType="YYYYMMDD"></date-picker>
+  <div class='my-4'>
+    <!-- <h1>날짜선택 DatePickerSelect.vue</h1> -->
+    <div class='datepickerbox'>
+      <br><span v-show='vshow'>{{selectedTheaterData}}</span><br><br><br><br><br><br>
+      <h2 v-if='!datepicker'>날짜를 선택해주세요</h2>
+      <h2 v-if='datepicker && !possibleDate'>예매가능한 시간이 아닙니다 다시 선택해주세요</h2>
+      <br>
+      <date-picker v-model="datepicker" valueType="YYYYMMDD"></date-picker>
+    </div>
+    <!-- <h3>{{datepicker}} // {{nowDate}} // {{nowTime}}</h3>
+    <h3>선택 시간: {{selectedTimeData}} // 선택 상영관: {{selectedTheaterData}}</h3> -->
+    <!-- <h3 v-if='selectedTheaterData'>모두 선택했다 사실 상영관 선택하면 모두 선택한거</h3>
+    <h3 v-if='!selectedTheaterData'>모두 선택안했다</h3> -->
 
     <TicketingTimeSelect
     v-if="possibleDate"
     @selectedTime='selectedTime'/>
+    <!-- {{DTT.theater}} // {{selectedTheaterData}} -->
 
     <TicketingTheaterSelect
     v-if='possibleTime'
@@ -41,6 +47,7 @@ export default {
   },
   data() {
       return {
+        vshow: false,
         datepicker: null,
         nowDate: '',    
         nowTime: '',
@@ -74,6 +81,7 @@ export default {
       this.selectedTimeData = timedata
     },
     selectedTheater(theaterdata) {
+      console.log(theaterdata, '관 선택된데 올라옴(여기는 datepicker')
       this.selectedTheaterData = theaterdata
     },
     clearTimeTheater() {
@@ -100,6 +108,9 @@ export default {
       this.clearTheater() // 시간 재선택시 상영관 초기화
       return this.datepicker+this.selectedTimeData >= Number(this.nowDate + this.nowTime) + 30
     },
+    selectedTheaterDataa() {
+      return this.selectedTheaterData
+    }
   },
 
   mounted () {
@@ -108,11 +119,13 @@ export default {
   },1000)},
 
   updated() {
+    // console.log(this.selectedTheaterData)
     const payload = {
       time: this.selectedTimeData,
       theater: this.selectedTheaterData,
       date: this.datepicker,
     }
+    console.log('업데이트로 발동됨', payload)
     this.$emit('sendData', payload)
   }
 
@@ -121,9 +134,9 @@ export default {
 </script>
 
 <style>
-/* .boxDate {
-  width: auto;
-  height: auto;
-  padding-bottom: 2rem;
-} */
+  .datepickerbox {
+    margin-top: 100px;
+    height: 300px;
+    width: auto;
+  }
 </style>

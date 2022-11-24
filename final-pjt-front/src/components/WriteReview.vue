@@ -12,8 +12,8 @@
     {{ movieId }}
     {{ userPk }} -->
     <form @submit.prevent="reviewC">
-      <label for="rating"> rating: </label>
-      <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br>
+      <!-- <label for="rating"> rating: </label>
+      <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br> -->
 
       <!-- <label for="content">content : </label> -->
       <!-- <input class="form-control" type="text" id="content" v-model='content' ><br> -->

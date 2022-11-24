@@ -12,9 +12,9 @@
       <div>
         내용 : {{ review.content }}
       </div>
-      작성일자 : {{ review.created_at }}
+      작성일자 : {{ review.created_at.slice(0,10) }}
       <!-- 뭔영환지 : {{ review.movie }} -->
-      별점 : {{ review.rating }}
+      <!-- 별점 : {{ review.rating }} -->
 
     </div>
 

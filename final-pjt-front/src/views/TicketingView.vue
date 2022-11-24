@@ -21,7 +21,7 @@
       </div>
     
       <div class="">
-        <DatePickerSelect class="border" @sendData='sendData'/>
+        <DatePickerSelect class="" @sendData='sendData'/>
         <!-- @reqClearResSeat='reqClearResSeat'/> -->
         <TicketingSeatSelect class="border" v-if='selectedTheaterData'
         :selectedTheaterData="selectedTheaterData"

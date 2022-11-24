@@ -1,7 +1,7 @@
 <template>
 <!-- 인덱스 페이지 -->
   <div class="container">    
-    <NavbarPage/>
+    <!-- <NavbarPage/> -->
     <!-- 쇼츠 영상 재생 / 상위 -->
     <ShortPage class="mt-4"/>
 
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import NavbarPage from '@/components/NavbarPage.vue'
+// import NavbarPage from '@/components/NavbarPage.vue'
 import ShortPage from '@/components/ShortPage.vue'
 import TopReviewMovie from '@/components/TopReviewMovie.vue'
 import UpcomingMovie from '@/components/UpcomingMovie.vue'
@@ -28,7 +28,7 @@ import "bootstrap-icons/font/bootstrap-icons.css";
 export default {
   name: 'IndexView',
   components: {
-    NavbarPage,
+    // NavbarPage,
     ShortPage,
     NowPlayingMovie,
     TopReviewMovie,

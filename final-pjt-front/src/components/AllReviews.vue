@@ -15,7 +15,7 @@
       <div class="d-flex justify-content-between">
         <div>
           <p class="d-inline-block fs-5 fw-bolder me-3">{{ review.username }}</p>
-          <p class="d-inline-block">평점 : {{ review.rating }}</p>
+          <!-- <p class="d-inline-block">평점 : {{ review.rating }}</p> -->
         </div>
         <!-- 작성시간 -->
         <div>

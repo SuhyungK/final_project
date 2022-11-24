@@ -15,7 +15,7 @@
       <h3 v-if='selectedTheaterData'> 상영 {{selectedTheaterData}}관</h3>
       <h3 v-if='PON'>인원: {{ PON }}명</h3>
       <h3 v-if='PON'>가격: {{ price }}원</h3>
-      <button v-if='price' @click="payment">결제하기</button>
+      <button style='width:150px; margin-left: 280px; margin-top: 25px;' v-if='price' @click="payment">결제하기</button>
     </div>
   </div>
 </template>

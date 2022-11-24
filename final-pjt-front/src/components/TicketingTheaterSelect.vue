@@ -1,9 +1,10 @@
 <template>
-  <div>
-    상영관 선택 TicketingTheaterSelect.vue
+  <div class='mb-5'>
+    <!-- 상영관 선택 TicketingTheaterSelect.vue -->
 
+    <h3 v-if='!theater'>상영관을 선택해 주세요</h3>
     <div class='d-flex flex-row justify-content-evenly fw-bold text-center fs-3'>
-    
+
       <div id='1' :class="{ 'MouseOver': tigger==1, 'beforeMouseOver': tigger!=1}" 
       @click='theaterSelect1' @mouseover="mouseover" @mouseout="mouseout">
         상영 1관
@@ -44,6 +45,7 @@ export default {
     },
     theaterSelect3() {
       this.theater = 3
+      console.log('3관선택!')
       this.$emit('selectedTheater', this.theater)
     },
     mouseover(e) {

@@ -73,7 +73,7 @@ export default {
   data() {
     return {
       // thislike: false,
-      thislike: [true, false,false,false,false,false,false,false,false,false,],
+      thislike: [false, false,false,false,false,false,false,false,false,false,],
       thismouserover: false,
     }
   },

@@ -24,7 +24,7 @@
     </div>
 
     <!-- 내가 쓴 리뷰 목록이 존재하지 않을 때 -->
-    <div v-if="!MyReviews==[]">
+    <div v-if="MyReviews==[]">
       <p class="fs-5" style="font-weight: 700;">리뷰가 존재하지 않음</p>
     </div>
   </div>
