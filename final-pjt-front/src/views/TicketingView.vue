@@ -3,8 +3,8 @@
   <div class="container">
 
     <!-- 배경이미지...? -->
-    <div id="ticket-container" style="height: 300px;">
-      <img :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path" alt="">
+    <div id="ticket-container" style="border-radius: 50rem; border: 1px solid white; height: 300px;">
+      <img :src="'https://image.tmdb.org/t/p/original' + movie.backdrop_path" alt="backdrop_path" style="border-radius: 50rem; border: 1px solid white">
     </div>
 
     <!-- {{movie}} -->
@@ -94,17 +94,17 @@ export default {
 #ticket-container {
   position: relative;
   overflow: hidden;
-  box-shadow: inset 50px 50px 100px 50px white;
+  box-shadow: inset 0 0 30px 30px rgba(255, 255, 255, 1), inset 0px 0 50px 30px rgba(255, 255, 255, 1);
 }
 
 #ticket-container > img {
-  filter: opacity(25%);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: auto;
   object-fit: cover;
-  
+  z-index: -1;
+  opacity: 0.5;
 }
 </style>

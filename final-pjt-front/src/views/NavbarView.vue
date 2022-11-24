@@ -74,10 +74,13 @@ export default {
   name: 'NavbarPage',
   data() {
     return {
-      searchMovieList: [],
+      searchMovieLi: [],
     }
   },
   computed: {
+    searchMovieList() {
+      return this.searchMovieLi
+    }
   },
   methods: {
     toProfile () {
@@ -124,7 +127,7 @@ export default {
           }
         })
           .then((res) => {
-            this.searchMovieList = res.data
+            this.searchMovieLi = res.data
             // console.log(res.data)
             // console.log(this.searchMovieList)
           })
@@ -144,13 +147,13 @@ export default {
           }
         })
           .then((res) => {
-            this.searchMovieList = res.data
-            if (this.searchMovieList.length == 1) {
-              this.searchMovieList = []
+            this.searchMovieLi = res.data
+            if (this.searchMovieLi.length == 1) {
+              this.searchMovieLi = []
               this.$router.push({name: 'MovieDetailView', params: {moviePk: res.data[0].movie_id}})
               // this.$router.push({name: 'MovieDetailView', params: {movieId: , movie: res.data[0]}})
             } else {
-              this.searchMovieList = []
+              this.searchMovieLi = []
               this.$store.commit('SAVE_SEARCH_MOVIE', res.data)
               this.$router.push({name: 'SearchMovieView'})
             }

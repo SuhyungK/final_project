@@ -25,7 +25,7 @@
       <!-- 내용 -->
       <p v-if="showReviewContent" class="mb-5" style="text-align: justify;">{{ updateReviewContent }}</p>
       <form @submit.prevent="putReview">
-        <textarea v-if="!showReviewContent" type="text" class="form-control mb-2" :value="updateReviewContent" @input="updateReview"></textarea>
+        <textarea v-if="!showReviewContent" type="text" class="form-control mb-2" :value="updateReviewContent" @input="updateReview" style="height: 120px;"></textarea>
         <div v-if="!showReviewContent" class="text-end">
           <input type="submit" class="btn btn-primary mb-2">
         </div>
