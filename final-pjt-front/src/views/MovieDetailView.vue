@@ -41,10 +41,8 @@ export default {
       moviePk: this.$route.params.moviePk,
       myReviewShow: true,
       // movie: this.$store.state.movieinfo,
-<<<<<<< HEAD
       // myReviewShow: ''
-=======
->>>>>>> 8f2e1629695b0c3f37f505effc11ff7c49fa31c6
+
     }
   },
   components: {

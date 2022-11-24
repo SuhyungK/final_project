@@ -1,16 +1,6 @@
 <template>
   <div v-if='isLike && !isTicketed' 
-<<<<<<< HEAD
-    style="position: relative; width: 200px; height: 350px; overflow: hidden;"
-    @mouseover="showBtn"
-    @mouseleave="hiddenBtn"
-    >
-    
-    <!-- <h3>내가 관심있는 영화 MyMovies.vue</h3> -->
-    <img class="rounded w-100" style="height: 280px;" :src='`https://image.tmdb.org/t/p/w500${movie.poster_path}`' alt="no image">
-    <p class="h5 w-100 mt-2" style="white-space:nowrap; text-overflow: ellipsis; height: 26px;">{{movie.title}}</p>
-    <!-- <button @click='cancelLike'>관심영화 제거하기</button> -->
-=======
+
     class="me-3"
     style="position: relative; width: 200px; height: 350px;"
     @mouseover="showBtn"
@@ -21,13 +11,13 @@
       <img class="rounded w-100" style="height: 280px;" :src='`https://image.tmdb.org/t/p/w500${movie.poster_path}`' alt="no image">
       <p class="h5 w-100 mt-2" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; height: 26px;">{{movie.title}}</p>
       <!-- <button @click='cancelLike'>관심영화 제거하기</button> -->
->>>>>>> 8f2e1629695b0c3f37f505effc11ff7c49fa31c6
 
     <div v-if="isShow" class="rounded w-100 bg-dark position-absolute top-0 left-0 d-flex flex-column justify-content-center align-items-center" style="height: 280px; opacity: 0.7;">
       <button id="detail-button" class="w-75 mb-1 rounded-pill" style="padding: 0.2rem 0.1rem" @click="toMovieDetail">상세 보기</button>
       <button id="ticket-button" class="w-75 mt-1 rounded-pill" style="padding: 0.2rem 0.1rem" @click="ticketing">예매 하기</button>
     </div>
   </div>
+</div>
 </template>
 
 <script>
