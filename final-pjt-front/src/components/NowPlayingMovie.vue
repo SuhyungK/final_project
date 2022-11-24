@@ -6,29 +6,29 @@
     </p>
 
     <!-- Now Playing Movie -->
-    <div class="d-flex mb-4 position-relative" style="overflow-x: scroll">
+    <div class="d-flex mb-4" style="overflow-x: scroll">
+
+      <!-- Now Playing 개별 이미지 -->
       <div v-for="(npMovie, i) in nowPlayingMovieList" :key="i"
-        class="now-play"
+        class="now-play position-relative"
       >
-        <!-- <div class="position-absolute d-flex flex-column justify-content-center" style="width: 100px;">
-          <button class="rounded-pill position absolute button-design" id="button-mouse-hover" value="test" @>
-            ??
-          </button>
-          <button @click="moveToTicketing()" class="btn btn-warning position absolute" id="button-mouse-hover" value="test">
-            ??
-          </button>
-        </div> -->
-        <img 
+        <div @mouseover="showBtn" @mouseleave="hiddenBtn">
+          <img 
           :src="`https://image.tmdb.org/t/p/w500/` + npMovie.poster_path" 
           :alt="npMovie.title"
-          @mouseover="showInfo" 
-          style="width: 200px; cursor: pointer;"
+          style="width: 200px; cursor: pointer; height: 280px;"
           class="me-3 rounded"
-          @click="moveToTicketing(npMovie)"
         >
 
+         <!-- 마우스 올렸을 때 버튼 -->
+          <div v-if="isShow" class="rounded w-100 bg-dark position-absolute top-0 left-0 d-flex flex-column justify-content-center align-items-center" style="height: 280px; opacity: 0.7;">
+            <button id="detail-button" class="w-75 mb-1 rounded-pill" style="padding: 0.2rem 0.1rem" @click="toMovieDetail">상세 보기</button>
+            <button id="ticket-button" class="w-75 mt-1 rounded-pill" style="padding: 0.2rem 0.1rem" @click="ticketing">예매 하기</button>
+          </div>
+        </div>
+ 
       </div>
-      <div v-if="showInfo" class="bg-dark rounded" id="image-mouse-hover"></div>
+      
     </div>
 
    <hr>
@@ -45,13 +45,19 @@ export default {
   data() {
     return {
       nowPlayingMovieList: [],
-      showInfo: false,
+      isShow: false,
     }
   },
   methods: {
-    moveToTicketing(movie) {
-      console.log(movie.title)
-      this.$router.push({name: 'MovieDetailView', params: {moviePk: movie.id}} )
+    // moveToTicketing(movie) {
+    //   console.log(movie.title)
+    //   this.$router.push({name: 'MovieDetailView', params: {moviePk: movie.id}} )
+    // },
+    showBtn() {
+      this.isShow = true
+    },
+    hiddenBtn() {
+      this.isShow = false
     }
   },
   created() {
@@ -83,21 +89,34 @@ export default {
   object-fit: cover;
 }
 
-#image-mouse-hover {
-  width: 200px;
-  height: 300px;
-  z-index: 10000;
-  position: absolute;
-  opacity: 0.5;
-}
-
-.now-play > img:hover {
-  opacity: 0.7;
-}
-
 .button-design {
   background-color: white;
   border: .15rem solid gray;
   color: gray;
+}
+
+#detail-button, #ticket-button {
+  background-color: white;
+  opacity: 1;
+  border: 0.15rem solid #00ABB3;
+  color: #00ABB3;
+  cursor: pointer;
+}
+
+#ticket-button {
+  border: 0.15rem solid rgb(255, 99, 71);
+  color: rgb(255, 99, 71)
+}
+
+#detail-button:hover {
+  color: white;
+  border-color: #00ABB3;
+  background-color: #00ABB3;
+}
+
+#ticket-button:hover {
+  color: white;
+  border-color: rgb(255, 99, 71);
+  background-color: rgb(255, 99, 71);
 }
 </style>

@@ -204,7 +204,8 @@ def likeReviewList(request):
 @api_view(['GET'])
 def searchMovie(request):
     search_word = request.GET.get('search_word')
-    movies = Movie.objects.filter(Q(title__contains=search_word) | Q(original_title=search_word)).order_by('-popularity').distinct()
+    movies = Movie.objects.filter(Q(original_title__contains=search_word) | Q(title__contains=search_word)).order_by('-popularity')
+    print(movies)
     serializer = MovieSerializer(movies, many=True)
     return Response(serializer.data)
 
@@ -238,7 +239,7 @@ def movie_infomation(request, movie_pk):
 
     return Response(serializer.data, status=status.HTTP_201_CREATED)
 
-api_view(['GET'])
+@api_view(['GET'])
 def TopReviewMovie(request):
     reviews = Review.objects.all()
 
@@ -264,3 +265,16 @@ def TopReviewMovie(request):
     }
     return JsonResponse(context)
     
+@api_view(['PUT', 'DELETE'])
+def reviewUpdate(request, review_pk):
+    review = Review.objects.get(pk=review_pk)
+    if request.method == 'DELETE':
+        review.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
+    elif request.method == 'PUT':
+        review.content = request.data['content']
+        review.save()
+
+        serializer = TmpReviewSerializer(review)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)

@@ -6,7 +6,7 @@
       @mouseleave="hiddenBtn"
       >
       <!-- <h3>내가 관심있는 영화 MyMovies.vue</h3> -->
-      <img class="rounded w-100" style="height: 280px;" :src='`https://image.tmdb.org/t/p/original${movie.poster_path}`' alt="no image">
+      <img class="rounded w-100" style="height: 280px;" :src='`https://image.tmdb.org/t/p/w500${movie.poster_path}`' alt="no image">
       <p class="h5 w-100 mt-2" style="white-space:nowrap; text-overflow: ellipsis; height: 26px;">{{movie.title}}</p>
       <!-- <button @click='cancelLike'>관심영화 제거하기</button> -->
 
@@ -88,13 +88,13 @@ export default {
 #detail-button, #ticket-button {
   background-color: white;
   opacity: 1;
-  border: 0.17rem solid #00ABB3;
+  border: 0.15rem solid #00ABB3;
   color: #00ABB3;
   cursor: pointer;
 }
 
 #ticket-button {
-  border: 0.17rem solid rgb(255, 99, 71);
+  border: 0.15rem solid rgb(255, 99, 71);
   color: rgb(255, 99, 71)
 }
 
