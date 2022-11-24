@@ -8,17 +8,25 @@
 
   </div> -->
   <div class="p-3">
-    <!-- <h3>리뷰 목록 ReviewList.vue</h3> -->
-    <div class="text-start">
-      <p class="h4 fw-bolder"><span style="font-weight: 900; color: #00ABB3;">{{ profileOwner }}</span>의 리뷰</p>
-    </div>
-    
-    <hr>
-    <MyReviewEle
-    v-for='review in MyReviews'
-    :key='review.id'
-    :review='review'/>
 
+    <!-- 내가 쓴 리뷰 목록이 존재할 때 -->
+    <div v-if="MyReviews!=[]">
+      <div class="text-start">
+        <p class="h4 fw-bolder"><span style="font-weight: 900; color: #00ABB3;">{{ profileOwner }}</span>의 리뷰</p>
+      </div>
+      
+      <hr>
+      <MyReviewEle
+        v-for='review in MyReviews'
+        :key='review.id'
+        :review='review'/>
+
+    </div>
+
+    <!-- 내가 쓴 리뷰 목록이 존재하지 않을 때 -->
+    <div v-if="!MyReviews==[]">
+      <p class="fs-5" style="font-weight: 700;">리뷰가 존재하지 않음</p>
+    </div>
   </div>
 </template>
 
@@ -37,6 +45,11 @@ export default {
     MyReviews() {
       return this.$store.state.myReview;
     }
+  },
+  methods: {
+  },
+  mounted() {
+    console.log(this.MyReviews)
   }
 }
 </script>

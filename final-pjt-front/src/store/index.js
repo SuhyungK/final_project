@@ -55,6 +55,12 @@ export default new Vuex.Store({
     isFollowed(state) {
       return state.followingsList.includes(state.userInfo.userPk)
     },
+    myPayedMoviesPk(state) {
+      const arr = state.myPayedMovies.map((ele) => {
+        return ele.movie_id
+      })
+      return arr
+    }
   },
   mutations: {
     SAVE_TOKEN(state, token) {
@@ -141,6 +147,7 @@ export default new Vuex.Store({
     },
     CHECK_MOVIE(state, data) {
       state.movieinfo = data
+      console.log('rrrrrrrrrrrrrrrrrrrrrrrrrrrrrr')
     }
   },
   actions: {
@@ -583,7 +590,11 @@ export default new Vuex.Store({
       })
         .then(() => {
           console.log('결제한 좌석 정보 저장 성공')
+          const username = context.state.userInfo.userName
           context.dispatch('badgeUpdate')
+          context.dispatch('reqMyPayedMovies', username)
+        })
+        .then(() => {
           context.dispatch('algorithmRecommendedMovies')
         })
         .catch(() => {

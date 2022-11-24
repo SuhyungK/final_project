@@ -21,13 +21,13 @@
                 }" 
               :src="slide.src"
               style="z-index: -1; positon: relative;"
-              @click="likeMovie(index)"
+              
             >
-              <div v-if="isCurrent" @mouseover="thislike=true" @mouseout="thislike=false" id="likeIcon" class="position-absolute d-flex justify-content-center align-items-center rounded-circle shadow-lg bg-body" 
+              <div v-if="isCurrent" @mouseover="thismouserover=true" @mouseout="thismouserover=false" id="likeIcon" class="position-absolute d-flex justify-content-center align-items-center rounded-circle shadow-lg bg-body" 
                 style="z-index: 99999; opacity: 0.7; bottom: 5px; right: 5px; font-size: 30px; width: 50px; height: 50px; background-color: #FFFFFF;"
                 >
-                <i v-if="!thislike" id="likeLike" class="bi bi bi-suit-heart"></i>
-                <i v-if="thislike" id="likeLike" class="bi bi bi-suit-heart-fill"></i>
+                <i @click="likeMovie(index)" v-if="!thislike[index]" id="likeLike" class="bi bi bi-suit-heart"></i>
+                <i @click="likeMovie(index)" v-if="thislike[index]" id="likeLike" class="bi bi bi-suit-heart-fill"></i>
                 <!-- <i class="bi bi-suit-heart"></i> -->
               </div>
 
@@ -56,6 +56,7 @@
     </div>
     <hr>
     <router-view></router-view>
+    <!-- {{thislike}} -->
   </div>
 </template>
 
@@ -71,44 +72,29 @@ export default {
   },
   data() {
     return {
-      thislike: false,
-      // slides: [
-      //   { src: 'https://www.aljazeera.com/wp-content/uploads/2022/07/2022-07-12T152833Z_228842849_RC2BAV985K5J_RTRMADP_3_SPACE-EXPLORATION-TELESCOPE.jpg?resize=1920%2C1158' },
-      //   { src: 'https://exoplanets.nasa.gov/internal_resources/1763' }, 
-      //   { src: 'https://www.aljazeera.com/wp-content/uploads/2022/07/2022-07-12T152833Z_228842849_RC2BAV985K5J_RTRMADP_3_SPACE-EXPLORATION-TELESCOPE.jpg?resize=1920%2C1158' },
-      //   { src: 'https://exoplanets.nasa.gov/internal_resources/1763' }, 
-      //   { src: 'https://www.aljazeera.com/wp-content/uploads/2022/07/2022-07-12T152833Z_228842849_RC2BAV985K5J_RTRMADP_3_SPACE-EXPLORATION-TELESCOPE.jpg?resize=1920%2C1158' },
-      //   { src: 'https://exoplanets.nasa.gov/internal_resources/1763' }, 
-      //   { src: 'https://www.aljazeera.com/wp-content/uploads/2022/07/2022-07-12T152833Z_228842849_RC2BAV985K5J_RTRMADP_3_SPACE-EXPLORATION-TELESCOPE.jpg?resize=1920%2C1158' },
-      //   { src: 'https://exoplanets.nasa.gov/internal_resources/1763' }, 
-      // ],
-      // playerVars: {
-      //   autoplay: 1,
-      //   mute: 1,
-      //   loop: 1,
-      //   start: 15, 
-      //   end: 30, 
-      // }
+      // thislike: false,
+      thislike: [true, false,false,false,false,false,false,false,false,false,],
+      thismouserover: false,
     }
   },
   computed: {
     slides() {
       return this.$store.state.recommendMovies
     },
-    // slides() {
-    //   let ysrc = this.$store.state.recommendMovies.map((movie) => {
-    //     return movie.trailer_path
-    //   })
-    //   return ysrc
-    // },
+    likeMovieList() {
+      return this.$store.state.myLikeMovies
+    },
   },
   methods: {
     playVideo() {
       this.$refs.youtube.player.playVideo()
     },
     likeMovie(index) {
-      // console.log(this.slides[index])
+      // const moviePk = this.slides[index].movie_id
+      // const arr = this.$store.state.myLikeMovies
       this.$store.dispatch('likeMovie', this.slides[index].movie_id)
+      this.thislike[index] = !this.thislike[index]
+      console.log(this.thislike)
     }
   },
   mounted() {

@@ -17,7 +17,7 @@
       <div class="col-lg-7 col-md-12">
         <MovieDetail style="margin-bottom: 100px;" :movie='movie'/>
         <WriteReview :movieId='moviePk'/>
-        <ReviewList :movieId='moviePk'/>
+        <ReviewList v-if="myReviewShow" @noMyReview="noMyReview" :movieId='moviePk'/>
       </div>
 
     </div>
@@ -31,13 +31,20 @@ import ReviewList from '@/components/ReviewList'
 import DetailPoster from '@/components/DetailPoster'
 import WriteReview from '@/components/WriteReview'
 
+// import axios from 'axios'
+
 export default {
   name: 'MovieDetailView',
   data() {
     return {
       // movie: JSON.parse(this.$route.query.movie),
       moviePk: this.$route.params.moviePk,
-      movie: this.$store.state.movieinfo
+      myReviewShow: true,
+      // movie: this.$store.state.movieinfo,
+<<<<<<< HEAD
+      // myReviewShow: ''
+=======
+>>>>>>> 8f2e1629695b0c3f37f505effc11ff7c49fa31c6
     }
   },
   components: {
@@ -46,16 +53,24 @@ export default {
     DetailPoster,
     WriteReview,
   },
+  methods: {
+    noMyReview() {
+      this.myReviewShow = false
+      console.log('emit')
+    }
+  },
+  computed: {
+    movie() {
+      return this.$store.state.movieinfo
+    }
+  },
   mounted() {
     // console.log('무비 아이디', movie.id)
     // this.movie = JSON.parse(this.$route.query.movie)
     this.$store.dispatch('checkMovie', this.moviePk)
     this.$store.dispatch('movieReviews', this.moviePk)
   },
-  beforeRouteUpdate(to, from, next) {
-    console.log(to)
-    next({name: 'MovieDetailView', params: {movie: to.params.moviePk}})
-  }
+
 }
 </script>
 

@@ -32,9 +32,9 @@
 
     <!-- 영화 줄거리 -->
     <div class="text-start mt-4">
-      <span class="h4 fw-bold position-relative" style="top: 5px;">Description</span>
+      <span class="h4 fw-bold position-relative" style="top: 5px;">줄거리</span>
       <hr>
-      <p class="text-start fs-5">
+      <p class="text-start fs-6">
         {{ movie.overview }}
       </p>
     </div>

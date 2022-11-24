@@ -1,12 +1,27 @@
 <template>
-  <div class="">
-    <h1>관심영화 페이지 MyMovieView.vue</h1>
-    <!-- <MymovieList/> -->
-    <MyMovies
-    v-for='movie in myLikeMoviesDetail'
-    :key='movie.id'
-    :movie='movie'/>
-    
+  <!-- 관심 영화 페이지 -->
+  <div class="container mt-5">
+
+      <div class="d-flex justify-content-between">
+        <p class="h5">
+          <span class="" style="color: #00ABB3; font-weight: 700; font-size: 22px;">관심영화</span> 
+        <p>
+        <p>
+          <span class="position-relative me-2" style="top: 3px;">
+            인기순 정렬 
+          </span>
+          |
+
+        </p>
+      </div>
+      <hr class="mt-0">
+      <!-- <MymovieList/> -->
+      <div class="row row-cols-6 ms-2">
+        <MyMovies class="m-0 p-0"
+        v-for='movie in myLikeMoviesDetail'
+        :key='movie.id'
+        :movie='movie'/>
+      </div>
   </div>
 </template>
 
@@ -38,5 +53,7 @@ export default {
 </script>
 
 <style>
+img {
 
+}
 </style>

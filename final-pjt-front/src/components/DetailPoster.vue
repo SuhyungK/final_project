@@ -4,8 +4,12 @@
     <img class="py-3" style="width: 200px; height: auto;" 
       :src='`https://image.tmdb.org/t/p/original${movie.poster_path}`' alt="no image">
 
-    <button type="submit" id="button-submit" class="btn-floating mb-1 text-white">예매하기</button>
-    <button @click="toTicketing">포스터 하단에 예매하기 버튼</button>
+    <!-- <button type="submit" id="button-submit" class="btn-floating mb-1 text-white">예매하기</button> -->
+
+    <div id="clickButton" class="rounded-pill w-100 p-2" @click="toTicketing">예매하기</div>
+
+    <!-- <button @click="toTicketing">포스터 하단에 예매하기 버튼</button> -->
+
   </div>
 </template>
 
@@ -16,15 +20,33 @@ export default {
     // moviePostUrl: String,
     movie: Object,
   },
+  data() {
+    return {
+      
+    }
+  },
+  computed: {
+  },
   methods: {
     toTicketing() {
       // this.$router.push({ name: 'TicketingView' })
-      this.$router.push({name:'TicketingView', params: {movie: this.movie}})
+      this.$router.push({name:'TicketingView', params: {movie: this.movie.movie_id}})
     }
   },
 }
 </script>
 
 <style>
+#clickButton {
+  background-color: white;
+  border: 0.17rem solid #00ABB3;
+  color: #00ABB3;
+  cursor: pointer;
+}
 
+#clickButton:hover {
+  color: white;
+  border-color: #00ABB3;
+  background-color: #00ABB3;
+}
 </style>

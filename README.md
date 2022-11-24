@@ -1,92 +1,149 @@
-# GoSuhyung
+# PJT
 
 
 
-## Getting started
+### 기획의도
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+우리 홈페이지를 통해 현재 상영중인 영화들의 영화 예매를 유도할 수 있는 페이지를 만들자!
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
 
-## Add your files
 
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+### MVP
 
+1. 영화 추천 알고리즘
+
+2. 영화 예매 기능
+
+3. 뱃지(도전과제) 시스템
+
+4. CRUD
+
+
+
+### MVP 기능설명
+
+#### 1. 영화 추천 알고리즘
+
+```python
+def algorithm(request):
+    movies = get_list_or_404(Movie)
+    me = request.user
+    prefer = defaultdict(int)
+    already_like = []
+    for movie in me.like_movie.all():
+        already_like.append(movie.pk)
+        res = json.loads(movie.genres) # 문자열 제이슨을 제이슨으로
+        for genre in res['result']:
+            prefer[genre['genre']] += 1 # 내가 본 장르를 prefer에 추가
+    
+    movie_list = []
+    for movie in movies:
+        if movie.pk in already_like: # 본영화는 패스
+            continue
+    
+        score = movie.vote_average * 0.3 # 평점 가중치 0.3
+        res = json.loads(movie.genres)
+        for genre in res['result']:
+            score += prefer[genre['genre']] * 0.4 # 내가 본 장르 가중치 0.4
+        
+        data = movie.release_date
+        score += releaseDate(data) * 0.2 # 최신 영화 가중치 0.2
+
+        movie_list.append([score, movie.pk])
+    
+    movie_list.sort(reverse=True)
+
+    my_movie = []
+    for s, i in  movie_list[:10]:
+        rec_movie = Movie.objects.get(pk=i)
+        my_movie.append(Movie.objects.get(pk=i))
+
+    serializer = MovieSerializer(my_movie, many=True)
+
+    return Response(serializer.data, status=status.HTTP_201_CREATED)
 ```
-cd existing_repo
-git remote add origin https://lab.ssafy.com/zerg758/gosuhyung.git
-git branch -M master
-git push -uf origin master
+
+사용자가 예매한 영화정보를 바탕으로 가중치를 계산한다.
+
+가중치: 영화평점 0.3 // 내가 본 장르들 0.4 // 개봉일자 0.2
+
+1. 사용자가 본 영화를 가지고 장르를 카운트해준다.
+   
+   ```python
+       already_like = []
+       for movie in me.like_movie.all():
+           already_like.append(movie.pk)
+           res = json.loads(movie.genres) # 문자열 제이슨을 제이슨으로
+           for genre in res['result']:
+               prefer[genre['genre']] += 1 # 내가 본 장르를 p
+   ```
+   
+   
+
+2. DB 저장되어 있는 모든 영화를 순회하면서 이미 예매한 적이 있는 영화면 넘기고 아니라면 가중치를 적용하고 (점수, 영화 pk ) 의 튜플 형태로 리스트에 저장한다.
+   
+   ```python
+   
+       
+       movie_list = []
+       for movie in movies:
+           if movie.pk in already_like: # 본영화는 패스
+               continue
+       
+           score = movie.vote_average * 0.3 # 평점 가중치 0.3
+           res = json.loads(movie.genres)
+           for genre in res['result']:
+               score += prefer[genre['genre']] * 0.4 # 내가 본 장르 가중치 0.4
+           
+           data = movie.release_date
+           score += releaseDate(data)
+   ```
+   
+   
+
+    3.  위에서 저장해서 내려온 리스트를 내림차순으로 정렬하고 10개를 슬라이싱을 한다. 그 후 리스트에 담긴 영화pk 값으로 전체 영화정보를 추출하여 리턴한다.
+
+```python
+    movie_list.sort(reverse=True)
+
+    my_movie = []
+    for s, i in  movie_list[:10]:
+        rec_movie = Movie.objects.get(pk=i)
+        my_movie.append(Movie.objects.get(pk=i))
+
+    serializer = MovieSerializer(my_movie, many=True)
+
+    return Response(serializer.da
 ```
 
-## Integrate with your tools
 
-- [ ] [Set up project integrations](https://lab.ssafy.com/zerg758/gosuhyung/-/settings/integrations)
 
-## Collaborate with your team
 
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Automatically merge when pipeline succeeds](https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
 
-## Test and Deploy
+#### 2. 영화 예매기능
 
-Use the built-in continuous integration in GitLab.
+영화 예매의 순서는 영화선택 -> 날짜(년월일) -> 영화시간 -> 상영관 -> 좌석선택 순서로만 이루어 질 수 있도록 한다.
 
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
 
-***
 
-# Editing this README
+예매 페이지는 영화의 pk 값을 router params 로 가져가기 때문에 영화선택 부분은 해결 된다.
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thank you to [makeareadme.com](https://www.makeareadme.com/) for this template.
+날짜, 시간, 상영관은 각각 해당되는 테그에 `v-if`문을 이용하여 전단계의 값이 선택되었을 때만 활성화되도록 하여 순서를 지킬 수 있도록 한다.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+그렇게 함으로서 상영관 선택값이 존재할 경우(선택되었을 경우)에만 좌석 선택 컴포넌트가 나올 수 있게 한다. 
 
-## Name
-Choose a self-explaining name for your project.
+좌석 각각의 식별값은 행(i)과 열(j)로서 생성되며 결제까지 진행한 부분은 Django DB에 저장했다. 
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+<img src="README_assets/2022-11-24-17-11-24-image.png" title="" alt="" data-align="inline"><영화 예약 모델>
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+위의 모델에서 영화pk, 영화시간 pk로 
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+### 아쉬웠던 부분
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+1. 모델간의 이해 관계를 구상하는 부분이 어려웠다. 이때문에 처음 ERD 구성에 시간을 많이 투자했음에도 프로젝트를 진행하면서 대부분의 모델이 수정 되었다.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
-
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+### 

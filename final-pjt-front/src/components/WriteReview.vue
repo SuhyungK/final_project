@@ -8,9 +8,9 @@
     </div>
 
     <hr>
-
+<!-- 
     {{ movieId }}
-    {{ userPk }}
+    {{ userPk }} -->
     <form @submit.prevent="reviewC">
       <label for="rating"> rating: </label>
       <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br>
@@ -24,7 +24,7 @@
       </div>
 
       <div class="d-flex justify-content-end mt-3">
-        <input type="submit" class="btn btn-primary" value="리뷰쓰기">
+        <input type="submit" class="rounded-pill w-25 p-2" id="clickButton" value="리뷰쓰기">
       </div>
       <br>
       

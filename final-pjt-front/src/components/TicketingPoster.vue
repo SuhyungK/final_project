@@ -1,6 +1,6 @@
 <template>
   <div class="d-flex justify-content-center row">
-    <div class="d-flex flex-column col-4 align-items-center" style="width: 300px;">
+    <div class="d-flex flex-column offset-1 col-3 align-items-center" style="width: 200px;">
       <!-- 영화 예매에 들어갈 포스터 TicketingPoster.vue -->
       <img class="py-3 w-100" style="margin-top: -100px;" 
         :src='`https://image.tmdb.org/t/p/original${movie.poster_path}`' alt="no image">
