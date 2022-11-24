@@ -3,22 +3,16 @@
 
     <!-- 영화 포스터 -->
     <div id="mini-poster-container" class="col-2">
-      <img class='' :src="`https://image.tmdb.org/t/p/original${posturl}`" alt="영화이미지">
+      <img class='rounded' :src="`https://image.tmdb.org/t/p/original${posturl}`" alt="영화이미지">
     </div>
 
+    <!-- 영화 제목 + 내용 -->
     <div class="col-10">
-
-      <!-- 내용 -->
-      <div>
-        내용 : {{ review.content }}
-      </div>
-      작성일자 : {{ review.created_at.slice(0,10) }}
-      <!-- 뭔영환지 : {{ review.movie }} -->
-      <!-- 별점 : {{ review.rating }} -->
-
+      <p class="h6 text-start mb-3" style="font-weight: 700;">{{ movietitle }}</p>
+      <!-- <p class="fs-6 text-start pt-0 mt-0">{{ movieogtitle }}</p> -->
+      <p class="text-start">{{ review.content }}</p>
     </div>
-
-    <hr class="my-2">
+ 
   </div>
 </template>
 
@@ -32,7 +26,9 @@ export default {
   },
   data() {
     return {
-      posturl: 'xx'
+      posturl: 'xx',
+      movietitle : '',
+      movieogtitle: '',
     }
   },
   created() {
@@ -47,6 +43,8 @@ export default {
     })
       .then((res) => {
         this.posturl = res.data.poster_path
+        this.movietitle = res.data.title
+        this.movieogtitle = res.data.original_title
       })
       .catch((err) => {
         console.log(err)

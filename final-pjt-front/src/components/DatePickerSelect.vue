@@ -1,30 +1,40 @@
 <template>
-  <div class=''>
-    <!-- <h1>날짜선택 DatePickerSelect.vue</h1> -->
-    <div class='datepickerbox'>
-      <br><span v-show='vshow'>{{selectedTheaterData}}</span><br><br><br><br><br><br>
-      <h2 v-if='!datepicker'>날짜를 선택해주세요</h2>
-      <h2 v-if='datepicker && !possibleDate'>예매가능한 시간이 아닙니다 다시 선택해주세요</h2>
-      <br>
-      <date-picker v-model="datepicker" valueType="YYYYMMDD"></date-picker>
-    </div>
+  <div class="d-flex" style="width: 85%;">
+    <!-- <div class='datepickerbox'> -->
+      
+      <!-- 1. 날짜 선택 -->
+      <div class="" style="width: 250px;">
+        <p class="h4 p-2 rounded-pill" style="background-color: #2c3e50; color: white;">일시</p>
+        <span v-show='vshow'>{{selectedTheaterData}}</span>
+        <!-- <h2 v-if='!datepicker'>날짜를 선택해주세요</h2> -->
+        <p v-if='datepicker && !possibleDate' class="h6" style="color: red;">예매가능한 시간이 아닙니다<br>다시 선택해주세요</p>
+        <br>
+        <date-picker v-model="datepicker" valueType="YYYYMMDD"></date-picker>
+        <div v-if="!possibleDate" class="w-100" style="height: 300px;">
+          <span style="color: white">1</span>
+        </div>
+      </div>
+    <!-- </div> -->
     <!-- <h3>{{datepicker}} // {{nowDate}} // {{nowTime}}</h3>
     <h3>선택 시간: {{selectedTimeData}} // 선택 상영관: {{selectedTheaterData}}</h3> -->
     <!-- <h3 v-if='selectedTheaterData'>모두 선택했다 사실 상영관 선택하면 모두 선택한거</h3>
     <h3 v-if='!selectedTheaterData'>모두 선택안했다</h3> -->
 
-    <TicketingTimeSelect
-    v-if="possibleDate"
-    @selectedTime='selectedTime'/>
-    <!-- {{DTT.theater}} // {{selectedTheaterData}} -->
+      <i v-if="possibleDate" class="bi bi-caret-right-fill" style="font-size: 40px;"></i>
 
-    <TicketingTheaterSelect
-    v-if='possibleTime'
-    @selectedTheater='selectedTheater'/>
+      <!-- 2. 시간 선택 -->
+      <TicketingTimeSelect
+      v-if="possibleDate"
+      @selectedTime='selectedTime'/>
+      <!-- {{DTT.theater}} // {{selectedTheaterData}} -->
+
+      <i v-if="possibleTime" class="bi bi-caret-right-fill" style="font-size: 40px;"></i>
+
+      <!-- 3. 상영관 선택 -->
+      <TicketingTheaterSelect
+      v-if='possibleTime'
+      @selectedTheater='selectedTheater'/>
     
-
-    
-
   </div>
 </template>
 
@@ -134,9 +144,9 @@ export default {
 </script>
 
 <style>
-  .datepickerbox {
+  /* .datepickerbox {
     margin-top: 100px;
     height: 300px;
     width: auto;
-  }
+  } */
 </style>

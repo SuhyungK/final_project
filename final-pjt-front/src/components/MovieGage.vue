@@ -1,6 +1,9 @@
 <template>
   <div>
-    <h1>영화게이지MovieGage.vue </h1>
+    <!-- <h1>영화게이지MovieGage.vue </h1> -->
+
+    <p class="h4 fw-bolder" style="">영화 게이지</p>
+    <hr>
     <MovieGageEle
     v-for='(cnt, genre, index) in genresGage'
     :key='index'

@@ -1,22 +1,40 @@
 <template>
-  <div class="d-flex flex-column align-items-center">
-    <!-- <h1>프로필 정보</h1> -->
-
-    <!-- 프로필 이미지 -->
-    <div id="profile-image" class="border rounded-circle">
-      <img src="https://pbs.twimg.com/profile_images/799445590614495232/ii6eBROd_400x400.jpg" alt="프로필이미지"
-        sytle=""
-      >
+  <div>
+    <!-- 상위 타이틀 -->
+    <div class="h5">
+      <span class="h3" style="color: #00ABB3; font-weight: 900;">{{ profileOwner }}</span> 님의 프로필
     </div>
-    <div v-if='profileOwner != userInfo.userName'>
-      <button @click='doFollow' v-if='!isfollowed'>팔로우</button>
-      <button @click='doFollow' v-if='isfollowed'>팔로우 취소</button>
-    </div>
-    <h5>팔로우 : {{followsCount}} // 팔로잉 : {{ followingsCount }}</h5>
+    
+    <hr style="position: relative; top: 10px;" class="mb-4">
 
-    <!-- 유저 정보 -->
-    <div class="m-4">
-      <span class="h3" style="color: #00ABB3; font-weight: 900;">{{ profileOwner }}</span>
+    <div class="d-flex flex-column align-items-center">
+      <!-- <h1>프로필 정보</h1> -->
+
+      <!-- 프로필 이미지 -->
+      <div id="profile-image" class="border rounded-circle mb-4">
+        <img src="https://pbs.twimg.com/profile_images/799445590614495232/ii6eBROd_400x400.jpg" alt="프로필이미지"
+          sytle=""
+        >
+      </div>
+
+      <!-- 팔로잉/팔로우 여부-->
+      
+      <div class="mb-3">
+        <p class="h5"><span class="me-2">{{followsCount}} follower</span> | <span class="ms-2">{{ followingsCount }} following</span></p>
+      </div>
+
+      <div v-if='profileOwner != userInfo.userName'>
+        <button id="follow-button" class="p-2 rounded-pill" style="border: 0.15rem solid #00ABB3; background-color: white; color: #00ABB3; width: 100px;" 
+        @click='doFollow' v-if='!isfollowed'>팔로우</button>
+        <button class="p-2 rounded-pill" style="border: 0.15rem solid white; background-color: #00ABB3; color: white; width: 100px;" 
+        @click='doFollow' v-if='isfollowed'>언팔로우</button>
+      </div>
+
+
+      <!-- 유저 정보 -->
+      <div class="m-4">
+        
+      </div>
     </div>
   </div>
 </template>
@@ -67,5 +85,9 @@ export default {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+#follow-button:hover {
+  color: red;
 }
 </style>

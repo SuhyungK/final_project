@@ -12,7 +12,7 @@
     
     <div class="d-flex flex-column">
       
-      <div style="margin-top: -30px; z-index: 10000;">
+      <div style="z-index: 10000;">
         <TicketingPoster :movie='movie'
           :selectedDate='selectedDate'
           :selectedTimeData='selectedTimeData'

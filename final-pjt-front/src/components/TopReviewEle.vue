@@ -13,7 +13,7 @@
       <!-- 리뷰 작성자 정보 + 리뷰 내용 -->
       <div class="row" style="margin-left: -1px;">
         <!-- 리뷰 작성자 프로필 -->
-        <div class="col-2 rounded-circle overflow-hidden position-relative" style="width: 65px; height: 65px;">
+        <div @click="toProfile" class="col-2 rounded-circle overflow-hidden position-relative" style="width: 65px; height: 65px;">
           <img src="https://img.etoday.co.kr/pto_db/2020/06/600/20200615143258_1472639_640_640.jpg" alt="김수현"
             style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
           >
@@ -58,6 +58,11 @@ export default {
     content() {
       return this.review[4]
     },  
+  },
+  methods: {
+    toProfile() {
+      this.$router.push({name: 'ProfileView', params: {username: this.user}})
+    }
   }
 }
 </script>

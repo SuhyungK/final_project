@@ -11,8 +11,8 @@
         <img :src="`https://image.tmdb.org/t/p/original` + movie.poster_path"
           :alt="movie.title"
           style="width: 200px; cursor: pointer; height: 280px;"
-          class="me-3 rounded"
-
+          class="me-3 rounded"  
+          @click="toDetail"
         > 
         <div v-if="movie.isShow" class="rounded bg-dark position-absolute top-0 left-0 d-flex flex-column justify-content-center align-items-center" style="width: 200px; height: 280px; opacity: 0.7;">
           <button id="detail-button" class="w-75 mb-1 rounded-pill" style="padding: 0.2rem 0.1rem" @click="toMovieDetail">상세 보기</button>

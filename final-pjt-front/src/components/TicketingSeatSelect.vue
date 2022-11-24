@@ -1,6 +1,6 @@
 <template>
-  <div class='back'>
-    <h3>좌석선택 TicketingSeatSelect.vue</h3>
+  <div class='back rounded pb-5'>
+    <!-- <h3>좌석선택 TicketingSeatSelect.vue</h3> -->
 
     <div class='d-flex justify-content-center rrrr mb-3'>
       <div class='screen'></div>

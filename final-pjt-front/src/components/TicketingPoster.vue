@@ -22,9 +22,9 @@
           </p>
 
           <!-- 2. 영화 상영 시간 -->
-          <p v-if='!selectedTimeData' class="h4 p-1" style="color: #dee2e6;">시간 | 00:00</p>
+          <p v-if='!selectedTimeData' class="h4 p-1" style="color: #dee2e6;">시간 | 00시</p>
           <p v-if='selectedTimeData' class="h4 p-1 shadow-sm">시간 | 
-            <span style="color: #00ABB3; font-weight: 700;">:00</span>
+            <span style="color: #00ABB3; font-weight: 700;">{{ Timee }}</span>시
           </p>
           
           <!-- 3. 상영관 -->

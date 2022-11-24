@@ -2,8 +2,10 @@
   <div class='mb-5'>
     <!-- <h4>예매 시간 선택 TicketingTimeSelect.vue</h4> -->
     <!-- {{time}} -->
-    <h3 v-if='!time'>영화 시간을 선택해 주세요</h3>
-    <div class='d-flex flex-row justify-content-evenly fw-bold text-center fs-3'>
+    <!-- <h3 v-if='!time'>영화 시간을 선택해 주세요</h3> -->
+    <p class="h4 p-2 rounded-pill" style="background-color: #2c3e50; color: white;">시간</p>
+
+    <div class='d-flex flex-row justify-content-evenly fw-bold text-center fs-5'>
 
         <div id='9' :class="{ 'MouseOver': tigger==9, 'beforeMouseOver': tigger!=9}"
         @click='timeSelectM' @mouseover="mouseover" @mouseout="mouseout">

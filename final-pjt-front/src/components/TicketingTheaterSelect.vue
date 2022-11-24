@@ -1,9 +1,10 @@
 <template>
   <div class='mb-5'>
     <!-- 상영관 선택 TicketingTheaterSelect.vue -->
-
-    <h3 v-if='!theater'>상영관을 선택해 주세요</h3>
-    <div class='d-flex flex-row justify-content-evenly fw-bold text-center fs-3'>
+    
+    <p class="h4 p-2 rounded-pill" style="background-color: #2c3e50; color: white;">상영관</p>
+    <!-- <h3 v-if='!theater'>상영관을 선택해 주세요</h3> -->
+    <div class='d-flex flex-row justify-content-evenly fw-bold text-center fs-5'>
 
       <div id='1' :class="{ 'MouseOver': tigger==1, 'beforeMouseOver': tigger!=1}" 
       @click='theaterSelect1' @mouseover="mouseover" @mouseout="mouseout">
