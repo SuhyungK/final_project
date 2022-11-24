@@ -3,14 +3,14 @@
     <!-- 타이틀 -->
     <p class="header-title">
       Now Playing Movie
-      {{ npList }}
     </p>
 
     <!-- Now Playing Movie -->
     <div class="d-flex mb-4" style="overflow-x: scroll">
-
+    </div>
+      <NowPlayingItem/>
       <!-- Now Playing 개별 이미지 -->
-      <div v-for="(npMovie, i) in npList" :key="i"
+      <!-- <NowPlayingItem v-for="(npMovie, i) in npList" :key="i"
         class="now-play position-relative"
       >
         <div @mouseover="showBtn(i)" @mouseleave="hiddenBtn(i)">
@@ -21,7 +21,7 @@
           class="me-3 rounded"
         >
 
-         <!-- 마우스 올렸을 때 버튼 -->
+         마우스 올렸을 때 버튼
          {{ npMovie.isShow }}
           <div v-if="npMovie.isShow" class="rounded bg-dark position-absolute top-0 left-0 d-flex flex-column justify-content-center align-items-center" style="width: 200px; height: 280px; opacity: 0.7;">
             <button id="detail-button" class="w-75 mb-1 rounded-pill" style="padding: 0.2rem 0.1rem" @click="toMovieDetail">상세 보기</button>
@@ -29,20 +29,20 @@
           </div>
         </div>
  
-      </div>
-
-    </div>
+      </div> -->
 
    <hr>
   </div>
 </template>
 
 <script>
+import NowPlayingItem from '@/components/NowPlayingItem'
 import axios from 'axios'
 
 export default {
   name: 'NowPlayingMovie',
   components: {
+    NowPlayingItem
   },
   data() {
     return {
@@ -61,28 +61,28 @@ export default {
       //   }
       // })
   },
-  methods: {
+  // methods: {
     // moveToTicketing(movie) {
     //   console.log(movie.title)
     //   this.$router.push({name: 'MovieDetailView', params: {moviePk: movie.id}} )
     // },
-    showBtn(idx) {
-      this.nowPlayingMovieList[idx].isShow = true
-      console.log(this.npList[idx].movie.title, this.npList[idx].isShow)
-    },
-    hiddenBtn(idx) {
-      this.nowPlayingMovieList[idx].isShow = false
-      console.log(this.npList[idx].movie.title, this.npList[idx].isShow)
-    }
-  },
-  // methods: {
-  //   test(v) {
-  //     console.log(v)
-  //   },
-  //   showInfo() {
-  //     this.isShow = true
-  //   },
+    // showBtn(idx) {
+    //   this.nowPlayingMovieList[idx].isShow = true
+    //   console.log(this.npList[idx].movie.title, this.npList[idx].isShow)
+    // },
+    // hiddenBtn(idx) {
+    //   this.nowPlayingMovieList[idx].isShow = false
+    //   console.log(this.npList[idx].movie.title, this.npList[idx].isShow)
+    // }
   // },
+  methods: {
+    test(v) {
+      console.log(v)
+    },
+    showInfo() {
+      this.isShow = true
+    },
+  },
   created() {
     axios({
         method: 'get',

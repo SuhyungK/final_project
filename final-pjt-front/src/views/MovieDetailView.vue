@@ -41,7 +41,6 @@ export default {
       moviePk: this.$route.params.moviePk,
       myReviewShow: true,
       // movie: this.$store.state.movieinfo,
-
     }
   },
   components: {
