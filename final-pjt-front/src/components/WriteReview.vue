@@ -8,9 +8,9 @@
     </div>
 
     <hr>
-
+<!-- 
     {{ movieId }}
-    {{ userPk }}
+    {{ userPk }} -->
     <form @submit.prevent="reviewC">
       <label for="rating"> rating: </label>
       <input type="rating" id="rating" v-model="rating" @focus="expandInput"><br>

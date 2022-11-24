@@ -10,21 +10,21 @@
       <div v-for="(npMovie, i) in nowPlayingMovieList" :key="i"
         class="now-play"
       >
-        <div class="position-absolute d-flex flex-column justify-content-center" style="width: 100px;">
-          <button class="btn btn-success position absolute" id="button-mouse-hover" value="test">
+        <!-- <div class="position-absolute d-flex flex-column justify-content-center" style="width: 100px;">
+          <button class="rounded-pill position absolute button-design" id="button-mouse-hover" value="test" @>
             ??
           </button>
-          <button class="btn btn-warning position absolute" id="button-mouse-hover" value="test">
+          <button @click="moveToTicketing()" class="btn btn-warning position absolute" id="button-mouse-hover" value="test">
             ??
           </button>
-        </div>
+        </div> -->
         <img 
           :src="`https://image.tmdb.org/t/p/w500/` + npMovie.poster_path" 
           :alt="npMovie.title"
           @mouseover="showInfo" 
           style="width: 200px; cursor: pointer;"
           class="me-3 rounded"
-          @click="test(npMovie)"
+          @click="moveToTicketing(npMovie)"
         >
 
       </div>
@@ -46,6 +46,12 @@ export default {
     return {
       nowPlayingMovieList: [],
       showInfo: false,
+    }
+  },
+  methods: {
+    moveToTicketing(movie) {
+      console.log(movie.title)
+      this.$router.push({name: 'MovieDetailView', params: {moviePk: movie.id}} )
     }
   },
   created() {
@@ -87,5 +93,11 @@ export default {
 
 .now-play > img:hover {
   opacity: 0.7;
+}
+
+.button-design {
+  background-color: white;
+  border: .15rem solid gray;
+  color: gray;
 }
 </style>

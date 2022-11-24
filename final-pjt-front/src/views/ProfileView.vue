@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     <!-- <h1>프로필 페이지 ProfileView.vue</h1> -->
-    {{profileOwner}}
+    <!-- {{profileOwner}}
     {{this.$store.state.followingsList}}
-    {{this.$store.state.followsList}}
+    {{this.$store.state.followsList}} -->
     <div class="row mt-5">
 
       <div class="col-4">
@@ -73,12 +73,12 @@ export default {
 </script>
 
 <style>
-
+/* 
 .box {
   width : auto;
   height: auto;
   background-color: #f5d682;
   border: 1px solid red;
-}
+} */
 
 </style>

@@ -37,6 +37,11 @@ export default {
     MyReviews() {
       return this.$store.state.myReview;
     }
+  },
+  created() {
+    if (!this.myReview) {
+      this.$emit('noMyReview')
+    }
   }
 }
 </script>

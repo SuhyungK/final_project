@@ -17,7 +17,7 @@
       <div class="col-lg-7 col-md-12">
         <MovieDetail style="margin-bottom: 100px;" :movie='movie'/>
         <WriteReview :movieId='moviePk'/>
-        <ReviewList :movieId='moviePk'/>
+        <ReviewList @noMyReview="noMyReview" :movieId='moviePk'/>
       </div>
 
     </div>
@@ -37,7 +37,8 @@ export default {
     return {
       // movie: JSON.parse(this.$route.query.movie),
       moviePk: this.$route.params.moviePk,
-      movie: this.$store.state.movieinfo
+      movie: this.$store.state.movieinfo,
+      myReviewShow: ''
     }
   },
   components: {
@@ -45,6 +46,11 @@ export default {
     ReviewList,
     DetailPoster,
     WriteReview,
+  },
+  methods: {
+    noMyReview() {
+
+    }
   },
   mounted() {
     // console.log('무비 아이디', movie.id)
