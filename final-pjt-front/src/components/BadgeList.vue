@@ -1,35 +1,34 @@
 <template>
   <div>
     <h3> 뱃지 리스트 BadgeList.vue</h3>
-    <!-- {{defaultBadges[0].name}} -->
-    <!-- {{myBadges}} -->
+    <!-- {{defaultBadges}} -->
     <div>
       <div>
         <div class='d-flex flex-row justify-content-evenly'>
-          <p class='badge' v-if='myBadges[0].isGet'>{{defaultBadges[0].name}} 있는 배지</p>
-          <p class='locked' v-if='!myBadges[0].isGet'>{{defaultBadges[0].name}} 없는 배지</p>
-          <p class='badge' v-if='myBadges[1].isGet'>{{defaultBadges[1].name}} 있는 배지</p>
-          <p class='locked' v-if='!myBadges[1].isGet'>{{defaultBadges[1].name}} 없는 배지</p>
-          <p class='badge' v-if='myBadges[2].isGet'>{{defaultBadges[2].name}} 있는 배지</p>
-          <p class='locked' v-if='!myBadges[2].isGet'>{{defaultBadges[2].name}} 없는 배지</p>
+          <img class='badge_size' v-if='!myBadges[0].isGet' :title='`${defaultBadges[0].before_get}`' src="@/assets/images/badge_lock.png">
+          <img class='badge_size' v-if='myBadges[0].isGet' :title='`${defaultBadges[0].after_get}`' src="@/assets/images/badge_movie_a.png">
+          <img class='badge_size' v-if='!myBadges[1].isGet' :title='`${defaultBadges[1].before_get}`' src="@/assets/images/badge_lock.png">
+          <img class='badge_size' v-if='myBadges[1].isGet' :title='`${defaultBadges[1].after_get}`' src="@/assets/images/badge_movie_b.png">
+          <img class='badge_size' v-if='!myBadges[2].isGet' :title='`${defaultBadges[2].before_get}`' src="@/assets/images/badge_lock.png">
+          <img class='badge_size' v-if='myBadges[2].isGet' :title='`${defaultBadges[2].after_get}`' src="@/assets/images/badge_movie_c.png">
         </div>
         <div class='d-flex flex-row justify-content-evenly'>
-          <p class='badge' v-if='myBadges[3].isGet'>{{defaultBadges[3].name}} 있는 배지</p>
-          <p class='locked' v-if='!myBadges[3].isGet'>{{defaultBadges[3].name}} 없는 배지</p>
-          <p class='badge' v-if='myBadges[4].isGet'>{{defaultBadges[4].name}} 있는 배지</p>
-          <p class='locked' v-if='!myBadges[4].isGet'>{{defaultBadges[4].name}} 없는 배지</p>
-          <p class='badge' v-if='myBadges[5].isGet'>{{defaultBadges[5].name}} 있는 배지</p>
-          <p class='locked' v-if='!myBadges[5].isGet'>{{defaultBadges[5].name}} 없는 배지</p>
+          <img class='badge_size' v-if='!myBadges[3].isGet' :title='`${defaultBadges[3].before_get}`' src="@/assets/images/badge_lock.png">
+          <img class='badge_size' v-if='myBadges[3].isGet' :title='`${defaultBadges[3].after_get}`' src="@/assets/images/badge_review_a.png">
+          <img class='badge_size' v-if='!myBadges[4].isGet' :title='`${defaultBadges[4].before_get}`' src="@/assets/images/badge_lock.png">
+          <img class='badge_size' v-if='myBadges[4].isGet' :title='`${defaultBadges[4].after_get}`' src="@/assets/images/badge_review_b.png">
+          <img class='badge_size' v-if='!myBadges[5].isGet' :title='`${defaultBadges[5].before_get}`' src="@/assets/images/badge_lock.png">
+          <img class='badge_size' v-if='myBadges[5].isGet' :title='`${defaultBadges[5].after_get}`' src="@/assets/images/badge_review_c.png">
         </div>
         <div class='d-flex flex-row justify-content-evenly'>
-          <p class='badge' v-if='myBadges[6].isGet'>{{defaultBadges[6].name}} 있는 배지</p>
-          <p class='locked' v-if='!myBadges[6].isGet'>{{defaultBadges[6].name}} 없는 배지</p>
-          <p class='badge' v-if='myBadges[7].isGet'>{{defaultBadges[7].name}} 있는 배지</p>
-          <p class='locked' v-if='!myBadges[7].isGet'>{{defaultBadges[7].name}} 없는 배지</p>
-          <p class='badge' v-if='myBadges[8].isGet'>{{defaultBadges[8].name}} 있는 배지</p>
-          <p class='locked' v-if='!myBadges[8].isGet'>{{defaultBadges[8].name}} 없는 배지</p>
-        </div>
+          <img class='badge_size' v-if='!myBadges[6].isGet' :title='`${defaultBadges[6].before_get}`' src="@/assets/images/badge_lock.png">
+          <img class='badge_size' v-if='myBadges[6].isGet' :title='`${defaultBadges[6].after_get}`' src="@/assets/images/badge_follow_a.png">
+          <img class='badge_size' v-if='!myBadges[7].isGet' :title='`${defaultBadges[7].before_get}`' src="@/assets/images/badge_lock.png">
+          <img class='badge_size' v-if='myBadges[7].isGet' :title='`${defaultBadges[7].after_get}`' src="@/assets/images/badge_follow_b.png">
+          <img class='badge_size' v-if='!myBadges[8].isGet' :title='`${defaultBadges[8].before_get}`' src="@/assets/images/badge_lock.png">
+          <img class='badge_size' v-if='myBadges[8].isGet' :title='`${defaultBadges[8].after_get}`' src="@/assets/images/badge_follow_c.png">
       </div>  
+        </div>
     
     </div>
   
@@ -46,24 +45,33 @@ export default {
     defaultBadges() {
       return this.$store.state.defaultBadges
     },
-  }
+  },
 }
 </script>
 
 <style>
 
-.badge {
-  width : 100px;
-  height: 100px;
-  background-color: #10a3e2;
-  border: 1px solid red;
+.badge_size {
+  width : 150px;
+  height : 150px;
 }
 
-.locked {
-  width : 100px;
-  height: 100px;
-  background-color: #43494b;
-  border: 1px solid red;
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 
 </style>
