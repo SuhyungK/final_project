@@ -31,13 +31,15 @@ import ReviewList from '@/components/ReviewList'
 import DetailPoster from '@/components/DetailPoster'
 import WriteReview from '@/components/WriteReview'
 
+// import axios from 'axios'
+
 export default {
   name: 'MovieDetailView',
   data() {
     return {
       // movie: JSON.parse(this.$route.query.movie),
       moviePk: this.$route.params.moviePk,
-      movie: this.$store.state.movieinfo,
+      // movie: this.$store.state.movieinfo,
       myReviewShow: ''
     }
   },
@@ -52,16 +54,18 @@ export default {
 
     }
   },
+  computed: {
+    movie() {
+      return this.$store.state.movieinfo
+    }
+  },
   mounted() {
     // console.log('무비 아이디', movie.id)
     // this.movie = JSON.parse(this.$route.query.movie)
     this.$store.dispatch('checkMovie', this.moviePk)
     this.$store.dispatch('movieReviews', this.moviePk)
   },
-  beforeRouteUpdate(to, from, next) {
-    console.log(to)
-    next({name: 'MovieDetailView', params: {movie: to.params.moviePk}})
-  }
+
 }
 </script>
 

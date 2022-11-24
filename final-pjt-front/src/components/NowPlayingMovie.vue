@@ -21,7 +21,6 @@
         <img 
           :src="`https://image.tmdb.org/t/p/w500/` + npMovie.poster_path" 
           :alt="npMovie.title"
-          @mouseover="showInfo" 
           style="width: 200px; cursor: pointer;"
           class="me-3 rounded"
           @click="moveToTicketing(npMovie)"
@@ -60,8 +59,18 @@ export default {
         url: 'https://api.themoviedb.org/3/movie/now_playing?api_key=26f430349f35e05f01c48db888f30795&language=ko-KR&page=1&region=KR'
     })
       .then((res) => {
-        this.nowPlayingMovieList = res.data.results
+        console.log(this.$store.state.myPayedMovies)
+        const tmp = this.$store.state.myPayedMovies.map((ele) => {
+          return ele.movie_id
+        })
+        let tmp2 = res.data.results.filter((ele) => {
+          return !tmp.includes(ele.id)
+        })
+        this.nowPlayingMovieList = tmp2
       })
+  },
+  beforeCreate() {
+    this.$store.dispatch('reqMyPayedMovies', this.$store.state.userInfo.userName)
   }
 }
 </script>
