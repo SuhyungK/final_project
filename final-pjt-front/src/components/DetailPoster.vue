@@ -21,6 +21,9 @@ export default {
     movie: Object,
   },
   data() {
+    return {
+      
+    }
   },
   computed: {
   },
