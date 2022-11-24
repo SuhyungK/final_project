@@ -16,8 +16,8 @@
       </div>
       <hr class="mt-0">
       <!-- <MymovieList/> -->
-      <div class="row row-cols-6">
-        <MyMovies class=""
+      <div class="row row-cols-6 ms-2">
+        <MyMovies class="m-0 p-0"
         v-for='movie in myLikeMoviesDetail'
         :key='movie.id'
         :movie='movie'/>

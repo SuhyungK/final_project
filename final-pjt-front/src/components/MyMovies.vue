@@ -1,13 +1,14 @@
 <template>
-  <div>
-    <div v-if='isLike && !isTicketed' 
-      style="position: relative; width: 200px; height: 350px; overflow: hidden;"
-      @mouseover="showBtn"
-      @mouseleave="hiddenBtn"
-      >
+  <div v-if='isLike && !isTicketed' 
+    class="me-3"
+    style="position: relative; width: 200px; height: 350px;"
+    @mouseover="showBtn"
+    @mouseleave="hiddenBtn"
+    >
+    <div>
       <!-- <h3>내가 관심있는 영화 MyMovies.vue</h3> -->
       <img class="rounded w-100" style="height: 280px;" :src='`https://image.tmdb.org/t/p/w500${movie.poster_path}`' alt="no image">
-      <p class="h5 w-100 mt-2" style="white-space:nowrap; text-overflow: ellipsis; height: 26px;">{{movie.title}}</p>
+      <p class="h5 w-100 mt-2" style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; height: 26px;">{{movie.title}}</p>
       <!-- <button @click='cancelLike'>관심영화 제거하기</button> -->
 
       <div v-if="isShow" class="rounded w-100 bg-dark position-absolute top-0 left-0 d-flex flex-column justify-content-center align-items-center" style="height: 280px; opacity: 0.7;">

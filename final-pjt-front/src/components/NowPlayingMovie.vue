@@ -3,25 +3,27 @@
     <!-- 타이틀 -->
     <p class="header-title">
       Now Playing Movie
+      {{ npList }}
     </p>
 
     <!-- Now Playing Movie -->
     <div class="d-flex mb-4" style="overflow-x: scroll">
 
       <!-- Now Playing 개별 이미지 -->
-      <div v-for="(npMovie, i) in nowPlayingMovieList" :key="i"
+      <div v-for="(npMovie, i) in npList" :key="i"
         class="now-play position-relative"
       >
-        <div @mouseover="showBtn" @mouseleave="hiddenBtn">
+        <div @mouseover="showBtn(i)" @mouseleave="hiddenBtn(i)">
           <img 
-          :src="`https://image.tmdb.org/t/p/w500/` + npMovie.poster_path" 
+          :src="`https://image.tmdb.org/t/p/w500/` + npMovie.movie.poster_path" 
           :alt="npMovie.title"
           style="width: 200px; cursor: pointer; height: 280px;"
           class="me-3 rounded"
         >
 
          <!-- 마우스 올렸을 때 버튼 -->
-          <div v-if="isShow" class="rounded w-100 bg-dark position-absolute top-0 left-0 d-flex flex-column justify-content-center align-items-center" style="height: 280px; opacity: 0.7;">
+         {{ npMovie.isShow }}
+          <div v-if="npMovie.isShow" class="rounded bg-dark position-absolute top-0 left-0 d-flex flex-column justify-content-center align-items-center" style="width: 200px; height: 280px; opacity: 0.7;">
             <button id="detail-button" class="w-75 mb-1 rounded-pill" style="padding: 0.2rem 0.1rem" @click="toMovieDetail">상세 보기</button>
             <button id="ticket-button" class="w-75 mt-1 rounded-pill" style="padding: 0.2rem 0.1rem" @click="ticketing">예매 하기</button>
           </div>
@@ -45,19 +47,32 @@ export default {
   data() {
     return {
       nowPlayingMovieList: [],
-      isShow: false,
     }
+  },
+  computed: {
+    npList() {
+      const tmp = this.nowPlayingMovieList.map()
+      return tmp
+    }
+      // return this.nowPlayingMovieList.map((movie) => {
+      //   return {
+      //     movie: movie.movie,
+      //     isShow: movie.isShow
+      //   }
+      // })
   },
   methods: {
     // moveToTicketing(movie) {
     //   console.log(movie.title)
     //   this.$router.push({name: 'MovieDetailView', params: {moviePk: movie.id}} )
     // },
-    showBtn() {
-      this.isShow = true
+    showBtn(idx) {
+      this.nowPlayingMovieList[idx].isShow = true
+      console.log(this.npList[idx].movie.title, this.npList[idx].isShow)
     },
-    hiddenBtn() {
-      this.isShow = false
+    hiddenBtn(idx) {
+      this.nowPlayingMovieList[idx].isShow = false
+      console.log(this.npList[idx].movie.title, this.npList[idx].isShow)
     }
   },
   created() {
@@ -73,11 +88,20 @@ export default {
         let tmp2 = res.data.results.filter((ele) => {
           return !tmp.includes(ele.id)
         })
-        this.nowPlayingMovieList = tmp2
+        this.nowPlayingMovieList = tmp2.map((movie) => {
+          return {
+            movie: movie, 
+            isShow: false,
+          }
+        })
+        
       })
   },
   beforeCreate() {
     this.$store.dispatch('reqMyPayedMovies', this.$store.state.userInfo.userName)
+  },
+  mounted() {
+    
   }
 }
 </script>

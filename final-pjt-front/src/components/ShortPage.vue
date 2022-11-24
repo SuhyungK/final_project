@@ -56,7 +56,7 @@
     </div>
     <hr>
     <router-view></router-view>
-    {{thislike}}
+    <!-- {{thislike}} -->
   </div>
 </template>
 
