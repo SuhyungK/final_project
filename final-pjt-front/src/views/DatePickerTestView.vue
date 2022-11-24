@@ -3,7 +3,7 @@
     <h1>데이트 피커 테스트 DatePickerTestView.vue</h1>
     <date-picker v-model="datepicker" valueType="YYYYMMDD"></date-picker>
     {{datepicker}}
-
+    
     <hr>
     {{ nowDate }}
     <hr>
