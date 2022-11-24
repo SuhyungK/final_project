@@ -46,7 +46,9 @@ export default {
       console.log(this.npList[idx].movie.title, this.npList[idx].isShow)
     },
     toDetail(movie) {
-      this.$router.push({name: 'MovieDetailView', params: {moviePk: movie.movie_id}})
+      console.log('!!!!!!!!!!!!!!!!!!')
+      console.log(movie)
+      this.$router.push({name: 'MovieDetailView', params: {moviePk: movie.id}})
     }
   },
   mounted() {
