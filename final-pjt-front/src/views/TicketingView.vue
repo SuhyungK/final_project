@@ -48,8 +48,8 @@ export default {
   },
   data() {
     return {
-      movie: this.$route.params.movie,
-
+      // movie: this.$route.params.movie,
+      movie: this.$store.state.movieinfo,
       selectedDate: null,
       selectedTimeData: null,
       selectedTheaterData: null,
@@ -86,6 +86,10 @@ export default {
     } else {
       this.$store.dispatch('clearSeat')
     }
+  },
+  beforeCreate() {
+    const moviePk = this.$route.params.moviePk
+    this.$store.dispatch('chcekMovie', moviePk)
   }
 }
 </script>

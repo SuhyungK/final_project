@@ -22,7 +22,7 @@ export default {
   },
   methods: {
     ticketing() {
-      this.$router.push({name:'TicketingView', params: {movie: this.movie}})
+      this.$router.push({name:'TicketingView', params: {moviePk: this.movie.movie_id}})
     },
     toMovieDetail() {
       // console.log('MyMovies.vue 에서 toMovieDetail 함수 실행', this.movie.movie_id)

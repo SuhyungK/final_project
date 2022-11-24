@@ -19,7 +19,7 @@ export default {
   methods: {
     toTicketing() {
       // this.$router.push({ name: 'TicketingView' })
-      this.$router.push({name:'TicketingView', params: {movie: this.movie}})
+      this.$router.push({name:'TicketingView', params: {movie: this.movie.movie_id}})
     }
   },
 }
