@@ -1,5 +1,5 @@
 <template>
-  <div class='my-4'>
+  <div class=''>
     <!-- <h1>날짜선택 DatePickerSelect.vue</h1> -->
     <div class='datepickerbox'>
       <br><span v-show='vshow'>{{selectedTheaterData}}</span><br><br><br><br><br><br>

@@ -20,10 +20,10 @@
           @payment='payment'/>
       </div>
     
-      <div class="">
+      <div class="d-flex flex-column align-items-center">
         <DatePickerSelect class="" @sendData='sendData'/>
         <!-- @reqClearResSeat='reqClearResSeat'/> -->
-        <TicketingSeatSelect class="border" v-if='selectedTheaterData'
+        <TicketingSeatSelect class="" v-show='selectedTheaterData'
         :selectedTheaterData="selectedTheaterData"
         @payment='payment'/>
       </div>

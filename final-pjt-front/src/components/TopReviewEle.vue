@@ -2,16 +2,33 @@
   <div class="row px-2">
     <!-- 영화 포스터 -->
     <div id="mini-poster-container" class="col-2">
-      <img class='' :src="`https://image.tmdb.org/t/p/original${posterurl}`" alt="영화이미지">
+      <img class="rounded" :src="`https://image.tmdb.org/t/p/original${posterurl}`" alt="영화이미지">
     </div>
 
-    <div class="col-10">
-      <p>영화이름: {{ title }}</p>
-      <!-- 내용 -->
-      <div>
-        내용 : {{ content }}
+    <div class="col-10 text-start">
+
+      <!-- 영화 제목 -->
+      <p class="h4 mb-3" style="font-weight: 700;">{{ title }}</p>
+
+      <!-- 리뷰 작성자 정보 + 리뷰 내용 -->
+      <div class="row" style="margin-left: -1px;">
+        <!-- 리뷰 작성자 프로필 -->
+        <div class="col-2 rounded-circle overflow-hidden position-relative" style="width: 65px; height: 65px;">
+          <img src="https://img.etoday.co.kr/pto_db/2020/06/600/20200615143258_1472639_640_640.jpg" alt="김수현"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;"
+          >
+          1
+        </div>
+        <div class="col-10 d-flex flex-column">
+          <!-- 리뷰 작성자 이름 -->
+          <span class="h5 fw-bold">{{ user }}</span>
+
+          <!-- 리뷰 내용 -->
+          <p class="text-justify">{{ content }}</p>
+        </div>
+
       </div>
-      작성자 : {{ user }}
+      
 
     </div>
 

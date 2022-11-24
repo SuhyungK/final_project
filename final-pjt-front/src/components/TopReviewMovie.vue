@@ -26,8 +26,7 @@ export default {
   computed: {
     TopReviewMovies() {
       return this.$store.state.TopReviewMovies
-
-    }
+    },
   }
 }
 </script>
