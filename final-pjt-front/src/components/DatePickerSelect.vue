@@ -10,7 +10,7 @@
         <p v-if='datepicker && !possibleDate' class="h6" style="color: red;">예매가능한 시간이 아닙니다<br>다시 선택해주세요</p>
         <br>
         <date-picker v-model="datepicker" valueType="YYYYMMDD"></date-picker>
-        <div v-if="!possibleDate" class="w-100" style="height: 300px;">
+        <div v-if="!possibleDate" class="w-100" style="height: 600px;">
           <span style="color: white">1</span>
         </div>
       </div>

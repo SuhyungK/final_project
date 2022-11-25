@@ -66,8 +66,8 @@ export default {
       console.log(item, event)
     },
     toDetail(movie) {
-      console.log(movie)
-      this.$router.push({name: 'DetailView', params: {moviePk: movie.movie_id}})
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!',movie)
+      this.$router.push({name: 'MovieDetailView', params: {moviePk: movie.movie_id}})
     }
   }
 }

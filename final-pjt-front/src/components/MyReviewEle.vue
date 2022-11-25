@@ -2,17 +2,18 @@
   <div class="row px-2">
 
     <!-- 영화 포스터 -->
-    <div id="mini-poster-container" class="col-2">
-      <img class='rounded' :src="`https://image.tmdb.org/t/p/original${posturl}`" alt="영화이미지">
+    <div id="mini-poster-container" class="col-2" @click="toDetail">
+      <img class='rounded' :src="`https://image.tmdb.org/t/p/original${posturl}`" alt="영화이미지"
+      >
     </div>
 
     <!-- 영화 제목 + 내용 -->
-    <div class="col-10">
+    <div class="col-10 mb-3">
       <p class="h6 text-start mb-3" style="font-weight: 700;">{{ movietitle }}</p>
       <!-- <p class="fs-6 text-start pt-0 mt-0">{{ movieogtitle }}</p> -->
       <p class="text-start">{{ review.content }}</p>
     </div>
- 
+    <hr class="mt-3">
   </div>
 </template>
 
@@ -29,6 +30,11 @@ export default {
       posturl: 'xx',
       movietitle : '',
       movieogtitle: '',
+    }
+  },
+  methods: {
+    toDetail() {
+      this.$router.push({name: 'MovieDetailView', params: {moviePk: this.review.movie_id}} )
     }
   },
   created() {

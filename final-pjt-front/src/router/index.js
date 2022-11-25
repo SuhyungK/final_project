@@ -13,6 +13,7 @@ import TmpView from '@/views/TmpView'
 import TmpReviewC from '@/views/TmpReviewC'
 import TmpBadgeDataCreate from '@/views/TmpBadgeDataCreate'
 import DatePickerTestView from '@/views/DatePickerTestView'
+import PaymentView from '@/views/PaymentView'
 
 import store from '@/store/index.js'
 
@@ -93,6 +94,11 @@ const routes = [
     path: '/DatePickerTestView',
     name: 'DatePickerTestView',
     component: DatePickerTestView
+  },
+  {
+    path: '/PaymentView',
+    name: 'PaymentView',
+    component: PaymentView
   }
 ]
 

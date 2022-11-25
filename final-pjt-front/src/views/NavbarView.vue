@@ -164,7 +164,7 @@ export default {
         }
     },
     clearSearchList() {
-      this.searchMovieList = []
+      this.$store.state.searchMovieList = []
     }
   },
   created() {

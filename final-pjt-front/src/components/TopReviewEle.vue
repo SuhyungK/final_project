@@ -2,7 +2,9 @@
   <div class="row px-2">
     <!-- 영화 포스터 -->
     <div id="mini-poster-container" class="col-2">
-      <img class="rounded" :src="`https://image.tmdb.org/t/p/original${posterurl}`" alt="영화이미지">
+      <img class="rounded" :src="`https://image.tmdb.org/t/p/original${posterurl}`" alt="영화이미지"
+        @click="toDetail"
+      >
     </div>
 
     <div class="col-10 text-start">
@@ -62,6 +64,9 @@ export default {
   methods: {
     toProfile() {
       this.$router.push({name: 'ProfileView', params: {username: this.user}})
+    },
+    toDetail() {
+      this.$router.push({name: 'MovieDetailView', params: {moviePk: this.review.movie}})
     }
   }
 }

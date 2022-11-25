@@ -28,7 +28,7 @@
         </div>
       </form>
 
-      <button class="button" @click="toIndex">로그인(Index)</button>
+      <!-- <button class="button" @click="toIndex">로그인(Index)</button> -->
       <!-- <button @click='toSignUp'>회원가입</button> -->
 
     </div>

@@ -27,7 +27,7 @@
                 style="z-index: 99999; opacity: 0.7; bottom: 5px; right: 5px; font-size: 30px; width: 50px; height: 50px; background-color: #FFFFFF;"
                 >
                 <i @click="likeMovie(index)" v-if="!thislike[index]" id="likeLike" class="bi bi bi-suit-heart"></i>
-                <i @click="likeMovie(index)" v-if="thislike[index]" id="likeLike" class="bi bi bi-suit-heart-fill"></i>
+                <i @click="likeMovie(index)" v-if="thislike[index]" id="likeLike" class="bi bi bi-suit-heart-fill" style="color: red;"></i>
                 <!-- <i class="bi bi-suit-heart"></i> -->
               </div>
 

@@ -1,6 +1,8 @@
 <template>
-  <div>
-    <h3> 뱃지 리스트 BadgeList.vue</h3>
+  <div class="p-3 mb-3">
+    <!-- <h3> 도전 과제</h3> -->
+    <p class="text-start h4 fw-bolder ">도전 과제</p>
+    <hr>
     <!-- {{defaultBadges}} -->
     <div>
       <div>
