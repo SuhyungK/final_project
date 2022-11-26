@@ -1,7 +1,7 @@
 <template>
 <!-- 인덱스 페이지 -->
   <div class="container">    
-    
+    <!-- <NavbarPage/> -->
     <!-- 쇼츠 영상 재생 / 상위 -->
     <ShortPage class="mt-4"/>
 
@@ -34,32 +34,44 @@ export default {
     TopReviewMovie,
     UpcomingMovie,
   },
-  data() {
-    return {
-    }
-  },
+  
   created() {
-    // this.$store.dispatch('myLikeMovies') // 인덱스 페이지 오면 유저가 좋아요한 영화 pk 수집
-  },
-  mounted() {
     const tmp = this.$store.getters.isLogin
     if (!tmp) {
       alert('로그인이 필요한 서비스 입니다!')
       // this.$router.push({name:'LoginView'})
     }
+    this.$store.dispatch('myLikeMovies')
+    this.$store.dispatch('topReviewMovie')
+    this.$store.dispatch('badgeUpdate')
   },
+  mounted() {
+    this.$store.dispatch('defaultBadges') // 뱃지 표본 불러오기
+    this.$store.dispatch('myBadges', this.$store.state.userInfo.userName) // 내 뱃지들 불러오기
+    this.$store.dispatch('badgeUpdate')
+    this.$store.dispatch('algorithmRecommendedMovies') // 추천 영화 뽑기
+  },
+
 }
 
 </script>
 
 <style>
-
 .button-nav-list {
   all: unset;
   font-weight: 900;
   font-size: 16px;
 }
 
+<<<<<<< HEAD
+.button-nav-list {
+  all: unset;
+  font-weight: 900;
+  font-size: 16px;
+}
+
+=======
+>>>>>>> c7de071afecee823faa963f5c76248615a72cf18
 .button-nav-list:hover {
   cursor: pointer;
   color: #00ABB3;
@@ -82,5 +94,8 @@ export default {
 #nav-bar-search > i {
   cursor: pointer;
 }
+<<<<<<< HEAD
 
+=======
+>>>>>>> c7de071afecee823faa963f5c76248615a72cf18
 </style>

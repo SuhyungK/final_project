@@ -1,12 +1,14 @@
-<template>
+<template>   
   <div id="app">
-    <div v-if="this.$store.getters.isLogin" class="sticky-top my-0 bg-light">
+    <!-- <div v-if="this.$store.getters.isLogin" class="my-0 bg-light"> -->
+    <div v-if="isNavShow" class="my-0 bg-light">
       
-      <NavbarView class="container py-3"/>
+      <NavbarView class="container py-3 bg-light"/>
     </div>
-    <router-view/>
+    <router-view :key="$route.fullPath"/>
 
-    <footer class="mt-4 mb-5">
+    <!-- <footer v-if="this.$store?.getters?.isLogin?true:false" class="mt-4 mb-5"> -->
+    <footer v-if="isNavShow" class="mt-4 mb-5">
       <p class="h4 fst-italic" style="font-weight: 900;">FOOTER</p>
     </footer>
   </div>
@@ -22,28 +24,39 @@ export default {
   },
   data() {
     return {
-      isNavShow: null,
+      isNavShow: true,
     }
   },
-  // beforeRouteUpdate(to, from, next) {
-  //   const thisPathname = document.location.pathname
-  //   if (thisPathname === '/Login' || thisPathname === '/sign-up') {
-  //     this.isNavShow = false
-  //     next()
-  //   } else {
-  //     this.isNavShow = true
-  //     next()
-  //   }
-  // },
-  // created() {
-  //   // this.$router.push({ name: 'LoginView' })
-  //   const thisPathname = document.location.pathname
-  //   if (thisPathname === '/Login' || thisPathname === '/sign-up') {
-  //     this.isNavShow = false
-  //   } else {
-  //     this.isNavShow = true
-  //   }
-  // },
+  methods: {
+    notShowNavBar() {
+      const thisPathname = document.location.pathname
+      if (thisPathname === '/Login' || thisPathname === '/sign-up') {
+        this.isNavShow = false
+      } else {
+        this.isNavShow = true
+      }
+    }
+  },
+  beforeRouteUpdate(to, from, next) {
+    const thisPathname = document.location.pathname
+    if (thisPathname === '/Login' || thisPathname === '/sign-up') {
+      this.isNavShow = false
+      next()
+    } else {
+      this.isNavShow = true
+      next()
+    }
+  },
+  beforeCreate() {
+    // this.$router.push({ name: 'LoginView' })
+    this.notShowNavBar()
+  },
+  created() {
+  },
+  updated() {
+    // this.$router.push({ name: 'LoginView' })
+    this.notShowNavBar()
+  },
 }
 </script>
 
@@ -75,5 +88,9 @@ export default {
 
 .text-hover {
   color: #00ABB3;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 </style>

@@ -16,10 +16,10 @@ export default {
   },
   methods: {
     createReview() {
-      this.$router.push({name: 'TmpReviewC', params:{movieId: this.movie.id}})
+      this.$router.push({name: 'TmpReviewC', params:{movieId: this.movie.movie_id}})
     },
     likeMovie() {
-      this.$store.dispatch('likeMovie', this.movie.id)
+      this.$store.dispatch('likeMovie', this.movie.movie_id)
     }
   },
   computed: {

@@ -1,26 +1,27 @@
 <template>
   <div class="container">
-    <div class="mt-5 mb-3 row">
-      <!-- 프로필 정보 -->
-      <div class="col-4 border d-flex flex-column">
-        <ProfileInfomation/>
-        <MovieGage/>
+    <!-- <h1>프로필 페이지 ProfileView.vue</h1> -->
+    <!-- {{profileOwner}}
+    {{this.$store.state.followingsList}}
+    {{this.$store.state.followsList}} -->
+    <div class="row mt-5">
+
+      <div class="col-4">
+        <ProfileInfomation class="mb-2"
+        :profileOwner='profileOwner'/>
+        <MovieGage class="box"/>
       </div>
 
-      <!-- 프로필 정보 외 -->
-      <div class="col-8 border d-flex flex-column">
-        <!-- 예매 정보 & 뱃지 정보 -->
-        <div class="row row-cols-2">
-          <TickedMovie/>
-          <BadgeList/>
+
+      <div class="col-8">
+        <TickedMovieList class="box mb-4"/>
+        <div class="">
+        <BadgeList class="box"/>
+        <MyReviews class="box"
+        :profileOwner='profileOwner'/>
         </div>
-        
-        <!-- 내가 좋아요 한 영화? -->
-        <MymovieList/>
-
-        <!-- 내가 쓴 리뷰 -->
-        <MyReview/>
       </div>
+
     </div>
   </div>
 </template>
@@ -28,27 +29,53 @@
 <script>
 import ProfileInfomation from '@/components/ProfileInfomation'
 import MovieGage from '@/components/MovieGage'
-import TickedMovie from '@/components/TickedMovie'
+import TickedMovieList from '@/components/TickedMovieList'
 import BadgeList from '@/components/BadgeList'
-import MymovieList from '@/components/MymovieList'
-import MyReview from '@/components/MyReview'
+import MyReviews from '@/components/MyReviews'
 
 export default {
   name: 'ProfileView',
   components: {
     ProfileInfomation,
     MovieGage,
-    TickedMovie,
+    TickedMovieList,
     BadgeList,
-    MymovieList,
-    MyReview,
+    MyReviews,
   },
-  created() {
-    this.$store.dispatch('myLikeMovies') // 인덱스 페이지 오면 유저가 좋아요한 영화 pk 수집
+  data() {
+    return {
+      profileOwner: this.$route.params.username
+    }
+  },
+  computed: {
+    myBadges() {
+      return this.$store.state.myBadges
+    },
+  },
+  mounted() {
+    
+    },
+  beforeCreate() {
+    this.$store.dispatch('myReview', this.$route.params.username) // 리뷰 불러오기
+    this.$store.dispatch('reqMyPayedMovies', this.$route.params.username) // 내가 예매한 영화 불러오기
+    // this.$store.dispatch('myMovieGenres') // 게이지 데이터 뽑기
+    this.$store.dispatch('reqFollowingsList', this.$route.params.username)
+    this.$store.dispatch('reqFollowsList', this.$route.params.username)
   }
+
+
+
+  
 }
 </script>
 
 <style>
+/* 
+.box {
+  width : auto;
+  height: auto;
+  background-color: #f5d682;
+  border: 1px solid red;
+} */
 
 </style>

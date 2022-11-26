@@ -7,8 +7,23 @@ import Carousel3d from 'vue-carousel-3d';
 import 'bootstrap/dist/css/bootstrap.css'
 import "bootstrap-icons/font/bootstrap-icons.css";
 
+// 부트 스트랩
+import { BootstrapVue, IconsPlugin }  from 'bootstrap-vue'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
+Vue.use(BootstrapVue)
+Vue.use(IconsPlugin)
+
+// ShortPage
+import VueYoutube from 'vue-youtube'
+import Carousel3d from 'vue-carousel-3d'
 Vue.use(Carousel3d)
 Vue.use(VueYoutube)
+
+// 작성 시간 계산
+import vueMoment from 'vue-moment'
+Vue.use(vueMoment)
+
 Vue.config.productionTip = false
 
 new Vue({

@@ -1,11 +1,12 @@
 <template>
-  <div id="container" class="d-flex justify-content-center align-items-center">
+  <div id="container" :style="cssVars" class="d-flex justify-content-center align-items-center"
+    > 
     <!-- <iframe :src="src" title="YouTube video player" frameborder="0" autoplay="1" allow="autoplay; encrypted-media">
 
     </iframe> -->
     <div id="login-container" class="d-inline-block text-white d-flex flex-column">
       <div class="d-flex justify-content-start">
-        <p class="mb-5 mt-2" style="color:red;" id="login-place">LOGIN</p>
+        <p class="h3 mb-4 mt-2" id="login-place" style="font-weight: 900;">LOGIN</p>
       </div>
       <form @submit.prevent="logIn">
         <div class="form-floating mb-3">
@@ -27,7 +28,7 @@
         </div>
       </form>
 
-      <button class="button" @click="toIndex">로그인(Index)</button>
+      <!-- <button class="button" @click="toIndex">로그인(Index)</button> -->
       <!-- <button @click='toSignUp'>회원가입</button> -->
 
     </div>
@@ -41,6 +42,24 @@ export default {
     return {
       username: '',
       password: '',
+      bgIdx: '',
+      bgList: [
+        '/jYEW5xZkZk2WTrdbMGAPFuBqbDc.jpg',
+        '/mDfJG3LC3Dqb67AZ52x3Z0jU0uB.jpg',
+        '/urDWNffjwmNi5IQaezw9GwqkUXa.jpg',
+        '/mqsPyyeDCBAghXyjbw4TfEYwljw.jpg',
+        '/kWYfW2Re0rUDE6IHhy4CRuKWeFr.jpg',
+        '/dVr11o9or7AS8AMPfwjSpEU83iU.jpg',
+        '/14QbnygCuTO0vl7CAFmPf1fgZfV.jpg',
+        '/r17jFHAemzcWPPtoO0UxjIX0xas.jpg',
+        
+      ],
+      bgImg: ''
+    }
+  },
+  computed: {
+    cssVars() {
+      return 'background-image : url(https://image.tmdb.org/t/p/original' + this.bgList[Math.ceil(Math.random() * 5)] + '); background-size: cover;'
     }
   },
   computed: {
@@ -69,6 +88,10 @@ export default {
       this.$router.push({name: 'SignUpView'})
     }
   },
+  mounted() {
+    this.bgIdx = Math.ceil(Math.random()*10)
+    this.bgImg = 'https://image.tmdb.org/t/p/original' + this.bgList[this.bgIdx]
+  }
 }
 </script>
 
@@ -77,7 +100,7 @@ export default {
   /* border: 0.5rem solid red; */
   width: 100vw;
   height: 100vh;
-  background-image: url('https://image.tmdb.org/t/p/original/mqsPyyeDCBAghXyjbw4TfEYwljw.jpg');
+  /* background-image: url('https://image.tmdb.org/t/p/original/mqsPyyeDCBAghXyjbw4TfEYwljw.jpg'); */
   background-size: cover;
   /* background: rgb(0, 0, 0) */
   overflow: hidden;
@@ -103,8 +126,9 @@ export default {
 }
 
 #login-place {
-  font-size: 24px;
-  font-weight: 900;
+  color: red;
+  /* font-size: 24px; */
+  /* font-weight: 900; */
 }
 
 #login-container input[type=text], input[type=password] {

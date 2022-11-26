@@ -5,7 +5,6 @@
     <form @submit.prevent="reviewC">
       <label for="content">content : </label>
       <input type="text" id="content" v-model='content'><br>
-
       <label for="rating"> rating: </label>
       <input type="rating" id="rating" v-model="rating"><br>
 

@@ -3,7 +3,8 @@
   <div class="navbar d-flex justify-content-between">
     <!-- Nav 로고 -->
     <div id="nav-bar-logo">
-      <p class="h4 fw-bolder fst-italic">PJT</p>
+      <!-- <router-link :to="{name: 'IndexView'}" style="all: unset; cursor: pointer;"><p class="h4 fw-bolder fst-italic">PJT</p></router-link> -->
+      <router-link :to="{name: 'IndexView'}" style="text-decoration: none; color: inherit;"><p class="h4 fw-bolder fst-italic">PJT</p></router-link>
       <!-- <h3 style="font-weight: 900;">LOGO</h3> -->
     </div>
 
@@ -13,17 +14,19 @@
         <i class="bi bi-search input-group-text" id="search-bar"></i>
         <input type="text" class="form-control" placeholder="영화검색" 
           @input="searchMovie"
-          @keyup.enter="moveToSearchPage"
+          @keydown.enter="moveToSearchPage"
 
           aria-label="search" aria-describedby="search-bar">
       </div>
+
       <!-- <button class="button-nav-list" @click="searchMovie">영화검색</button> -->
       <div class="list-group position-absolute" :style="{width: '100%'}">
         <router-link class="list-group-item list-group-item-action"
           v-for="sMovie in searchMovieList" 
           :key="sMovie.movie_id" 
-          :to="{name: 'MovieDetailView', params: {'movieId': sMovie.movie_id, sMovie} }"
+          :to="{name: 'MovieDetailView', params: {moviePk: sMovie.movie_id} }"
           @click.native="clearSearchList"
+          style="z-index: 99999;"
           >
             {{ sMovie.title }}
         </router-link>
@@ -32,16 +35,28 @@
     
     <!-- Nav 프로필-관심영화-로그아웃 -->
     <div id="nav-bar-end">
-      <router-link :to="{name: 'ProfileView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toProfile">PROFILE</router-link>
+      <router-link :to="{name: 'ProfileView', params: {username: this.$store.state.userInfo.userName} }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toProfile">PROFILE</router-link>
+
       <router-link :to="{name: 'MyMovieView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toMyMovie">MOVIELIST</router-link>
       <p class="button-nav-list h6" :style="{'font-weight': '800'}" @click="logOut">SIGN OUT</p>
     </div>
 
     <!-- Nav toggler -->
     <div id="navbar-toggler-div">
-      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+      <b-button v-b-toggle.sidebar-right class="navbar-toggler" type="button">
         <span class="navbar-toggler-icon"></span>
-      </button>
+        <b-sidebar id="sidebar-right" title="Navbar" right shadow>
+          <div class="my-4">
+            <router-link :to="{name: 'ProfileView', params: {username: this.$store.state.userInfo.userName} }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toProfile">PROFILE</router-link>
+          </div>
+          <div class="my-4">
+            <router-link :to="{name: 'MyMovieView' }" class="button-nav-list h6 me-4" :style="{'font-weight': '800'}" @click="toMyMovie">MOVIELIST</router-link>
+          </div>
+          <div>
+            <p class="button-nav-list h6" :style="{'font-weight': '800'}" @click="logOut">SIGN OUT</p>
+          </div>
+        </b-sidebar>
+      </b-button>
     </div>
 
     <!-- <button class="button-nav-list" @click="test">test</button>
@@ -60,10 +75,13 @@ export default {
   name: 'NavbarPage',
   data() {
     return {
-      searchMovieList: [],
+      searchMovieLi: [],
     }
   },
   computed: {
+    searchMovieList() {
+      return this.searchMovieLi
+    }
   },
   methods: {
     toProfile () {
@@ -110,7 +128,8 @@ export default {
           }
         })
           .then((res) => {
-            this.searchMovieList = res.data
+            this.searchMovieLi = res.data
+            // console.log(res.data)
             // console.log(this.searchMovieList)
           })
           .catch((err) => {
@@ -129,11 +148,13 @@ export default {
           }
         })
           .then((res) => {
-            if (this.searchMovieList.length === 1) {
-              this.searchMovieList = []
-              this.$router.push({name: 'MovieDetailView', params: {'movieId': res.data[0].movie_id, sMovie: res.data[0]}})
+            this.searchMovieLi = res.data
+            if (this.searchMovieLi.length == 1) {
+              this.searchMovieLi = []
+              this.$router.push({name: 'MovieDetailView', params: {moviePk: res.data[0].movie_id}})
+              // this.$router.push({name: 'MovieDetailView', params: {movieId: , movie: res.data[0]}})
             } else {
-              this.searchMovieList = []
+              this.searchMovieLi = []
               this.$store.commit('SAVE_SEARCH_MOVIE', res.data)
               this.$router.push({name: 'SearchMovieView'})
             }
@@ -144,7 +165,7 @@ export default {
         }
     },
     clearSearchList() {
-      this.searchMovieList = []
+      this.$store.state.searchMovieList = []
     }
   },
   created() {
@@ -152,7 +173,6 @@ export default {
   },
   destroyed() {
   },
-  
 }
 </script>
 
@@ -183,9 +203,6 @@ export default {
 
 #nav-bar-search > i {
   cursor: pointer;
-}
-
-#nav-bar-end, #nav-bar-logo {
 }
 
 @media (min-width: 992px) {

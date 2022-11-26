@@ -1,0 +1,31 @@
+store > index.js
+
+paymentMovie(context, payload) {
+      const time = payload.time
+      const theater = payload.theater
+      const date = payload.date
+      const movieId = payload.movieId
+      const selectSeats = context.state.selectSeats
+      axios({
+        method: 'post',
+        url: `${DJANGO_API_URL}/ticketings/payment/`,
+        headers: {
+          Authorization: `Token ${context.state.token}`
+        },
+        data: {
+          date, time, theater, movieId,selectSeats
+        }
+      })
+        .then(() => {
+          console.log('결제한 좌석 정보 저장 성공')
+          const username = context.state.userInfo.userName
+          context.dispatch('badgeUpdate')
+          context.dispatch('reqMyPayedMovies', username)
+        })
+        .then(() => {
+          context.dispatch('algorithmRecommendedMovies')
+        })
+        .catch(() => {
+          console.log('결제한 좌석 정보 저장 실패')
+        })
+

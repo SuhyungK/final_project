@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!-- {{genres}} -->
     <!-- 개별 영화 div -->
     <div id="searchMovie" class="d-flex row">
       
@@ -20,7 +21,7 @@
 
             <!-- title(release_year) -->
             <span class="h3 fw-bold me-2" style="cursor: pointer;" id="movie-title-hover"
-              @click="moveToDetail(movie, $event)"
+              @click="moveToDetail(movie)"
             >
               {{ movie.title }}
             </span>
@@ -44,7 +45,7 @@
 
           <!-- 영화 줄거리 -->
           <div>
-            <p class="text-start fs-5">
+            <p class="text-start fs-6">
               {{ movie.overview }}
             </p>
           </div>
@@ -58,6 +59,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   name: 'SearchMovie',
   props: {
@@ -70,7 +73,10 @@ export default {
   },
   methods: {
     moveToDetail() {
-      this.$router.push({name: 'MovieDetailView', params: {}})
+      const moviePk = this.movie.movie_id
+      axios.get(`http://127.0.0.1:8000/movies/movie-infomation/${moviePk}/`)
+      .then((res) => this.$store.commit('CHECK_MOVIE', res.data))
+      .then(() => this.$router.push({name: 'MovieDetailView', params: {moviePk: this.movie.movie_id}}))
     }
   }
 }

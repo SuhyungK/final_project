@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>test 창</h1>
+    <h1>test 창 TmpView.view</h1>
     <button @click="tmpCallMovie">무비 불러오기</button>
     <TmpmovieItem
     v-for='movie in tmpMovies'

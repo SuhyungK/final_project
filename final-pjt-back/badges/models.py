@@ -22,8 +22,13 @@ class BadgeList(models.Model):
 
 class Badge(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
+
     # 획득 여부를 넣을 필요가 있나? => DB 생성된 시점에서 이미 획득아녀?
-    represent = models.IntegerField()
+    # 획득했을때 흑백, 획득후 칼라 표시를 위해 해줘야될듯
+    isGet = models.BooleanField(default=False)
+
+    #대표배지 보류
+    # represent = models.IntegerField()
 
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     badgelist = models.ForeignKey(BadgeList, on_delete=models.CASCADE)
