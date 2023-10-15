@@ -1,10 +1,18 @@
 # 🎥 영화 사이트 
 
-SSAFY 8기 1학기 관통 프로젝트 
+📌 SSAFY 8기 1학기 관통 프로젝트 
+
+현재 상영중인 영화의 예고편들을 보고  
+예매까지 유도할 수 있는 페이지를 만들자!
 
 ## Contents 
-- [Get Started](#Get-Started)
-- [핵심 기능](#핵심-기능)
+- [Get Started](https://github.com/SuhyungK/final_project/tree/master#-Get-Started)
+- [서비스 소개](https://github.com/SuhyungK/final_project/tree/master#-서비스-소개)
+  - [핵심 기능](https://github.com/SuhyungK/final_project/tree/master#-핵심-기능)
+  - [기술 스택](https://github.com/SuhyungK/final_project/tree/master#-기술-스택)
+  - [둘러보기](https://github.com/SuhyungK/final_project/tree/master#-둘러보기)
+  - [개발 멤버](https://github.com/SuhyungK/final_project/tree/master#-개발-멤버)
+- [회고](https://github.com/SuhyungK/final_project/tree/master#-회고)
 
 
 ## Get Started
@@ -36,16 +44,10 @@ $ cd final_project
 $ cd final-pjt-back
 $ python -m venv venv
 $ source venv/Scripts/activate
+$ pip install -r requirements.txt
 ```
 
-
-## 🎥 핵심 기능
-
-현재 상영중인 영화의 예고편들을 복 
-예매까지 유도할 수 있는 페이지를 만들자!
-
-
-## Technology 
+## 기술 스택
 - Vue.js
 - Vuex
 - Django
@@ -54,45 +56,9 @@ $ source venv/Scripts/activate
 - Javascript
 - Python31
 
-## About Project
-
-
-
-
-
-
-### 영화 검색
-
-### 영화 상세 페이지
-
-### 마이 페이지 
-
-### 메인 페이지 
-|<img src="https://github.com/SuhyungK/final_project/assets/97926368/88d063cb-c7ee-42e8-bb49-b3b1f264c967" width="100%">|<img src="https://github.com/SuhyungK/final_project/assets/97926368/20c6c5a6-bb40-414a-9eec-ca30196b4579" width="100%">|
-|---|---|
-
-- 로그인 유저만 서비스를 이용 가능
-- 메인 페이지에서 바로 회원가입 유도
-- 랜덤으로 변경되는 배경 이미지
-
-<!-- |![](https://github.com/SuhyungK/_Algorithm/assets/97926368/1a1cb117-7fdc-4868-a754-d322c5c38013)|내용|
-|------|---|
-|테스트1|테스트2|
-|테스트1|테스트2|
-|테스트1|테스트2| -->
-
-1. 영화 추천 알고리즘
-
-2. 영화 예매 기능
-
-3. 뱃지(도전과제) 시스템
-
-4. 영화 검색기능
-
-### MVP 기능설명
-
-#### 1. 영화 추천 알고리즘
-
+## 핵심 기능
+1. 영화 추천 
+   
 ```python
 def algorithm(request):
     movies = get_list_or_404(Movie)
@@ -133,7 +99,6 @@ def algorithm(request):
 ```
 
 사용자가 예매한 영화정보를 바탕으로 가중치를 계산한다.
-
 가중치: 영화평점 0.3 // 내가 본 장르들 0.4 // 개봉일자 0.2
 
 1. 사용자가 본 영화를 가지고 장르를 카운트해준다.
@@ -162,9 +127,6 @@ def algorithm(request):
            data = movie.release_date
            score += releaseDate(data)
 
-
-
-
  3. 위에서 저장해서 내려온 리스트를 내림차순으로 정렬하고 10개를 슬라이싱을 한다. 그 후 리스트에 담긴 영화pk 값으로 전체 영화정보를 추출하여 리턴한다
 
 ```python
@@ -174,10 +136,10 @@ my_movie = []
  rec_movie = Movie.objects.get(pk=i)
  my_movie.append(Movie.objects.get(pk=i)) 
 serializer = MovieSerializer(my_movie, many=True) 
-return Response(serializer.da
+return Response(serializer.data)
 ```
 
-#### 2. 영화 예매기능
+2. 영화 예매하기
 
 영화 예매의 순서는 영화선택 -> 날짜(년월일) -> 영화시간 -> 상영관 -> 좌석선택 순서로만 이루어 질 수 있도록 한다.
 
@@ -199,11 +161,8 @@ return Response(serializer.da
 
 그렇게 정해진 영화 예매정보(영화, 날짜, 시간, 좌석) 을 유저와 연결지은 모델(Reservation)을 만들어 후에 유저가 예약한 영화 정보를 쉽게 확인할 수 있도록 했다.
 
+3. 뱃지 시스템 
 
-
-
-
-#### 3. 뱃지 시스템
 
  예매한 영화의 개수, 작성한 리뷰의 개수, 사용자를 팔로우한 수에 따라 상징적인 보상을 줌으로서 웹사이트 활동에 집중할 수 있게 하기위해 만들었다.
 
@@ -214,18 +173,55 @@ return Response(serializer.da
 ![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-24-21-09-23-image.png)
 
 
-
-
-
 ![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-24-21-23-28-image.png)
 
 유저가 생성된후 실행되는 함수 1~9 의 pk 값을 가지는 BadgeList 의 값이 유저와 연결되어 Badge 에 저장된다.
 
 
+## 둘러보기
+
+### 메인 페이지
+- 최신 영화 예고편 보기
+- 가장 인기 있는 최신 영화 TOP 10 목록 보기
+- 가장 인기 있는 리뷰들 모아보기
+  
+### 영화 검색
+- 결과가 여러개일 경우 목록으로 이동
+- 결과가 한 가지일 경우 영화 상세 페이지로 이동
+
+### 영화 상세 페이지
+- 영화 상세 정보 나타내는 페이지
+- 리뷰 쓰기
+
+### 마이 페이지 
+- 현재까지 예매한 영화 정보 보기
+- 현재까지 받은 뱃지 정보 보기
+- 영화 취향 보기
+
+### 시작 페이지 
+|<img src="https://github.com/SuhyungK/final_project/assets/97926368/88d063cb-c7ee-42e8-bb49-b3b1f264c967" width="100%">|<img src="https://github.com/SuhyungK/final_project/assets/97926368/20c6c5a6-bb40-414a-9eec-ca30196b4579" width="100%">|
+|---|---|
+
+- 로그인 유저만 서비스를 이용 가능
+- 메인 페이지에서 바로 회원가입 유도
+- 랜덤으로 변경되는 배경 이미지
+
+<!-- |![](https://github.com/SuhyungK/_Algorithm/assets/97926368/1a1cb117-7fdc-4868-a754-d322c5c38013)|내용|
+|------|---|
+|테스트1|테스트2|
+|테스트1|테스트2|
+|테스트1|테스트2| -->
+
+
+## 개발 멤버
+|<a href="https://github.com/SuhyungK"><img src="https://github.com/SuhyungK.png" /></a>|<a href="https://github.com/SuhyungK"><img src="https://github.com/SuhyungK.png" /></a>|
+|:---:|:---:|
+|김수형|고병진|
+|- 기획 ||
 
 
 
-### 배울 수 있었던 부분
+## 회고
 
 1.  프로젝트 시작전에 ERD 를 구상해보면서 모델간 관계들이 pk 값으로 어떻게 연결되어 서로를 호출 할 수 있는지에 대해서 확실하게 알게 되었다.
 
