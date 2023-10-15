@@ -11,6 +11,9 @@
   - [핵심 기능](https://github.com/SuhyungK/final_project/tree/master#-핵심-기능)
   - [기술 스택](https://github.com/SuhyungK/final_project/tree/master#-기술-스택)
   - [둘러보기](https://github.com/SuhyungK/final_project/tree/master#-둘러보기)
+- [프로젝트 설계](https://github.com/SuhyungK/final_project/tree/master#-프로젝트-설계)
+  - [ERD](https://github.com/SuhyungK/final_project/tree/master#-ERD)
+  - [컴포넌트 구조](https://github.com/SuhyungK/final_project/tree/master#-컴포넌트-구조)
   - [팀 소개](https://github.com/SuhyungK/final_project/tree/master#-팀-소개)
 - [회고](https://github.com/SuhyungK/final_project/tree/master#-회고)
 
@@ -54,7 +57,7 @@ $ pip install -r requirements.txt
 - SQLite3
 - Bootstrap
 - Javascript
-- Python31
+- Python3
 
 ## 핵심 기능
 1. 영화 추천 
@@ -212,6 +215,7 @@ return Response(serializer.data)
 |테스트1|테스트2|
 |테스트1|테스트2| -->
 
+## ERD
 
 ## 팀 소개
 
@@ -219,8 +223,8 @@ return Response(serializer.data)
   <table>
     <tr>
       <th></th>
-      <th><a href="https://github.com"><img src="https://github.com/SuhyungK.png" width="300" /></a></th>
-      <th><a href="https://github.com"><img src="https://github.com/SuhyungK.png" width="300"/></a></th>
+      <th><a href="https://github.com/SuhyungK"><img src="https://github.com/SuhyungK.png" width="300" /></a></th>
+      <th><a href="https://github.com/gobeul"><img src="https://github.com/gobeul.png" width="300"/></a></th>
     </tr>
     <tr>
       <td>
@@ -228,7 +232,7 @@ return Response(serializer.data)
       </td>
       <td>
        <li>디자인 레퍼런스 수집</li>
-       <li>페이지 레이아수 설계</li>
+       <li>페이지 레이아웃 설계</li>
       </td>
       <td>
         <li>기획 및 데이터베이스 설계</li>
