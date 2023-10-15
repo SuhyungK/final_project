@@ -1,12 +1,76 @@
 # 🎥 영화 사이트 
 
-## 📽️서비스 소개 
+## 🎥 서비스 소개
 
-### 기획의도
+현재 상영중인 영화의 예고편들을 복 
+예매까지 유도할 수 있는 페이지를 만들자!
 
-우리 홈페이지를 통해 현재 상영중인 영화들의 영화 예매를 유도할 수 있는 페이지를 만들자!
+## Get Started
 
-### MVP
+### Client
+```
+$ git clone https://github.com/SuhyungK/final_project.git
+$ cd final_project
+$ cd final-pjt-front
+$ npm install 
+$ npm run serve
+```
+
+### Server
+- Mac OS
+```
+$ git clone https://github.com/SuhyungK/final_project.git
+$ cd final_project
+$ cd final-pjt-back
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ python3 -m pip install -r requirements.txt
+```
+
+- Windows 10
+```
+$ git clone https://github.com/SuhyungK/final_project.git
+$ cd final_project
+$ cd final-pjt-back
+$ python -m venv venv
+$ source venv/Scripts/activate
+```
+
+## Technology 
+- Vue.js
+- Vuex
+- Django
+- SQLite3
+- Bootstrap
+- Javascript
+- Python31
+
+## About Project
+
+
+
+
+
+
+### 영화 검색
+
+### 영화 상세 페이지
+
+### 마이 페이지 
+
+### 메인 페이지 
+|<img src="https://github.com/SuhyungK/final_project/assets/97926368/88d063cb-c7ee-42e8-bb49-b3b1f264c967" width="100%">|<img src="https://github.com/SuhyungK/final_project/assets/97926368/20c6c5a6-bb40-414a-9eec-ca30196b4579" width="100%">|
+|---|---|
+
+- 로그인 유저만 서비스를 이용 가능
+- 메인 페이지에서 바로 회원가입 유도
+- 랜덤으로 변경되는 배경 이미지
+
+<!-- |![](https://github.com/SuhyungK/_Algorithm/assets/97926368/1a1cb117-7fdc-4868-a754-d322c5c38013)|내용|
+|------|---|
+|테스트1|테스트2|
+|테스트1|테스트2|
+|테스트1|테스트2| -->
 
 1. 영화 추천 알고리즘
 
@@ -234,3 +298,4 @@ ticketings app 모델(MovieTimeTheater, Reservation, SeatInformation)
 전체 ERD
 
 ![erd_최종.jpg](C:\Users\gbj\Desktop\erd_최종.jpg)
+
