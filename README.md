@@ -6,58 +6,21 @@
 예매까지 유도할 수 있는 페이지를 만들자!
 
 ## Contents 
-- [Get Started](https://github.com/SuhyungK/final_project/tree/master#get-started)
-- 서비스 소개
+- [Introduction](https://github.com/SuhyungK/final_project/tree/master#introduction)
   - [기술 스택](https://github.com/SuhyungK/final_project/tree/master#기술-스택)
-  - [핵심 기능](https://github.com/SuhyungK/final_project/tree/master#핵심-기능)
-  - [둘러보기](https://github.com/SuhyungK/final_project/tree/master#둘러보기)
-- 프로젝트 설계
+  - [서비스 화면](https://github.com/SuhyungK/final_project/tree/master#핵심-기능)
+  - [페이지](https://github.com/SuhyungK/final_project/tree/master#둘러보기)
+- [Development](https://github.com/SuhyungK/final_project/tree/master#development)
   - [ERD](https://github.com/SuhyungK/final_project/tree/master#ERD)
   - [컴포넌트 구조](https://github.com/SuhyungK/final_project/tree/master#컴포넌트-구조)
   - [팀 소개](https://github.com/SuhyungK/final_project/tree/master#팀-소개)
+- [Get Started](https://github.com/SuhyungK/final_project/tree/master#get-started)
 - [회고](https://github.com/SuhyungK/final_project/tree/master#회고)
 
 
-## Get Started
+## 서비스 소개 
 
-### Client
-```
-$ git clone https://github.com/SuhyungK/final_project.git
-$ cd final_project
-$ cd final-pjt-front
-$ npm install 
-$ npm run serve
-```
 
-### Server
-- Mac OS
-```
-$ git clone https://github.com/SuhyungK/final_project.git
-$ cd final_project
-$ cd final-pjt-back
-$ python3 -m venv venv
-$ source venv/bin/activate
-$ python3 -m pip install -r requirements.txt
-```
-
-- Windows 10
-```
-$ git clone https://github.com/SuhyungK/final_project.git
-$ cd final_project
-$ cd final-pjt-back
-$ python -m venv venv
-$ source venv/Scripts/activate
-$ pip install -r requirements.txt
-```
-
-## 기술 스택
-- Vue.js
-- Vuex
-- Django
-- SQLite3
-- Bootstrap
-- Javascript
-- Python3
 
 ## 핵심 기능
 1. 영화 추천 
@@ -181,7 +144,7 @@ return Response(serializer.data)
 유저가 생성된후 실행되는 함수 1~9 의 pk 값을 가지는 BadgeList 의 값이 유저와 연결되어 Badge 에 저장된다.
 
 
-## 둘러보기
+## 서비스 화면
 
 ### 메인 페이지
 - 최신 영화 예고편 보기
@@ -193,6 +156,8 @@ return Response(serializer.data)
 - 결과가 한 가지일 경우 영화 상세 페이지로 이동
 
 ### 영화 상세 페이지
+|<img src="https://github.com/SuhyungK/final_project/assets/97926368/ab5f6886-d875-4a19-b267-41f2580d7972" width="1600"/>|<img src="https://github.com/SuhyungK/final_project/assets/97926368/94e36073-189e-4202-9651-59e405951719" /> |
+|---|---|
 - 영화 상세 정보 나타내는 페이지
 - 리뷰 쓰기
 
@@ -215,18 +180,31 @@ return Response(serializer.data)
 |테스트1|테스트2|
 |테스트1|테스트2| -->
 
-## ERD
+## Development
 
-## 컴포넌트 구조
+### 기술 스택
+- Vue.js
+- Vuex
+- Django
+- SQLite3
+- Bootstrap
+- Javascript
+- Python3
+  
+### ERD
 
-## 팀 소개
+![Untitled Diagram drawio](https://github.com/SuhyungK/final_project/assets/97926368/384635fb-b493-4167-bacc-75d9201fc60c)
+
+### 컴포넌트 구조
+
+### 팀 소개
 
 <div align="center">
   <table>
     <tr>
       <th></th>
-      <th><a href="https://github.com/SuhyungK"><img src="https://github.com/SuhyungK.png" width="300" /></a></th>
-      <th><a href="https://github.com/gobeul"><img src="https://github.com/gobeul.png" width="300"/></a></th>
+      <th><a href="https://github.com/SuhyungK"><img src="https://github.com/SuhyungK.png" width="200" /></a></th>
+      <th><a href="https://github.com/gobeul"><img src="https://github.com/gobeul.png" width="200"/></a></th>
     </tr>
     <tr>
       <td>
@@ -269,7 +247,9 @@ return Response(serializer.data)
 
 
 
-### 아쉬웠던 부분
+### 개선할 점
+
+- Git 
 
 1. 모델간의 이해 관계를 구상하는 부분이 어려웠다. 이때문에 처음 ERD 구성에 시간을 많이 투자했음에도 프로젝트를 진행하면서 대부분의 모델이 수정 되었다.
    
@@ -305,3 +285,34 @@ ticketings app 모델(MovieTimeTheater, Reservation, SeatInformation)
 
 ![erd_최종.jpg](C:\Users\gbj\Desktop\erd_최종.jpg)
 
+## Get Started
+
+### Client
+```
+$ git clone https://github.com/SuhyungK/final_project.git
+$ cd final_project
+$ cd final-pjt-front
+$ npm install 
+$ npm run serve
+```
+
+### Server
+- Mac OS
+```
+$ git clone https://github.com/SuhyungK/final_project.git
+$ cd final_project
+$ cd final-pjt-back
+$ python3 -m venv venv
+$ source venv/bin/activate
+$ python3 -m pip install -r requirements.txt
+```
+
+- Windows 10
+```
+$ git clone https://github.com/SuhyungK/final_project.git
+$ cd final_project
+$ cd final-pjt-back
+$ python -m venv venv
+$ source venv/Scripts/activate
+$ pip install -r requirements.txt
+```
