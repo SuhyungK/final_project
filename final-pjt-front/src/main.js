@@ -15,8 +15,8 @@ Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
 
 // ShortPage
-import VueYoutube from 'vue-youtube'
-import Carousel3d from 'vue-carousel-3d'
+// import VueYoutube from 'vue-youtube'
+// import Carousel3d from 'vue-carousel-3d'
 Vue.use(Carousel3d)
 Vue.use(VueYoutube)
 

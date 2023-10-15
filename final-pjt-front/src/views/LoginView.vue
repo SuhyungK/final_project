@@ -6,19 +6,19 @@
     </iframe> -->
     <div id="login-container" class="d-inline-block text-white d-flex flex-column">
       <div class="d-flex justify-content-start">
-        <p class="h3 mb-4 mt-2" id="login-place" style="font-weight: 900;">LOGIN</p>
+        <p class="h3 mb-4 mt-2" id="login-place" style="font-weight: 900;">로그인</p>
       </div>
       <form @submit.prevent="logIn">
         <div class="form-floating mb-3">
           <!-- <label for="username">username : </label> -->
           <input type="text" id="username" class="form-control" v-model="username" placeholder="username">
-          <label for="username">Enter the username</label>
+          <label for="username">아이디를 입력하세요.</label>
         </div>
 
         <div class="form-floating mb-4">
           <!-- <label for="password"> password : </label> -->
           <input type="password" id="password" class="form-control" v-model="password" placeholder="password">
-          <label for="password">Enter the password</label>
+          <label for="password">비밀번호를 입력하세요.</label>
         </div>
 
         <input type="submit" id="button-submit" class="btn-floating mb-1 text-white" value="로그인">
@@ -62,14 +62,14 @@ export default {
       return 'background-image : url(https://image.tmdb.org/t/p/original' + this.bgList[Math.ceil(Math.random() * 5)] + '); background-size: cover;'
     }
   },
-  computed: {
-    // src() {
-    //   const srcUrl = 'https://www.youtube.com/embed/pjMt1MIk2EA?'
-    //   const srcProperty = 'controls=0&mute=1&disablekb=1&rel=0&autoplay=1&loop=1&start=15&playlist=pjMt1MIk2EA'
-    //   const srcOrigin = '&origin=http://localhost:8080/'
-    //   return srcUrl + srcProperty + srcOrigin
-    // },
-  },
+  // computed: {
+  //   // src() {
+  //   //   const srcUrl = 'https://www.youtube.com/embed/pjMt1MIk2EA?'
+  //   //   const srcProperty = 'controls=0&mute=1&disablekb=1&rel=0&autoplay=1&loop=1&start=15&playlist=pjMt1MIk2EA'
+  //   //   const srcOrigin = '&origin=http://localhost:8080/'
+  //   //   return srcUrl + srcProperty + srcOrigin
+  //   // },
+  // },
   methods: {
     logIn () {
       const username = this.username

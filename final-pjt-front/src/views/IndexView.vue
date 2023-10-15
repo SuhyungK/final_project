@@ -63,15 +63,12 @@ export default {
   font-size: 16px;
 }
 
-<<<<<<< HEAD
 .button-nav-list {
   all: unset;
   font-weight: 900;
   font-size: 16px;
 }
 
-=======
->>>>>>> c7de071afecee823faa963f5c76248615a72cf18
 .button-nav-list:hover {
   cursor: pointer;
   color: #00ABB3;
@@ -94,8 +91,4 @@ export default {
 #nav-bar-search > i {
   cursor: pointer;
 }
-<<<<<<< HEAD
-
-=======
->>>>>>> c7de071afecee823faa963f5c76248615a72cf18
 </style>
