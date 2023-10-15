@@ -191,7 +191,7 @@ return Response(serializer.data)
   
 ### ERD
 
-![final_project_erd drawio](https://github.com/SuhyungK/final_project/assets/97926368/fbda0f43-9646-4faa-9994-b83917648bf6)
+![final_pjt_erd drawio](https://github.com/SuhyungK/final_project/assets/97926368/f26a8a4a-6d75-46db-9f94-0082a0bf4df6)
 
 ### 컴포넌트 구조
 
