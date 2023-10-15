@@ -147,11 +147,15 @@ return Response(serializer.data)
 - 가장 인기 있는 최신 영화 TOP 10 목록 보기
 - 가장 인기 있는 리뷰들 모아보기
   
+<br /><br />
+
 ### 영화 검색
 |<img src="https://github.com/SuhyungK/final_project/assets/97926368/ec9dbe9d-5d8f-4d2b-9fd3-b43671351010" />|<img src="https://github.com/SuhyungK/final_project/assets/97926368/fb7a85c9-f4dc-460e-9195-1fa3029c945b" /> |
 |---|---|
 - 결과가 여러개일 경우 목록형/갤러리형 택 1하여 여러 개의 결과 페이지
 - 결과가 한 가지일 경우 영화 상세 페이지로 이동
+
+<br /><br />
 
 ### 영화 상세 페이지
 |<img src="https://github.com/SuhyungK/final_project/assets/97926368/ab5f6886-d875-4a19-b267-41f2580d7972" width="1600"/>|<img src="https://github.com/SuhyungK/final_project/assets/97926368/94e36073-189e-4202-9651-59e405951719" /> |
@@ -159,10 +163,14 @@ return Response(serializer.data)
 - 영화 상세 정보 나타내는 페이지
 - 리뷰 쓰기
 
+<br /><br />
+
 ### 마이 페이지 
 - 현재까지 예매한 영화 정보 보기
 - 현재까지 받은 뱃지 정보 보기
 - 영화 취향 보기
+
+<br /><br />
 
 ### 시작 페이지 
 |<img src="https://github.com/SuhyungK/final_project/assets/97926368/88d063cb-c7ee-42e8-bb49-b3b1f264c967" width="100%">|<img src="https://github.com/SuhyungK/final_project/assets/97926368/20c6c5a6-bb40-414a-9eec-ca30196b4579" width="100%">|
@@ -172,11 +180,7 @@ return Response(serializer.data)
 - 메인 페이지에서 바로 회원가입 유도
 - 랜덤으로 변경되는 배경 이미지
 
-<!-- |![](https://github.com/SuhyungK/_Algorithm/assets/97926368/1a1cb117-7fdc-4868-a754-d322c5c38013)|내용|
-|------|---|
-|테스트1|테스트2|
-|테스트1|테스트2|
-|테스트1|테스트2| -->
+<br />
 
 ## Development
 
@@ -188,12 +192,18 @@ return Response(serializer.data)
 - Bootstrap
 - Javascript
 - Python3
-  
+
+<br /><br />
+
 ### ERD
 
 ![final_pjt_erd drawio](https://github.com/SuhyungK/final_project/assets/97926368/f26a8a4a-6d75-46db-9f94-0082a0bf4df6)
 
+<br /><br />
+
 ### 컴포넌트 구조
+
+<br /><br />
 
 ### 팀 소개
 
@@ -231,7 +241,7 @@ return Response(serializer.data)
   </table>
 </div>
 
-
+<br />
 
 ## 회고
 
@@ -271,6 +281,11 @@ $ cd final-pjt-back
 $ python3 -m venv venv
 $ source venv/bin/activate
 $ python3 -m pip install -r requirements.txt
+
+$ python3 manaage.py makemigrations
+$ python3 manage.py migrate
+
+$ python3 manage.py runserver
 ```
 
 - Windows 10
@@ -281,4 +296,9 @@ $ cd final-pjt-back
 $ python -m venv venv
 $ source venv/Scripts/activate
 $ pip install -r requirements.txt
+
+$ python3 manaage.py makemigrations
+$ python3 manage.py migrate
+
+$ python3 manage.py runserver
 ```
