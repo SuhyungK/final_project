@@ -197,7 +197,7 @@ return Response(serializer.data)
 
 ### ERD
 
-![final_pjt_erd drawio](https://github.com/SuhyungK/final_project/assets/97926368/f26a8a4a-6d75-46db-9f94-0082a0bf4df6)
+![final_final_pjt_erd drawio](https://github.com/SuhyungK/final_project/assets/97926368/bb85f38c-568e-4f84-90cd-ac5952446403)
 
 <br /><br />
 
@@ -231,11 +231,14 @@ return Response(serializer.data)
         <b>백엔드</b>
       </td>
       <td>
-        <li>영화 리뷰 작성 API</li>
+        <li>영화 리뷰 API 설계</li>
+        <li>기획 및 데이터베이스 설계</li>
       </td>
       <td>
         <li>API 설계</li>
         <li>뱃지 시스템 구현</li>
+        <li>영화 예매 기능 구현</li>
+        <li>기획 및 데이터베이스 설계</li>
       </td>
     </tr>
   </table>
@@ -297,8 +300,8 @@ $ python -m venv venv
 $ source venv/Scripts/activate
 $ pip install -r requirements.txt
 
-$ python3 manaage.py makemigrations
-$ python3 manage.py migrate
+$ python manaage.py makemigrations
+$ python manage.py migrate
 
-$ python3 manage.py runserver
+$ python manage.py runserver
 ```
