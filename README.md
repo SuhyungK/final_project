@@ -6,10 +6,8 @@
 예매까지 유도할 수 있는 페이지를 만들자!
 
 ## Contents 
-- [Introduction](https://github.com/SuhyungK/final_project/tree/master#introduction)
-  - [핵심 기능](https://github.com/SuhyungK/final_project/tree/master#핵심-기능)
-  - [서비스 화면](https://github.com/SuhyungK/final_project/tree/master#서비스-화면)
-  - [페이지](https://github.com/SuhyungK/final_project/tree/master#둘러보기)
+- [핵심 기능](https://github.com/SuhyungK/final_project/tree/master#핵심-기능)
+- [서비스 화면](https://github.com/SuhyungK/final_project/tree/master#서비스-화면)
 - [Development](https://github.com/SuhyungK/final_project/tree/master#development)
   - [기술 스택](https://github.com/SuhyungK/final_project/tree/master#기술-스택)
   - [ERD](https://github.com/SuhyungK/final_project/tree/master#ERD)
@@ -193,7 +191,7 @@ return Response(serializer.data)
   
 ### ERD
 
-![Untitled Diagram drawio](https://github.com/SuhyungK/final_project/assets/97926368/384635fb-b493-4167-bacc-75d9201fc60c)
+![final_project_erd drawio](https://github.com/SuhyungK/final_project/assets/97926368/fbda0f43-9646-4faa-9994-b83917648bf6)
 
 ### 컴포넌트 구조
 
