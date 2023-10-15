@@ -11,7 +11,7 @@
   - [핵심 기능](https://github.com/SuhyungK/final_project/tree/master#-핵심-기능)
   - [기술 스택](https://github.com/SuhyungK/final_project/tree/master#-기술-스택)
   - [둘러보기](https://github.com/SuhyungK/final_project/tree/master#-둘러보기)
-  - [개발 멤버](https://github.com/SuhyungK/final_project/tree/master#-개발-멤버)
+  - [팀 소개](https://github.com/SuhyungK/final_project/tree/master#-팀-소개)
 - [회고](https://github.com/SuhyungK/final_project/tree/master#-회고)
 
 
@@ -213,11 +213,41 @@ return Response(serializer.data)
 |테스트1|테스트2| -->
 
 
-## 개발 멤버
-|<a href="https://github.com/SuhyungK"><img src="https://github.com/SuhyungK.png" /></a>|<a href="https://github.com/SuhyungK"><img src="https://github.com/SuhyungK.png" /></a>|
-|:---:|:---:|
-|김수형|고병진|
-|- 기획 ||
+## 팀 소개
+
+<div align="center">
+  <table>
+    <tr>
+      <th></th>
+      <th><a href="https://github.com"><img src="https://github.com/SuhyungK.png" width="300" /></a></th>
+      <th><a href="https://github.com"><img src="https://github.com/SuhyungK.png" width="300"/></a></th>
+    </tr>
+    <tr>
+      <td>
+       <b>프론트엔드</b>
+      </td>
+      <td>
+       <li>디자인 레퍼런스 수집</li>
+       <li>페이지 레이아수 설계</li>
+      </td>
+      <td>
+        <li>기획 및 데이터베이스 설계</li>
+      </td> 
+    </tr>
+    <tr>
+      <td>
+        <b>백엔드</b>
+      </td>
+      <td>
+        <li>영화 리뷰 작성 API</li>
+      </td>
+      <td>
+        <li>API 설계</li>
+        <li>뱃지 시스템 구현</li>
+      </td>
+    </tr>
+  </table>
+</div>
 
 
 
@@ -249,39 +279,9 @@ return Response(serializer.data)
 5. 실제 배포까지 이루어지지 못했던 부분이 아쉬웠다.
 
 
-
-
-
-### 실행 화면
-
-1. 로그인 화면 뒷배경은 랜덤한 영화포스터가 나온다.
-   
-   ![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-24-22-38-08-image.png)
-
-
-
-2. 회원가입
-   
-   ![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-24-22-39-08-image.png)
-
-3. 
-
-
-
-### 그 외
-
- movies app 모델(Movie, Comment, Review)![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-21-38-image.png)
-
-
-
-
-
 accounts app 모델(User)
 
 ![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-22-49-image.png)
-
-
-
 
 
 badges app 모델(Badge, BadgeList)
@@ -290,14 +290,9 @@ badges app 모델(Badge, BadgeList)
 
 
 
-
-
 ticketings app 모델(MovieTimeTheater, Reservation, SeatInformation)
 
 ![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-24-49-image.png)
-
-
-
 
 
 전체 ERD
