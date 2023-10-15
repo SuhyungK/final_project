@@ -197,7 +197,8 @@ return Response(serializer.data)
 
 ### ERD
 
-![final_final_pjt_erd drawio](https://github.com/SuhyungK/final_project/assets/97926368/bb85f38c-568e-4f84-90cd-ac5952446403)
+![fff_pjt_erd](https://github.com/SuhyungK/final_project/assets/97926368/bd3f9cb2-5fdb-44d1-8aa4-d0b5eba13b48)
+
 
 <br /><br />
 
@@ -223,7 +224,7 @@ return Response(serializer.data)
        <li>페이지 레이아웃 설계</li>
       </td>
       <td>
-        <li>기획 및 데이터베이스 설계</li>
+        <li>영화 예매 페이지 레이아웃</li>
       </td> 
     </tr>
     <tr>
@@ -231,13 +232,14 @@ return Response(serializer.data)
         <b>백엔드</b>
       </td>
       <td>
-        <li>영화 리뷰 API 설계</li>
         <li>기획 및 데이터베이스 설계</li>
+        <li>영화 리뷰 API 설계</li>
+        <li>영화 데이터 DB 저장 자동화</li>
       </td>
       <td>
         <li>API 설계</li>
-        <li>뱃지 시스템 구현</li>
-        <li>영화 예매 기능 구현</li>
+        <li>영화 예매 & 뱃지 시스템 구현</li>
+        <li>영화 추천 알고리즘 구현</li>
         <li>기획 및 데이터베이스 설계</li>
       </td>
     </tr>
