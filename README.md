@@ -1,9 +1,11 @@
 # 🎥 영화 사이트 
 
-## 🎥 서비스 소개
+SSAFY 8기 1학기 관통 프로젝트 
 
-현재 상영중인 영화의 예고편들을 복 
-예매까지 유도할 수 있는 페이지를 만들자!
+## Contents 
+- [Get Started](#Get-Started)
+- [핵심 기능](#핵심-기능)
+
 
 ## Get Started
 
@@ -35,6 +37,13 @@ $ cd final-pjt-back
 $ python -m venv venv
 $ source venv/Scripts/activate
 ```
+
+
+## 🎥 핵심 기능
+
+현재 상영중인 영화의 예고편들을 복 
+예매까지 유도할 수 있는 페이지를 만들자!
+
 
 ## Technology 
 - Vue.js
