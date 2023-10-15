@@ -7,18 +7,16 @@
 
 ## Contents 
 - [Introduction](https://github.com/SuhyungK/final_project/tree/master#introduction)
-  - [기술 스택](https://github.com/SuhyungK/final_project/tree/master#기술-스택)
-  - [서비스 화면](https://github.com/SuhyungK/final_project/tree/master#핵심-기능)
+  - [핵심 기능](https://github.com/SuhyungK/final_project/tree/master#핵심-기능)
+  - [서비스 화면](https://github.com/SuhyungK/final_project/tree/master#서비스-화면)
   - [페이지](https://github.com/SuhyungK/final_project/tree/master#둘러보기)
 - [Development](https://github.com/SuhyungK/final_project/tree/master#development)
+  - [기술 스택](https://github.com/SuhyungK/final_project/tree/master#기술-스택)
   - [ERD](https://github.com/SuhyungK/final_project/tree/master#ERD)
   - [컴포넌트 구조](https://github.com/SuhyungK/final_project/tree/master#컴포넌트-구조)
   - [팀 소개](https://github.com/SuhyungK/final_project/tree/master#팀-소개)
 - [Get Started](https://github.com/SuhyungK/final_project/tree/master#get-started)
 - [회고](https://github.com/SuhyungK/final_project/tree/master#회고)
-
-
-## 서비스 소개 
 
 
 
@@ -127,7 +125,7 @@ return Response(serializer.data)
 
 그렇게 정해진 영화 예매정보(영화, 날짜, 시간, 좌석) 을 유저와 연결지은 모델(Reservation)을 만들어 후에 유저가 예약한 영화 정보를 쉽게 확인할 수 있도록 했다.
 
-3. 뱃지 시스템 
+1. 뱃지 시스템 
 
 
  예매한 영화의 개수, 작성한 리뷰의 개수, 사용자를 팔로우한 수에 따라 상징적인 보상을 줌으로서 웹사이트 활동에 집중할 수 있게 하기위해 만들었다.
@@ -152,7 +150,9 @@ return Response(serializer.data)
 - 가장 인기 있는 리뷰들 모아보기
   
 ### 영화 검색
-- 결과가 여러개일 경우 목록으로 이동
+|<img src="https://github.com/SuhyungK/final_project/assets/97926368/ec9dbe9d-5d8f-4d2b-9fd3-b43671351010" />|<img src="https://github.com/SuhyungK/final_project/assets/97926368/fb7a85c9-f4dc-460e-9195-1fa3029c945b" /> |
+|---|---|
+- 결과가 여러개일 경우 목록형/갤러리형 택 1하여 여러 개의 결과 페이지
 - 결과가 한 가지일 경우 영화 상세 페이지로 이동
 
 ### 영화 상세 페이지
@@ -237,53 +237,21 @@ return Response(serializer.data)
 
 ## 회고
 
-1.  프로젝트 시작전에 ERD 를 구상해보면서 모델간 관계들이 pk 값으로 어떻게 연결되어 서로를 호출 할 수 있는지에 대해서 확실하게 알게 되었다.
+### 얻은 점
 
-2. serializer 의 직렬화 에 대해서 그리고 JSON 파일이 백과 프론트를 이동하는 부분에대해 아직까지 정확한 개념은 모호하지만 데이터를 서로 어떠헥 주고받는지 알 수 있는 부분이었다.
-
-3. 마냥 좋을 줄 알았던 자바스크립트의 비동기처리가 골치였던 경우가 너무 많았고 이를 해결하면서 어떻게해야 내가 원하는 방향대로 로직이 실행되는지를 배울 수 있었다.
-
-4. 정말 많은 오류를 접했는데 그러한 오류가 어디서 발생하는지 무엇때문에 발생하는지 그리고 그러한 점들을 해결할 수 있었던 해결력을 습득할 수 있었다.
-
+- 데스크탑, 노트북, 모바일 등 반응형 UI 설계 과정을 경험하여 이에 대한 역량을 쌓을 수 있었음
+- ERD 구상/설계 과정을 통해 Model 간의 관계를 이해하고 이를 활용한 API 설계 역량을 쌓을 수 있었음
+- Client - Server 간 웹 데이터 통신 과정에 대해 이해할 수 있었고, 이 과정에서 Javascript의 비동기 개념을 확실하게 이해하고 로직을 설계할 수 있는 역량을 쌓을 수 있었음
+- 프로젝트의 전반적인(기획/설계/개발) 과정을 통해 웹 서비스의 동작 과정에 대해 이해할 수 있었음
 
 
 ### 개선할 점
 
-- Git 
+- Git Issue, Branch 전략 등을 활용하여 협업의 유용성 높이기
+- ERD 설계 투자 시간 높이기 
+- MVP 위주의 개발 & 유지보수하며 부가 기능 개발
+- AWS EC2 활용한 실제 배포 
 
-1. 모델간의 이해 관계를 구상하는 부분이 어려웠다. 이때문에 처음 ERD 구성에 시간을 많이 투자했음에도 프로젝트를 진행하면서 대부분의 모델이 수정 되었다.
-   
-   
-2. 영화 예매정보를 가지고 좀 더 많은 것을 진행하지 못했던 점이 아쉽다. 사용할려고 만들어 놓은 필드는 많은데 정작 사용한 속성은 몇 되지 않는다.
-   
-   
-3. 막힌 문제 해결을 위해 구글링에만 너무 의존했던 점이 아쉽다. 구글링 외에도 주변 동기들에게 물어봤다면 더 빠르고 확실하게 문제를 이해하고 해결했을 수 있을 것 같다.
-   
-   
-4.  깃을 제대로 활용하지 못했던 점이 아쉽다. 깃을 활용해서 협업할 수 있었다면 더 효율적으로 진행되었을 것 같다. 
-    
-5. 실제 배포까지 이루어지지 못했던 부분이 아쉬웠다.
-
-
-accounts app 모델(User)
-
-![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-22-49-image.png)
-
-
-badges app 모델(Badge, BadgeList)
-
-![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-23-29-image.png)
-
-
-
-ticketings app 모델(MovieTimeTheater, Reservation, SeatInformation)
-
-![](C:\Users\gbj\AppData\Roaming\marktext\images\2022-11-25-00-24-49-image.png)
-
-
-전체 ERD
-
-![erd_최종.jpg](C:\Users\gbj\Desktop\erd_최종.jpg)
 
 ## Get Started
 
