@@ -6,16 +6,16 @@
 예매까지 유도할 수 있는 페이지를 만들자!
 
 ## Contents 
-- [Get Started](https://github.com/SuhyungK/final_project/tree/master#-Get-Started)
-- [서비스 소개](https://github.com/SuhyungK/final_project/tree/master#-서비스-소개)
-  - [핵심 기능](https://github.com/SuhyungK/final_project/tree/master#-핵심-기능)
-  - [기술 스택](https://github.com/SuhyungK/final_project/tree/master#-기술-스택)
-  - [둘러보기](https://github.com/SuhyungK/final_project/tree/master#-둘러보기)
-- [프로젝트 설계](https://github.com/SuhyungK/final_project/tree/master#-프로젝트-설계)
-  - [ERD](https://github.com/SuhyungK/final_project/tree/master#-ERD)
-  - [컴포넌트 구조](https://github.com/SuhyungK/final_project/tree/master#-컴포넌트-구조)
-  - [팀 소개](https://github.com/SuhyungK/final_project/tree/master#-팀-소개)
-- [회고](https://github.com/SuhyungK/final_project/tree/master#-회고)
+- [Get Started](https://github.com/SuhyungK/final_project/tree/master#get-started)
+- 서비스 소개
+  - [기술 스택](https://github.com/SuhyungK/final_project/tree/master#기술-스택)
+  - [핵심 기능](https://github.com/SuhyungK/final_project/tree/master#핵심-기능)
+  - [둘러보기](https://github.com/SuhyungK/final_project/tree/master#둘러보기)
+- 프로젝트 설계
+  - [ERD](https://github.com/SuhyungK/final_project/tree/master#ERD)
+  - [컴포넌트 구조](https://github.com/SuhyungK/final_project/tree/master#컴포넌트-구조)
+  - [팀 소개](https://github.com/SuhyungK/final_project/tree/master#팀-소개)
+- [회고](https://github.com/SuhyungK/final_project/tree/master#회고)
 
 
 ## Get Started
@@ -216,6 +216,8 @@ return Response(serializer.data)
 |테스트1|테스트2| -->
 
 ## ERD
+
+## 컴포넌트 구조
 
 ## 팀 소개
 
