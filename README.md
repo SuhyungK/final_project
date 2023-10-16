@@ -143,6 +143,9 @@ return Response(serializer.data)
 ## 서비스 화면
 
 ### 메인 페이지
+|<img src="https://github.com/SuhyungK/final_project/assets/97926368/7dff9b6e-9389-45a7-94b6-dd337c24c2e7" />|<img src="https://github.com/SuhyungK/final_project/assets/97926368/04e3b231-4d08-453a-a244-5c3193815dab" /> |
+|---|---|
+
 - 최신 영화 예고편 보기
 - 가장 인기 있는 최신 영화 TOP 10 목록 보기
 - 가장 인기 있는 리뷰들 모아보기
